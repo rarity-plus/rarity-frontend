@@ -1,6 +1,6 @@
-# New Project
+# rarity.plus frontend
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+
 
 ## Available Scripts
 
