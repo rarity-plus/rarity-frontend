@@ -1,0 +1,35 @@
+
+
+
+.game-container {
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  grid-template-rows: 0.2fr 2.3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Header UI"
+    "Game UI";
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+
+  .header {
+    grid-area: Header;
+  }
+  .ui {
+    grid-area: UI;
+  }
+  .game {
+    grid-area: Game;
+  }
+
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

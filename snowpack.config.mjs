@@ -14,16 +14,17 @@ export default {
         ...(process.versions.pnp ? { tsc: 'yarn pnpify tsc' } : {}),
       },
     ],
+    "snowpack-plugin-relative-css-urls",
     [
       '@snowpack/plugin-sass',
       {
-        /* see options below */
+        loadPath: ['/src/styles/']
       },
     ],
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
-    // {"match": "routes", "src": ".*", "dest": "/index.html"},
+    {"match": "routes", "src": ".*", "dest": "/index.html"},
   ],
   optimize: {
     /* Example: Bundle your final build: */
