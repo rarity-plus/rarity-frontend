@@ -81,6 +81,8 @@ const CharacterSelectionView: React.FC = () => {
             <Link to={'/play'} className={'btn'}>Select</Link>
           </div>
 
+          <button className={'btn'}>New Summon</button>
+
         </StyledLoginWrapper>
 
       </StyledWrapper>

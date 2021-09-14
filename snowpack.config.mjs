@@ -1,8 +1,13 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
+import rollupPluginNodePolyfills from 'rollup-plugin-node-polyfills';
+
 export default {
   mount: {
     public: { url: '/', static: true },
     src: { url: '/dist' },
+  },
+  alias: {
+
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
@@ -31,7 +36,10 @@ export default {
     // "bundle": true,
   },
   packageOptions: {
-    /* ... */
+    polyfillNode: false,
+    rollup: {
+      plugins: [rollupPluginNodePolyfills({crypto: true})],
+    },
   },
   devOptions: {
     /* ... */

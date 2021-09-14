@@ -14,15 +14,22 @@ const NavLogo = styled.h1`
   font-size: x-large;
 `
 
+const NavButtons = styled.div`
+  & > * {
+    margin-left: 0.4em;
+  }
+`
+
 const Header = () => {
   return (
     <div className={`header panel black`}>
         <StyledNav>
             <NavLogo className={'logo'}>Rarity</NavLogo>
 
-            <div>
+            <NavButtons className={'flex'}>
+              <Link to={'/character'} className={'btn'}>Change Character</Link>
               <Link to={'/'} className={'btn'}>Logout</Link>
-            </div>
+            </NavButtons>
         </StyledNav>
     </div>
   )

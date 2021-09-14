@@ -26,6 +26,11 @@
     opacity: 75%;
   }
 
+  &.small {
+    padding: 0.1em 0.1em;
+    font-weight: normal;
+  }
+
   &:active {
     border-image: url("./assets/imgs/button/button-border-hover.png") 10 round;
 

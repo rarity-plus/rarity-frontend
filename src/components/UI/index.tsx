@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Tab, Tabs } from '../Tabs';
+
+
 
 const CharacterInfo = styled.div`
   display: flex;
@@ -14,14 +17,15 @@ const CharacterTitle = styled.div`
   margin-bottom: 1em;
 `
 
+
+
 const UI = () => {
   return (
     <div className={`ui panel black`}>
-      <CharacterTitle className={'panel title'}>
-        <h1>Barbarian</h1>
-      </CharacterTitle>
-
       <div className={'panel'}>
+        <CharacterTitle className={'panel title'}>
+          <h1>Barbarian</h1>
+        </CharacterTitle>
         <CharacterInfo className={'panel black'}>
           <span>Level</span>
           <span>1</span>
@@ -31,6 +35,11 @@ const UI = () => {
           <span>100</span>
         </CharacterInfo>
       </div>
+
+      <Tabs>
+        <Tab title="Inventory">Inventory</Tab>
+        <Tab title="Skills">Skills</Tab>
+      </Tabs>
 
     </div>
   )
