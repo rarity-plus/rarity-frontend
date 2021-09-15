@@ -42,9 +42,9 @@ const gameConfig: GameInstance = {
     height: '100%'
   },
   render: {
-    antialias: false,
+    antialias: true,
     pixelArt: true,
-    roundPixels: true
+    roundPixels: false
   },
   physics: {
     default: 'arcade',
@@ -58,6 +58,8 @@ const gameConfig: GameInstance = {
 
 const Game = () => {
 
+  const panelRef = useRef(null)
+
   const gameRef = useRef<HTMLIonPhaserElement>(null)
   const [game, setGame] = useState<GameInstance>()
   const [initialize, setInitialize] = useState(false)
@@ -66,8 +68,14 @@ const Game = () => {
     setInitialize(true)
   })
 
+  useEffect(() => {
+    if (initialize) {
+      setGame(Object.assign({}, gameConfig))
+    }
+  }, [initialize])
+
   return (
-    <div className={`game panel black`} >
+    <div ref={panelRef} className={`game panel black`} >
       <IonPhaser ref={gameRef} game={game} initialize={initialize} />
     </div>
   )
