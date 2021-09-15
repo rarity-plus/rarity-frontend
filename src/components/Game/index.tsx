@@ -27,6 +27,9 @@ const Game = () => {
     },
     physics: {
       default: 'arcade',
+      arcade: {
+        debug: true
+      }
     },
     scene: MainScene
   })

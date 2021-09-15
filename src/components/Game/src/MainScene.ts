@@ -17,6 +17,7 @@ class MainScene extends Phaser.Scene {
   preload() {
     // this.load.image('player', '/')
     // this.load.atlas('', '')
+    this.load.atlas('player', '/assets/sprites/player.png', '/assets/sprites/player.json')
     this.load.image('tileset', '/assets/maps/tileset.png')
     this.load.tilemapTiledJSON('tilemap', '/assets/maps/map.json')
 
@@ -26,12 +27,18 @@ class MainScene extends Phaser.Scene {
     const map = this.make.tilemap({key: 'tilemap'})
     const tileset = map.addTilesetImage('tiles', 'tileset')
 
+    let spawnPoint = map.findObject("Objects", (value) => {
+        return value.name === "SpawnPoint"
+    })
+
     const bottomLayer = map.createLayer('BottomLayer', tileset)
+
+    const bottomVisualLayer = map.createLayer('BottomVisualLayer', tileset)
 
     const middleLayer = map.createLayer('MiddleLayer', tileset)
     middleLayer.setCollisionBetween(0, 1991, true)
 
-    this.player = new Player(this, 200, 200)
+    this.player = new Player(this, spawnPoint.x, spawnPoint.y)
     this.physics.add.collider(this.player, bottomLayer)
     this.physics.add.collider(this.player, middleLayer)
 
@@ -49,6 +56,7 @@ class MainScene extends Phaser.Scene {
     this.cameras.main.setZoom(2);
     this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
   }
+
   update (delta) {
       this.player.update(delta)
   }
