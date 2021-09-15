@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
+import { IGameObject } from '../interfaces/IGameObject';
+import MainScene from '../MainScene';
 
-class Player extends Phaser.GameObjects.Sprite {
+class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
   private keyW: Phaser.Input.Keyboard.Key;
 
@@ -15,8 +17,12 @@ class Player extends Phaser.GameObjects.Sprite {
 
   private textLabel:  Phaser.GameObjects.Text;
 
+  private sceneRef: Phaser.Scene;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, "player");
+
+    this.sceneRef = scene
 
     this.name = "Player"
 
@@ -53,6 +59,67 @@ class Player extends Phaser.GameObjects.Sprite {
     this.getBody().setSize(10,10)
     this.getBody().offset = new Phaser.Math.Vector2(20,35)
 
+  }
+
+  onCreate() {
+    //Get scene ref
+    let mainScene = this.sceneRef as MainScene
+
+    //Set camera
+    this.sceneRef.cameras.main.setBounds(
+      0,
+      0,
+      mainScene.tileMap.widthInPixels,
+      mainScene.tileMap.heightInPixels
+    );
+    this.sceneRef.cameras.main.setZoom(2);
+    this.sceneRef.cameras.main.startFollow(this, true, 0.1, 0.1);
+
+    //Fetch the layers
+    let bottomLayer = mainScene.worldLayers['BottomLayer']
+    let middleLayer = mainScene.worldLayers['MiddleLayer']
+
+    //Set collision
+    mainScene.physics.add.collider(this, bottomLayer)
+    mainScene.physics.add.collider(this, middleLayer)
+
+    //Fetch the spawn point
+    let spawnPoint = mainScene.tileMap.findObject("Objects", (value) => {
+        return value.name === "SpawnPoint"
+    })
+
+    //Move the player at the spawn point
+    this.setPosition(spawnPoint.x , spawnPoint.y)
+  };
+
+  onUpdate() {
+    if(this.textLabel){
+      this.textLabel.setPosition(this.x - 10, this.y - 20)
+    }
+
+    if (this.keyW.isDown) {
+      this.getBody().setVelocity(0, -80);
+    } else if (this.keyA.isDown) {
+      this.getBody().setVelocity(-80, 0);
+    } else if (this.keyS.isDown) {
+      this.getBody().setVelocity(0, 80);
+    } else if (this.keyD.isDown) {
+      this.getBody().setVelocity(80, 0);
+    } else {
+      this.getBody().setVelocity(0, 0);
+    }
+
+    if (this.getBody().velocity.x > 0) {
+      this.setFlipX(true);
+    } else if (this.getBody().velocity.x < 0) {
+      this.setFlipX(false);
+    }
+
+    if (this.getBody().velocity.x === 0 && this.getBody().velocity.y === 0) {
+      this.anims.play("idle", true);
+    } else {
+      this.anims.play("run", true);
+    }
   }
 
   public createTextOverlay() {
@@ -92,11 +159,16 @@ class Player extends Phaser.GameObjects.Sprite {
     }
   }
 
+  public testInteract() {
+    console.log("Test interact")
+  }
+
   private getBody(): Phaser.Physics.Arcade.Body {
     return this.body as Phaser.Physics.Arcade.Body;
   }
 
 
 }
+
 
 export default Player
