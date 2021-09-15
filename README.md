@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# rarity.plus / frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The main repository for the rarity.plus frontend
+
+## Social
+
+[Twitter](https://twitter.com/rarity_plus)
 
 ## Available Scripts
 
