@@ -13,8 +13,12 @@ class Player extends Phaser.GameObjects.Sprite {
   // keyboard key for moving right
   private keyD: Phaser.Input.Keyboard.Key;
 
+  private textLabel:  Phaser.GameObjects.Text;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, "player");
+
+    this.name = "Player"
 
     this.scene.add.existing(this)
     this.scene.physics.add.existing(this)
@@ -48,9 +52,21 @@ class Player extends Phaser.GameObjects.Sprite {
 
     this.getBody().setSize(10,10)
     this.getBody().offset = new Phaser.Math.Vector2(20,35)
+
+  }
+
+  public createTextOverlay() {
+    this.textLabel = this.scene.add.text(this.x - 10, this.y - 10, 'Player');
+    this.textLabel.setDisplaySize(this.textLabel.width / 2,this.textLabel.height / 2)
   }
 
   public update(delta: number):void {
+    if(this.textLabel){
+
+
+      this.textLabel.setPosition(this.x - 10, this.y - 20)
+    }
+
     if (this.keyW.isDown) {
       this.getBody().setVelocity(0, -80);
     } else if (this.keyA.isDown) {

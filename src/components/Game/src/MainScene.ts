@@ -5,6 +5,8 @@ class MainScene extends Phaser.Scene {
 
   private player: Player;
 
+ private adventureBoardReact: Phaser.GameObjects.Rectangle;
+
   constructor() {
     super("MainScene");
   }
@@ -31,6 +33,12 @@ class MainScene extends Phaser.Scene {
         return value.name === "SpawnPoint"
     })
 
+
+
+    let adventureBoard = map.findObject("Objects", (value, index) => {
+      return value.name === "AdventureBoard"
+    })
+
     const bottomLayer = map.createLayer('BottomLayer', tileset)
 
     const bottomVisualLayer = map.createLayer('BottomVisualLayer', tileset)
@@ -43,6 +51,18 @@ class MainScene extends Phaser.Scene {
     this.physics.add.collider(this.player, middleLayer)
 
     const topLayer = map.createLayer('TopLayer', tileset)
+
+    const text1 = this.add.text(adventureBoard.x - 10, adventureBoard.y - 10, 'Adventure Board');
+    text1.setDisplaySize(text1.width / 2,text1.height / 2)
+
+    this.adventureBoardReact = this.add.rectangle(adventureBoard.x + 17, adventureBoard.y + 20, adventureBoard.width, adventureBoard.height).setStrokeStyle(2, 0xffff00);
+    this.physics.add.overlap(this.player, this.adventureBoardReact, () => {
+      console.log("Colided")
+    }, () => {
+      console.log("Colided")
+    })
+
+    this.player.createTextOverlay()
 
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
@@ -57,8 +77,31 @@ class MainScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
   }
 
+  checkOverlap(spriteA, spriteB) {
+    var boundsA = spriteA.getBounds();
+    var boundsB = spriteB.getBounds();
+    return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
+  }
+
   update (delta) {
       this.player.update(delta)
+
+    // if(this.checkOverlap(this.player, this.adventureBoardReact)){
+    //   console.log("Overlapping")
+    // }
+    // var x = this.adventureBoardReact.x - (this.adventureBoardReact.width / 2);
+    // var y = this.adventureBoardReact.y - (this.adventureBoardReact.height / 2);
+    //
+    // var within = this.physics.overlapRect(x, y, this.adventureBoardReact.width, this.adventureBoardReact.height);
+    //
+
+    // this.physics.overlap(this.player, this.adventureBoardReact , () => {
+    //   console.log("Colided")
+    // })
+
+    // within.forEach(function (body) {
+    //   console.log(body.gameObject)
+    // });
   }
 }
 
