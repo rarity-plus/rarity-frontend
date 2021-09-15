@@ -606,6 +606,20 @@
   resolved "https://registry.npmjs.org/@inlet/react-pixi/-/react-pixi-6.6.5.tgz"
   integrity sha512-xflQcnxHtf/wlSAaFSk4r6ePGwe4iRRkMceYRqbweTTKfJEudN5LksxDbxpuNPm9vw6DqFKnOtUXG1Qa1ZmNjg==
 
+"@ion-phaser-ce/core@^1.0.4":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@ion-phaser-ce/core/-/core-1.0.5.tgz#f1e35e811dd935dbd74026c5e531c2dbfefc0195"
+  integrity sha512-7ckJGiIjiceMqNBMqULykJS7k01a4jg4uZL6YdGhPa8Py++eRnINuiysYnrwGZVUyrh8AAonn/3Tcz/d+H0bpg==
+  dependencies:
+    "@stencil/core" "^2.4.0"
+
+"@ion-phaser-ce/react@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@ion-phaser-ce/react/-/react-1.0.5.tgz#198cdbcb2f8bc548a8ffd191b9c27784e97d3d6b"
+  integrity sha512-phv11vKenDBAAlSMVkWT0ECMP5iY1gGKA/Yghe/EaiPri339U24AKnD3tTKL45pDNVBEMKbFev7wWONG3WwyNw==
+  dependencies:
+    "@ion-phaser-ce/core" "^1.0.4"
+
 "@ion-phaser/core@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@ion-phaser/core/-/core-1.3.0.tgz#380e8df0ac0c1ef9b0f84fe494b2be1d82c25971"

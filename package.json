@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@inlet/react-pixi": "^6.6.5",
+    "@ion-phaser-ce/react": "^1.0.5",
     "@ion-phaser/core": "^1.3.0",
     "@ion-phaser/react": "^1.3.0",
     "@snowpack/plugin-sass": "^1.4.0",
