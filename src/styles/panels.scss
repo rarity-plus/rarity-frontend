@@ -1,0 +1,30 @@
+
+
+
+
+.panel {
+  border: 11px solid transparent;
+  border-image: url("./assets/imgs/panels/panel_border.png") 10 round;
+
+  background-image: url("./assets/imgs/panels/panel_bg.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-attachment:fixed;
+  background-size:auto;
+
+  &.black {
+    border-image: url("./assets/imgs/panels/panel-back-border.png") 10 round;
+
+    background-image: url("./assets/imgs/panels/panel-black-bg.png");
+  }
+
+  &.title {
+    border-image: url("./assets/imgs/panels/panel-title-border.png") 10 round;
+
+    background-image: url("./assets/imgs/panels/panel-title-bg.png");
+  }
+
+  &.just-border {
+    background-image: none;
+  }
+}

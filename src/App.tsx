@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Route, Router, Switch } from 'react-router';
+import { createBrowserHistory } from 'history'
 
-function App() {
+import LoginView from './views/LoginView';
+import CharacterSelectionView from './views/CharacterSelectionView';
+import GameView from './views/GameView';
+
+const history = createBrowserHistory()
+
+const App: React.FC = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Switch>
+          <Route exact path={'/'} component={LoginView} />
+          <Route exact path={'/character'} component={CharacterSelectionView} />
+          <Route exact path={'/play'} component={GameView} />
+      </Switch>
+    </Router>
   );
 }
+
 
 export default App;
