@@ -22,10 +22,6 @@ const Game = () => {
     },
     physics: {
       default: 'arcade',
-      arcade: {
-        gravity: { y: 400 },
-        debug: true
-      }
     },
     scene: MainScene
   })
@@ -45,7 +41,7 @@ const Game = () => {
     }
   }, [])
 
-  
+
   useEffect(() => {
     // if (initialize) {
     //   setGame(Object.assign({}, gameConfig))
