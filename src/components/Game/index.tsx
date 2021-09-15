@@ -3,69 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Phaser from 'phaser'
 import { IonPhaser, GameInstance } from '@ion-phaser/react'
 
-class MainScene extends Phaser.Scene {
-  private helloWorld!: Phaser.GameObjects.Text
-  private image?: Phaser.GameObjects.Image;
-
-
-  init () {
-    this.cameras.main.setBackgroundColor('#24252A')
-
-    console.log("Init")
-  }
-
-  preload() {
-    this.load.image('logo', '/logo192.png');
-  }
-
-  create () {
-    this.image = this.add.image(400, 300, 'logo');
-    
-    this.helloWorld = this.add.text(
-      this.cameras.main.centerX,
-      this.cameras.main.centerY,
-      "Hello World", {
-        font: "40px Arial",
-        color: "#ffffff"
-      }
-    );
-    this.helloWorld.setOrigin(0.5);
-
-
-
-  }
-  update () {
-    if(this.image){
-      this.image.rotation += 0.01;
-    }
-    this.helloWorld.angle += 1;
-  }
-}
-
-const gameConfig: GameInstance = {
-  width: "100%",
-  height: "100%",
-  type: Phaser.AUTO,
-  scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: '100%',
-    height: '100%'
-  },
-  render: {
-    antialias: true,
-    pixelArt: true,
-    roundPixels: false
-  },
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: { y: 400 },
-      debug: true
-    }
-  },
-  scene: MainScene
-};
+import MainScene from './src/MainScene';
 
 const Game = () => {
 
@@ -107,8 +45,7 @@ const Game = () => {
     }
   }, [])
 
-
-
+  
   useEffect(() => {
     // if (initialize) {
     //   setGame(Object.assign({}, gameConfig))
