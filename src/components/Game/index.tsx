@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-
+import styled from 'styled-components';
 import Phaser from 'phaser'
 import { IonPhaser, GameInstance } from '@ion-phaser/react'
 
 import MainScene from './src/MainScene';
+
+const GameWrapperPanel = styled.div`
+  padding: 0 0;
+`
 
 const Game = () => {
 
@@ -16,7 +20,8 @@ const Game = () => {
     height: "100%",
     type: Phaser.AUTO,
     render: {
-      antialias: true,
+      antialias: false,
+      antialiasGL: false,
       pixelArt: true,
       roundPixels: false
     },
@@ -49,9 +54,9 @@ const Game = () => {
   }, [initialize])
 
   return (
-    <div ref={panelRef} className={`game panel black`} >
+    <GameWrapperPanel ref={panelRef} className={`game panel black`} >
       <IonPhaser ref={gameRef} game={game} initialize={initialize} />
-    </div>
+    </GameWrapperPanel>
   )
 }
 

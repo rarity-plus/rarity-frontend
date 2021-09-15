@@ -1,73 +1,56 @@
 import Phaser from 'phaser';
+import Player from './components/Player';
 
 class MainScene extends Phaser.Scene {
-  private helloWorld!: Phaser.GameObjects.Text
-  private player?: Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
-  private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
+
+  private player: Player;
 
   constructor() {
-    super({});
+    super("MainScene");
   }
 
   init () {
     this.cameras.main.setBackgroundColor('#24252A')
 
-    console.log("Init")
   }
 
   preload() {
-    this.load.image('logo', '/logo192.png');
+    // this.load.image('player', '/')
+    // this.load.atlas('', '')
+    this.load.image('tileset', '/assets/maps/tileset.png')
+    this.load.tilemapTiledJSON('tilemap', '/assets/maps/map.json')
+
   }
 
   create () {
-    this.cameras.main.setBounds(0, 0, 1920 * 2, 1080 * 2);
-    this.physics.world.setBounds(0, 0, 1920 * 2, 1080 * 2);
+    const map = this.make.tilemap({key: 'tilemap'})
+    const tileset = map.addTilesetImage('tiles', 'tileset')
 
-    this.player = this.physics.add.image(400, 300, 'logo');
+    const bottomLayer = map.createLayer('BottomLayer', tileset)
 
-    this.player.setCollideWorldBounds(true);
-    this.cameras.main.startFollow(this.player, true, 0.05, 0.05);
+    const middleLayer = map.createLayer('MiddleLayer', tileset)
+    middleLayer.setCollisionBetween(0, 1991, true)
 
-    this.cursors = this.input.keyboard.createCursorKeys();
+    this.player = new Player(this, 200, 200)
+    this.physics.add.collider(this.player, bottomLayer)
+    this.physics.add.collider(this.player, middleLayer)
 
+    const topLayer = map.createLayer('TopLayer', tileset)
 
+    this.physics.world.bounds.width = map.widthInPixels;
+    this.physics.world.bounds.height = map.heightInPixels;
 
-    this.helloWorld = this.add.text(
-      this.cameras.main.centerX,
-      this.cameras.main.centerY,
-      "Hello World", {
-        font: "40px Arial",
-        color: "#ffffff"
-      }
+    this.cameras.main.setBounds(
+      0,
+      0,
+      map.widthInPixels,
+      map.heightInPixels
     );
-    this.helloWorld.setOrigin(0.5);
-
-
-
+    this.cameras.main.setZoom(2);
+    this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
   }
-  update () {
-    if(this.player && this.cursors){
-      this.player.setVelocity(0);
-
-      if (this.cursors.left.isDown)
-      {
-        this.player.setVelocityX(-500);
-      }
-      else if (this.cursors.right.isDown)
-      {
-        this.player.setVelocityX(500);
-      }
-
-      if (this.cursors.up.isDown)
-      {
-        this.player.setVelocityY(-500);
-      }
-      else if (this.cursors.down.isDown)
-      {
-        this.player.setVelocityY(500);
-      }
-    }
-    this.helloWorld.angle += 1;
+  update (delta) {
+      this.player.update(delta)
   }
 }
 
