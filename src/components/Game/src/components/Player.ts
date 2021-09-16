@@ -135,7 +135,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
   onCollide() {
     console.log("Player Collided")
   }
-  
+
   private getBody(): Phaser.Physics.Arcade.Body {
     return this.body as Phaser.Physics.Arcade.Body;
   }

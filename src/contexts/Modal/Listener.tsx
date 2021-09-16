@@ -1,6 +1,7 @@
-import useModal from '../../hooks/useModal';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import { modal } from './Context';
 
 const StyledModalWrapper = styled.div`
   position: fixed;
@@ -38,32 +39,20 @@ const StyledGrow = styled.div`
   width: 500px;
 `
 
-const ModalListener = () => {
-  const {modal, clear} = useModal()
+const ModalListener = observer(() => {
 
-  const [modalActive, setModalActive] = useState(false)
 
-  useEffect(() => {
-      setModalActive(modal != null)
-  }, [modal])
-
-  const closeModal = () => {
-      if(modal){
-        clear()
-      }
-  }
-
-  if(modalActive) {
+  if(modal.data) {
     return (
       <StyledModalWrapper>
         <StyledModal className={'panel'}>
           <StyledModalTitle className={'panel title'}>
-            <h1>{modal?.modalTitle}</h1>
+            <h1>{modal.data.modalTitle}</h1>
             <StyledGrow/>
-            {modal?.important ? `` : <button onClick={closeModal} className={'btn small'}>X</button>}
+            {modal.data.important ? `` : <button onClick={modal.hide} className={'btn small'}>X</button>}
           </StyledModalTitle>
           <StyledModalBody>
-            {modal?.modalBody}
+            {modal.data.modalBody}
           </StyledModalBody>
         </StyledModal>
       </StyledModalWrapper>
@@ -74,6 +63,6 @@ const ModalListener = () => {
     )
   }
 
-}
+})
 
 export default  ModalListener

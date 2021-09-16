@@ -3,6 +3,11 @@ import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
 
 import { myComm } from '../../index';
+import { autorun, observable } from 'mobx';
+
+import { modal } from '../../../../contexts/Modal';
+import { createElement } from 'react';
+import { adventureModal } from './modals';
 
 class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject{
 
@@ -45,12 +50,16 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
 
     this.zone.on('enterzone', () => {
       // mainScene.openModal()
-
+      modal.show("Begin Adventure", adventureModal, false)
     })
 
     this.zone.on('leavezone', () => {
 
     })
+
+    // autorun(() => {
+    //   console.log("Energy level:", myComm.counter)
+    // })
   }
 
   onUpdate() {

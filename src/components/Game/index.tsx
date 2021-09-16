@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import Phaser from 'phaser'
 import { IonPhaser, GameInstance } from '@ion-phaser/react'
 import MainScene from './src/MainScene';
-import useModal from '../../hooks/useModal';
 
 import { makeAutoObservable } from 'mobx';
 import { observer } from "mobx-react-lite"
+
+import { modal } from '../../contexts/Modal';
 
 const GameWrapperPanel = styled.div`
   padding: 0 0;
@@ -16,9 +17,7 @@ class Communication {
   counter = 0
 
   constructor() {
-    makeAutoObservable(this, {
-
-    })
+    makeAutoObservable(this)
   }
 
   increment = () => {
@@ -37,7 +36,6 @@ export const myComm = new Communication()
 
 const Game = observer(() => {
 
-  const {show} = useModal()
 
   const adventureBoardModal = createElement(() => {
     return (
@@ -75,8 +73,6 @@ const Game = observer(() => {
 
     setInitialize(true)
 
-
-
     return () => {
       if(gameRef.current){
         gameRef.current.destroy()
@@ -84,21 +80,8 @@ const Game = observer(() => {
     }
   }, [])
 
-
-  // useEffect(() => {
-  //   gameRef.current.game.instance.events.on('OPEN_MODAL', (e) => {
-  //     console.log("Opening Modal")
-  //     show({
-  //       modalTitle: "Start an adventure",
-  //       modalBody: adventureBoardModal,
-  //       important: false
-  //     })
-  //   })
-  // }, [gameRef.current])
-
   return (
     <GameWrapperPanel ref={panelRef} className={`game panel black`} >
-      {myComm.counter}
       <IonPhaser ref={gameRef} game={game} initialize={initialize} />
     </GameWrapperPanel>
   )
