@@ -15,7 +15,7 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
   zone;
 
   constructor(scene, debug?: boolean) {
-    super(scene, "zone");
+    super(scene, "AdventureZone");
     this.sceneRef = scene
 
     if(debug){
@@ -39,7 +39,9 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     this.zone.body.setAllowGravity(false)
     this.zone.body.moves = false
 
-    this.sceneRef.physics.add.overlap(mainScene.worldGameObjects['player'], this.zone)
+    this.sceneRef.physics.add.overlap(mainScene.worldGameObjects['player'], this.zone, () => {
+      ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionEnter(this)
+    })
 
     this.zone.on('enterzone', () => {
       ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionEnter(this)
@@ -47,6 +49,7 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
 
     this.zone.on('leavezone', () => {
       ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionExit(this)
+      console.log("L")
     })
   }
 

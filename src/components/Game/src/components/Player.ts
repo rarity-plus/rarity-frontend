@@ -16,7 +16,8 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
   // keyboard key for moving right
   private keyD: Phaser.Input.Keyboard.Key;
 
-  private textLabel:  Phaser.GameObjects.Text;
+  private interactTextLabel:  Phaser.GameObjects.Text;
+  inAdventureZone: boolean;
 
   private readonly sceneRef: Phaser.Scene;
 
@@ -91,20 +92,35 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
     //Move the player at the spawn point
     this.setPosition(spawnPoint.x , spawnPoint.y)
+
+    this.interactTextLabel = this.sceneRef.add.text(this.x, this.y, 'Press `E` to interact')
+    this.interactTextLabel.setVisible(false)
+    this.interactTextLabel.setDisplaySize(this.interactTextLabel.width / 2, this.interactTextLabel.height / 2)
   };
 
-  onCollisionEnter() {
-
+  onCollisionEnter(obj) {
+      if(obj.type === "AdventureZone") {
+        this.inAdventureZone = true
+      }
   }
 
-  onCollisionExit() {
+  onCollisionExit(obj) {
+    if(obj.type === "AdventureZone") {
+        this.inAdventureZone = false
 
+      this.interactTextLabel.setVisible(false)
+    }
   }
 
   onUpdate() {
-    if(this.textLabel){
-      this.textLabel.setPosition(this.x - 10, this.y - 20)
+    if(this.inAdventureZone){
+      this.interactTextLabel.setVisible(true)
+      this.interactTextLabel.setPosition(this.x - 30, this.y -30)
     }
+
+    // if(this.textLabel){
+    //   this.textLabel.setPosition(this.x - 10, this.y - 20)
+    // }
 
     if (this.keyW.isDown) {
       this.getBody().setVelocity(0, -80);
@@ -129,11 +145,6 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
     } else {
       this.anims.play("run", true);
     }
-  }
-
-  public createTextOverlay() {
-    this.textLabel = this.scene.add.text(this.x - 10, this.y - 10, 'Player');
-    this.textLabel.setDisplaySize(this.textLabel.width / 2,this.textLabel.height / 2)
   }
 
   onCollide() {

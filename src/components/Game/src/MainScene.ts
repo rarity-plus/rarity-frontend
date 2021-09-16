@@ -9,8 +9,6 @@ class MainScene extends Phaser.Scene {
 
   private player: Player;
 
-  private adventureBoardReact: Phaser.GameObjects.Rectangle;
-
   public worldGameObjects: {[key: string]: Phaser.GameObjects.GameObject} = {}
 
   public worldLayers: {
