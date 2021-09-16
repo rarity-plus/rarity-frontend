@@ -5,6 +5,10 @@ export interface IGameObject {
   afterCreate?: () => void,
   onUpdate: (delta: number) => void,
   onGUI?: () => void,
+
+  //Collision Detection
   onCollide?: (collider?: Phaser.GameObjects.GameObject) => void
+  onCollisionEnter?: (collider?: Phaser.GameObjects.GameObject) => void
+  onCollisionExit?: (collider?: Phaser.GameObjects.GameObject) => void
 }
 

@@ -50,15 +50,7 @@ class MainScene extends Phaser.Scene {
       //Create world game objects
       this.createWorldObject()
 
-    // let adventureBoard = this.tileMap.findObject("Objects", (value, index) => {
-    //   return value.name === "AdventureBoard"
-    // })
-    //
-    // this.adventureBoardReact = this.add.rectangle(adventureBoard.x + 17, adventureBoard.y + 20, adventureBoard.width, adventureBoard.height).setStrokeStyle(2, 0xffff00);
-
-
-
-    //Render last layer
+      //Render last layer
       this.worldLayers['TopLayer'] = this.tileMap.createLayer('TopLayer', this.tileSet)
 
       //Set the physics world bounds
@@ -92,80 +84,12 @@ class MainScene extends Phaser.Scene {
 
   create () {
     this.loadMap()
-
-    // const map = this.make.tilemap({key: 'tilemap'})
-    // const tileset = map.addTilesetImage('tiles', 'tileset')
-    //
-    // // let spawnPoint = map.findObject("Objects", (value) => {
-    // //     return value.name === "SpawnPoint"
-    // // })
-    // //
-    // //
-    // //
-
-    //
-    // const bottomLayer = map.createLayer('BottomLayer', tileset)
-    //
-    // const bottomVisualLayer = map.createLayer('BottomVisualLayer', tileset)
-    //
-    // const middleLayer = map.createLayer('MiddleLayer', tileset)
-    // middleLayer.setCollisionBetween(0, 1991, true)
-    //
-    // this.player = new Player(this, spawnPoint.x, spawnPoint.y)
-    // this.physics.add.collider(this.player, bottomLayer)
-    // this.physics.add.collider(this.player, middleLayer)
-    //
-    // const topLayer = map.createLayer('TopLayer', tileset)
-    //
-    // const text1 = this.add.text(adventureBoard.x - 10, adventureBoard.y - 10, 'Adventure Board');
-    // text1.setDisplaySize(text1.width / 2,text1.height / 2)
-    //
-     // this.physics.add.overlap(this.player, this.adventureBoardReact, () => {
-    // //   console.log("Colided")
-    // // }, () => {
-    // //   console.log("Colided")
-    // // })
-    //
-    // this.player.createTextOverlay()
-    //
-    // this.physics.world.bounds.width = map.widthInPixels;
-    // this.physics.world.bounds.height = map.heightInPixels;
-    //
-    // this.cameras.main.setBounds(
-    //   0,
-    //   0,
-    //   map.widthInPixels,
-    //   map.heightInPixels
-    // );
-    // this.cameras.main.setZoom(2);
-    // this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
-  }
-
-  checkOverlap(spriteA, spriteB) {
-    // var boundsA = spriteA.getBounds();
-    // var boundsB = spriteB.getBounds();
-    // return Phaser.Geom.Intersects.RectangleToRectangle(boundsA, boundsB);
   }
 
   update (delta) {
     for (let worldGameObjectsKey in this.worldGameObjects) {
       ((this.worldGameObjects[worldGameObjectsKey] as unknown) as IGameObject).onUpdate(delta)
     }
-      // this.player.update(delta)
-
-    // if(this.checkOverlap(this.player, this.adventureBoardReact)){
-    //   console.log("Overlapping")
-    // }
-
-
-
-    // this.physics.overlap(this.player, this.adventureBoardReact , () => {
-    //   console.log("Colided")
-    // })
-
-    // within.forEach(function (body) {
-    //   (body.gameObject as Player).testInteract()
-    // });
   }
 }
 

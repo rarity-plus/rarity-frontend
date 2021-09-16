@@ -18,7 +18,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
   private textLabel:  Phaser.GameObjects.Text;
 
-  private sceneRef: Phaser.Scene;
+  private readonly sceneRef: Phaser.Scene;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, "player");
@@ -91,11 +91,15 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
     //Move the player at the spawn point
     this.setPosition(spawnPoint.x , spawnPoint.y)
-
-    this.sceneRef.physics.overlap(this, (mainScene.worldGameObjects['adventureZone'] as AdventureZone).rectangle, () => {
-      console.log('COOL')
-    })
   };
+
+  onCollisionEnter() {
+
+  }
+
+  onCollisionExit() {
+
+  }
 
   onUpdate() {
     if(this.textLabel){

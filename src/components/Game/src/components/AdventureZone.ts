@@ -2,11 +2,7 @@ import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
 
-import { myComm } from '../../index';
-import { autorun, observable } from 'mobx';
-
 import { modal } from '../../../../contexts/Modal';
-import { createElement } from 'react';
 import { adventureModal } from './modals';
 
 class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject{
@@ -25,9 +21,6 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     if(debug){
       this.debug = true
     }
-    // if(debug){
-    //     this.setStrokeStyle(2, 0xffff00)
-    // }
   }
 
   public onCollide() {
@@ -49,17 +42,12 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     this.sceneRef.physics.add.overlap(mainScene.worldGameObjects['player'], this.zone)
 
     this.zone.on('enterzone', () => {
-      // mainScene.openModal()
-      modal.show("Begin Adventure", adventureModal, false)
+      ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionEnter(this)
     })
 
     this.zone.on('leavezone', () => {
-
+      ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionExit(this)
     })
-
-    // autorun(() => {
-    //   console.log("Energy level:", myComm.counter)
-    // })
   }
 
   onUpdate() {
