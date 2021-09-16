@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
 
-import { adventureModal } from './modals';
 import { modal } from '../../../../contexts/Modal';
+import AdventureModal from '../../../../modals/AdventureModal';
 
 class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
@@ -118,7 +118,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
   showAdventureModal() {
     if(!modal.data){
-        modal.show("Start an adventure", adventureModal, false)
+        modal.show("Start an adventure", AdventureModal, false)
     }
   }
 

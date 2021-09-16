@@ -61,12 +61,33 @@ const StyledAccountAddress = styled.p`
   opacity: .5;
 `
 
+//TODO: Use typings
+const CharacterItem = (summonObj: any, selectSummonHandle: () => void) => {
+  //TODO: Figure out why you need to do this
+  const {summonClass, level, id} = summonObj.summonObj
+
+  return (
+    <div className={'panel flex row justify-between'}>
+      <CharacterInfo>
+        <ChracterTitle>
+          <span>{RarityClasses[summonClass?.toString()]}</span>
+          <CharacterLevel>Level {level?.toString()}</CharacterLevel>
+        </ChracterTitle>
+        <CharacterId>#{id}</CharacterId>
+      </CharacterInfo>
+
+      <button onClick={() => selectSummonHandle()} className={'btn'}>Select</button>
+    </div>
+  )
+}
+
 const CharacterSelectionView: React.FC = () => {
   const history = useHistory()
   const {account} = useWeb3React()
   const rarityContract = useRarityContract()
 
   const [summoners, setSummoners] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if(!account){
@@ -81,12 +102,10 @@ const CharacterSelectionView: React.FC = () => {
 
       //TODO: Need to find a better way of fetching tokens ids
 
-      let rawTokenID = []
-
-      rawTokenID = response?.map((tx) => {
+      const rawTokenID = response?.map((tx, index, array) => {
             const id = tx.tokenID
 
-            if(!_.includes(rawTokenID, id)){
+            if(!_.includes(array, id)){
               return {id: Number(id)}
             }
       })
@@ -99,6 +118,10 @@ const CharacterSelectionView: React.FC = () => {
         }
       })
 
+      if(summoners.length > 0){
+        setSummoners([])
+      }
+
       for (const id of ownedTokenID) {
         const summon = await rarityContract.summoner(id)
 
@@ -108,33 +131,24 @@ const CharacterSelectionView: React.FC = () => {
         setSummoners((oldSummoners) => [...oldSummoners, {
           id: _id,
           xp: summon[0],
-          class: summon[2],
+          summonClass: summon[2],
           level: summon[3],
         }])
       }
 
+      setLoading(true)
     })()
   }, [])
 
-  const summonersListElement = summoners.map((obj) => {
+  const summonersListElement = summoners.map((rawSummon, index) => {
       const selectSummon = () => {
-          gameState.setCurrentTokenId(obj.id)
+          gameState.setCurrentTokenId(rawSummon.id)
 
           history.push('/play')
       }
 
       return (
-        <div className={'panel flex row justify-between'}>
-          <CharacterInfo>
-            <ChracterTitle>
-              <span>{RarityClasses[obj.class.toString()]}</span>
-              <CharacterLevel>Level {obj.level.toString()}</CharacterLevel>
-            </ChracterTitle>
-            <CharacterId>#{obj.id}</CharacterId>
-          </CharacterInfo>
-
-          <button onClick={selectSummon} className={'btn'}>Select</button>
-        </div>
+       <CharacterItem key={index} summonObj={rawSummon} selectSummonHandle={selectSummon} />
       )
   })
 
@@ -145,14 +159,13 @@ const CharacterSelectionView: React.FC = () => {
 
         <StyledLoginWrapper className={'panel black'}>
           <StyledAccountAddress>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
-
           {
             summonersListElement
           }
-          {
-            summoners.length <= 0 && <button className={'btn'}>New Summon</button>
-          }
 
+          {
+            (summoners.length <= 0 && loading) && <button className={'btn'}>New Summon</button>
+          }
         </StyledLoginWrapper>
 
       </StyledWrapper>

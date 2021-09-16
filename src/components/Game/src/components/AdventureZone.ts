@@ -2,9 +2,6 @@ import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
 
-import { modal } from '../../../../contexts/Modal';
-import { adventureModal } from './modals';
-
 class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject{
 
   sceneRef: Phaser.Scene;
