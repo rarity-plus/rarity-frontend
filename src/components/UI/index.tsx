@@ -8,6 +8,7 @@ import useSummonData from '../../hooks/useSummonData';
 import { RarityClasses } from '../../utils/rarityHelper';
 import useWeb3 from '../../hooks/useWeb3';
 import SkillsTab from './SkillsTab';
+import useBalance from '../../hooks/useBalance';
 
 const CharacterInfo = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const CharacterTitle = styled.div`
 
 const UI = observer(() => {
   const {level, summonClass} = useSummonData()
+  const balance = useBalance()
 
   return (
     <div className={`ui panel black`}>
@@ -39,7 +41,7 @@ const UI = observer(() => {
         </CharacterInfo>
         <CharacterInfo className={'panel black'}>
           <span>Gold</span>
-          <span>100</span>
+          <span>{balance}</span>
         </CharacterInfo>
       </div>
 

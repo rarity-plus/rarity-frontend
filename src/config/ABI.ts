@@ -1,5 +1,6 @@
 /*
 * Human Readable ABIs
+* Be sure to set the correct function signature
 * */
 
 export const RARITY_ABI = [
@@ -15,6 +16,6 @@ export const RARITY_GOLD = [
   "function approve(uint from, uint spender, uint amount) external returns (bool)",
   "function transfer(uint from, uint to, uint amount) external returns (bool)",
   "function transferFrom(uint executor, uint from, uint to, uint amount) external returns (bool)",
-  "function wealth_by_level(uint level) public pure returns (uint wealth)",
-  "function balanceOf(uint) public returns (uint)"
+  "function wealth_by_level(uint level) public pure view returns (uint wealth)",
+  "function balanceOf(uint) public view returns (uint)"
 ]
