@@ -1,15 +1,49 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { createElement, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Phaser from 'phaser'
 import { IonPhaser, GameInstance } from '@ion-phaser/react'
-
 import MainScene from './src/MainScene';
+import useModal from '../../hooks/useModal';
+
+import { makeAutoObservable } from 'mobx';
+import { observer } from "mobx-react-lite"
 
 const GameWrapperPanel = styled.div`
   padding: 0 0;
 `
 
-const Game = () => {
+class Communication {
+  counter = 0
+
+  constructor() {
+    makeAutoObservable(this, {
+
+    })
+  }
+
+  increment = () => {
+    this.counter++
+    return this.counter
+  }
+
+  decrement = () => {
+    this.counter++
+    return this.counter
+  }
+
+}
+
+export const myComm = new Communication()
+
+const Game = observer(() => {
+
+  const {show} = useModal()
+
+  const adventureBoardModal = createElement(() => {
+    return (
+      <h1>Start an adventure</h1>
+    )
+  })
 
   const panelRef = useRef(null)
 
@@ -41,26 +75,33 @@ const Game = () => {
 
     setInitialize(true)
 
+
+
     return () => {
       if(gameRef.current){
-        console.log("Destroy")
         gameRef.current.destroy()
       }
     }
   }, [])
 
 
-  useEffect(() => {
-    // if (initialize) {
-    //   setGame(Object.assign({}, gameConfig))
-    // }
-  }, [initialize])
+  // useEffect(() => {
+  //   gameRef.current.game.instance.events.on('OPEN_MODAL', (e) => {
+  //     console.log("Opening Modal")
+  //     show({
+  //       modalTitle: "Start an adventure",
+  //       modalBody: adventureBoardModal,
+  //       important: false
+  //     })
+  //   })
+  // }, [gameRef.current])
 
   return (
     <GameWrapperPanel ref={panelRef} className={`game panel black`} >
+      {myComm.counter}
       <IonPhaser ref={gameRef} game={game} initialize={initialize} />
     </GameWrapperPanel>
   )
-}
+})
 
 export default Game

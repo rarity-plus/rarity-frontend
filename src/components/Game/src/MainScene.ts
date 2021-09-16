@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
 import Player from './components/Player';
 import { IGameObject } from './interfaces/IGameObject';
+import AdventureZone from './components/AdventureZone';
 
+import { myComm } from '../index';
 
 class MainScene extends Phaser.Scene {
 
@@ -48,7 +50,15 @@ class MainScene extends Phaser.Scene {
       //Create world game objects
       this.createWorldObject()
 
-      //Render last layer
+    // let adventureBoard = this.tileMap.findObject("Objects", (value, index) => {
+    //   return value.name === "AdventureBoard"
+    // })
+    //
+    // this.adventureBoardReact = this.add.rectangle(adventureBoard.x + 17, adventureBoard.y + 20, adventureBoard.width, adventureBoard.height).setStrokeStyle(2, 0xffff00);
+
+
+
+    //Render last layer
       this.worldLayers['TopLayer'] = this.tileMap.createLayer('TopLayer', this.tileSet)
 
       //Set the physics world bounds
@@ -59,18 +69,25 @@ class MainScene extends Phaser.Scene {
       for (let worldGameObjectsKey in this.worldGameObjects) {
         ((this.worldGameObjects[worldGameObjectsKey] as unknown) as IGameObject).onCreate()
       }
+
   }
 
   createWorldObject () {
       //Register world game objects
       this.worldGameObjects = {
           //Create the player
-          "player": new Player(this, -10 , -10)
+          "player": new Player(this, -10 , -10),
+          "adventureZone": new AdventureZone(this, true)
+
       }
   }
 
   createWorldGUI() {
 
+  }
+
+  public openModal () {
+    myComm.increment()
   }
 
   create () {
@@ -85,9 +102,7 @@ class MainScene extends Phaser.Scene {
     // //
     // //
     // //
-    // // let adventureBoard = map.findObject("Objects", (value, index) => {
-    // //   return value.name === "AdventureBoard"
-    // // })
+
     //
     // const bottomLayer = map.createLayer('BottomLayer', tileset)
     //
@@ -105,12 +120,11 @@ class MainScene extends Phaser.Scene {
     // const text1 = this.add.text(adventureBoard.x - 10, adventureBoard.y - 10, 'Adventure Board');
     // text1.setDisplaySize(text1.width / 2,text1.height / 2)
     //
-    // this.adventureBoardReact = this.add.rectangle(adventureBoard.x + 17, adventureBoard.y + 20, adventureBoard.width, adventureBoard.height).setStrokeStyle(2, 0xffff00);
-    // this.physics.add.overlap(this.player, this.adventureBoardReact, () => {
-    //   console.log("Colided")
-    // }, () => {
-    //   console.log("Colided")
-    // })
+     // this.physics.add.overlap(this.player, this.adventureBoardReact, () => {
+    // //   console.log("Colided")
+    // // }, () => {
+    // //   console.log("Colided")
+    // // })
     //
     // this.player.createTextOverlay()
     //
@@ -142,10 +156,7 @@ class MainScene extends Phaser.Scene {
     // if(this.checkOverlap(this.player, this.adventureBoardReact)){
     //   console.log("Overlapping")
     // }
-    // var x = this.adventureBoardReact.x - (this.adventureBoardReact.width / 2);
-    // var y = this.adventureBoardReact.y - (this.adventureBoardReact.height / 2);
-    //
-    // var within = this.physics.overlapRect(x, y, this.adventureBoardReact.width, this.adventureBoardReact.height);
+
 
 
     // this.physics.overlap(this.player, this.adventureBoardReact , () => {
