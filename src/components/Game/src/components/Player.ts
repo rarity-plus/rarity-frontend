@@ -125,16 +125,6 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
     } else {
       this.anims.play("run", true);
     }
-
-
-    // var x = this.x - (this.width / 2);
-    // var y = this.y - (this.height / 2);
-    // //
-    // var within = this.sceneRef.physics.overlapRect(x, y, this.width, this.height);
-    //
-    // within.forEach(function (body) {
-    //   console.log("Wit")
-    // });
   }
 
   public createTextOverlay() {
@@ -145,39 +135,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
   onCollide() {
     console.log("Player Collided")
   }
-
-  // public update(delta: number):void {
-  //   if(this.textLabel){
-  //
-  //
-  //     this.textLabel.setPosition(this.x - 10, this.y - 20)
-  //   }
-  //
-  //   if (this.keyW.isDown) {
-  //     this.getBody().setVelocity(0, -80);
-  //   } else if (this.keyA.isDown) {
-  //     this.getBody().setVelocity(-80, 0);
-  //   } else if (this.keyS.isDown) {
-  //     this.getBody().setVelocity(0, 80);
-  //   } else if (this.keyD.isDown) {
-  //     this.getBody().setVelocity(80, 0);
-  //   } else {
-  //     this.getBody().setVelocity(0, 0);
-  //   }
-  //
-  //   if (this.getBody().velocity.x > 0) {
-  //     this.setFlipX(true);
-  //   } else if (this.getBody().velocity.x < 0) {
-  //     this.setFlipX(false);
-  //   }
-  //
-  //   if (this.getBody().velocity.x === 0 && this.getBody().velocity.y === 0) {
-  //     this.anims.play("idle", true);
-  //   } else {
-  //     this.anims.play("run", true);
-  //   }
-  // }
-
+  
   private getBody(): Phaser.Physics.Arcade.Body {
     return this.body as Phaser.Physics.Arcade.Body;
   }

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
 
+import { myComm } from '../../index';
 
 class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject{
 
@@ -43,16 +44,13 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     this.sceneRef.physics.add.overlap(mainScene.worldGameObjects['player'], this.zone)
 
     this.zone.on('enterzone', () => {
-      mainScene.openModal()
+      // mainScene.openModal()
+
     })
 
     this.zone.on('leavezone', () => {
-      console.log("Leaving Zone")
-    })
 
-    // this.setPosition(adventureBoard.x + 17, adventureBoard.y + 20)
-    // this.setSize(23,23)
-    // this.setSize()
+    })
   }
 
   onUpdate() {
