@@ -17,6 +17,8 @@ const StyledModalTitle = styled.h1`
 `
 
 export const adventureModal = createElement(() => {
+
+
   return (
     <StyledAdventureModal>
       <StyledModalTitle>Embark in a adventure that you never seen</StyledModalTitle>

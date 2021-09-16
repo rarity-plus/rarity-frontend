@@ -1,11 +1,11 @@
 
 
-//TODO: Add support for fantom testnet and local fantom
+//TODO: Add support for fantom testnet and local chain
 const network = {
   name: "Fantom Opera Mainnet",
   chainId: 250,
   rpcNodes: [
-    "https://rpc.ftm.tools/"
+    "https://rpcapi.fantom.network"
   ],
   blockExplorer: "https://ftmscan.com/"
 }
