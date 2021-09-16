@@ -13,3 +13,7 @@ export const RarityClasses = {
     10: "Sorcerer",
     11: "Wizard"
 }
+
+export const RaritySkills = {
+   
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { autorun } from 'mobx';
 import { gameState } from '../contexts/Game';
 import useWeb3 from './useWeb3';
+import { ethers } from 'ethers';
 
 
 const useBalance = (): number => {
@@ -15,9 +16,7 @@ const useBalance = (): number => {
       if(account){
         const rawBalance = await goldContract.balanceOf(gameState.currentTokenId)
 
-        console.log(rawBalance)
-
-        setBalance(rawBalance.toString())
+        setBalance(Number(ethers.utils.formatEther(rawBalance)))
       }
     })
   }, [])
