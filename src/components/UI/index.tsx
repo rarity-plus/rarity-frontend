@@ -7,6 +7,7 @@ import { gameState } from '../../contexts/Game';
 import useSummonData from '../../hooks/useSummonData';
 import { RarityClasses } from '../../utils/rarityHelper';
 import useWeb3 from '../../hooks/useWeb3';
+import SkillsTab from './SkillsTab';
 
 const CharacterInfo = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ const UI = observer(() => {
 
       <Tabs>
         <Tab title="Inventory">Inventory</Tab>
-        <Tab title="Skills">Skills</Tab>
+        <Tab title="Skills"><SkillsTab /></Tab>
       </Tabs>
 
     </div>

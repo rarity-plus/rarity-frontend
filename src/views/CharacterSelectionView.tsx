@@ -149,8 +149,9 @@ const CharacterSelectionView: React.FC = () => {
           {
             summonersListElement
           }
-
-          <button className={'btn'}>New Summon</button>
+          {
+            summoners.length <= 0 && <button className={'btn'}>New Summon</button>
+          }
 
         </StyledLoginWrapper>
 
