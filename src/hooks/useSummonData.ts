@@ -17,7 +17,7 @@ const useSummonData = (): {xp: string, summonClass: string, level: string} => {
   })
 
   useEffect( () => {
-    (async() => {
+    autorun( async () => {
       if(account){
         const summon = await rarityContract.summoner(gameState.currentTokenId)
 
@@ -27,8 +27,8 @@ const useSummonData = (): {xp: string, summonClass: string, level: string} => {
           level: summon[3].toString(),
         })
       }
-    })()
-  }, [account, rarityContract])
+    })
+  }, [])
 
   return summonData
 }
