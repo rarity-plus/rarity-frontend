@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useHistory} from 'react-router-dom';
 import styled from 'styled-components';
+import useAuth from '../hooks/useAuth';
+import { useWeb3React } from '@web3-react/core';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -23,7 +20,24 @@ const Logo = styled.h1`
   padding: 1em 1em;
 `
 
+const StyledConnectButton = styled.button`
+  width: 100%;
+`
+
 const LoginView: React.FC = () => {
+  const { login } = useAuth()
+  const {account} = useWeb3React()
+  const history = useHistory()
+
+  const connectHandle = () => {
+      login()
+  }
+
+  useEffect(() => {
+    if(account){
+      history.push("/character")
+    }
+  }, [account])
 
   return (
     <div className={'container'}>
@@ -31,7 +45,7 @@ const LoginView: React.FC = () => {
         <Logo className={'logo'}>Rarity</Logo>
 
         <StyledLoginWrapper className={'panel black'}>
-          <Link to={'/character'} className={'btn'}>Connect</Link>
+          <StyledConnectButton onClick={connectHandle} className={'btn'}>Connect</StyledConnectButton>
         </StyledLoginWrapper>
       </StyledWrapper>
     </div>
