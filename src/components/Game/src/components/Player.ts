@@ -1,7 +1,9 @@
 import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
-import AdventureZone from './AdventureZone';
+
+import { adventureModal } from './modals';
+import { modal } from '../../../../contexts/Modal';
 
 class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
@@ -15,6 +17,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
   // keyboard key for moving right
   private keyD: Phaser.Input.Keyboard.Key;
+  private keyInteract: Phaser.Input.Keyboard.Key;
 
   private interactTextLabel:  Phaser.GameObjects.Text;
   inAdventureZone: boolean;
@@ -35,6 +38,7 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
     this.keyA = this.scene.input.keyboard.addKey("A");
     this.keyS = this.scene.input.keyboard.addKey("S");
     this.keyD = this.scene.input.keyboard.addKey("D");
+    this.keyInteract = this.scene.input.keyboard.addKey("E")
 
     this.anims.create({
       key: "idle",
@@ -112,10 +116,20 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
     }
   }
 
+  showAdventureModal() {
+    if(!modal.data){
+        modal.show("Start an adventure", adventureModal, false)
+    }
+  }
+
   onUpdate() {
     if(this.inAdventureZone){
       this.interactTextLabel.setVisible(true)
       this.interactTextLabel.setPosition(this.x - 30, this.y -30)
+
+      if(this.keyInteract.isDown){
+        this.showAdventureModal()
+      }
     }
 
     // if(this.textLabel){

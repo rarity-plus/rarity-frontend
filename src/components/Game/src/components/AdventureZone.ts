@@ -39,6 +39,7 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     this.zone.body.setAllowGravity(false)
     this.zone.body.moves = false
 
+    //TODO: Find a better way to do collision
     this.sceneRef.physics.add.overlap(mainScene.worldGameObjects['player'], this.zone, () => {
       ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionEnter(this)
     })
@@ -62,24 +63,6 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     else if (!touching.none && wasTouching.none) {
       this.zone.emit('enterzone');
     }
-
-    // if(this.rectangle){
-    //   var x = this.rectangle.x - (this.rectangle.width / 2);
-    //   var y = this.rectangle.y - (this.rectangle.height / 2);
-    //   //
-    //   var within = this.sceneRef.physics.overlapRect(x, y, this.rectangle.width, this.rectangle.height);
-    //
-    //   within.forEach(function (body) {
-    //     if(this.collidingObject !== body){
-    //       this.collidingObject = body.gameObject
-    //     }
-    //
-    //     ((body.gameObject as unknown) as IGameObject).onCollide(this)
-    //   }, this);
-    //
-    // }
-
-
 
   }
 

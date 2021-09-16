@@ -21,7 +21,7 @@ export const adventureModal = createElement(() => {
     <StyledAdventureModal>
       <StyledModalTitle>Embark in a adventure that you never seen</StyledModalTitle>
       <p>Be careful, this adventure isn't for the weak of heart</p>
-      <button className={'btn'}>Start Adventure</button>
+      <button className={'btn'}>Go to the Dungeon</button>
     </StyledAdventureModal>
   )
 })
