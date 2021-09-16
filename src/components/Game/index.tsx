@@ -47,29 +47,33 @@ const Game = observer(() => {
 
   const gameRef = useRef<HTMLIonPhaserElement>(null)
 
-  const [game, setGame] = useState<GameInstance>({
-    width: "100%",
-    height: "100%",
-    type: Phaser.AUTO,
-    render: {
-      antialias: false,
-      antialiasGL: false,
-      pixelArt: true,
-      roundPixels: false
-    },
-    physics: {
-      default: 'arcade',
-      arcade: {
-        debug: true
-      }
-    },
-    scene: MainScene
-  })
+  const [game, setGame] = useState<GameInstance>()
 
   const [initialize, setInitialize] = useState(false)
 
   useEffect(() => {
-    setGame((prevState) => ({...prevState, height: (panelRef.current as any).clientHeight, width: (panelRef.current as any).clientWidth}))
+    if(initialize){
+      return;
+    }
+
+    setGame({
+      height: (panelRef.current as any).clientHeight,
+      width: (panelRef.current as any).clientWidth,
+      type: Phaser.AUTO,
+      render: {
+        antialias: false,
+        antialiasGL: false,
+        pixelArt: true,
+        roundPixels: false
+      },
+      physics: {
+        default: 'arcade',
+        arcade: {
+          debug: true
+        }
+      },
+      scene: MainScene
+    })
 
     setInitialize(true)
 

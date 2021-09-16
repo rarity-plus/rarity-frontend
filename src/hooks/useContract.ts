@@ -7,5 +7,5 @@ import addresses from '../config/addresses';
 export const useRarityContract = () => {
   const { library, account } = useWeb3()
 
-  return useMemo(() => getRarityContract(addresses.RARITY_CONTRACT, library), [library])
+  return useMemo(() => getRarityContract(addresses.RARITY_CONTRACT, library.getSigner()), [library])
 }

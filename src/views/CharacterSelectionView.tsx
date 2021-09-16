@@ -7,6 +7,7 @@ import { getRaritySummonsAPIUrl } from '../utils/ftmscan';
 import { useRarityContract } from '../hooks/useContract';
 import _ from 'lodash';
 import { RarityClasses } from '../utils/rarityHelper';
+import { gameState } from '../contexts/Game';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -116,6 +117,12 @@ const CharacterSelectionView: React.FC = () => {
   }, [])
 
   const summonersListElement = summoners.map((obj) => {
+      const selectSummon = () => {
+          gameState.setCurrentTokenId(obj.id)
+
+          history.push('/play')
+      }
+
       return (
         <div className={'panel flex row justify-between'}>
           <CharacterInfo>
@@ -126,7 +133,7 @@ const CharacterSelectionView: React.FC = () => {
             <CharacterId>#{obj.id}</CharacterId>
           </CharacterInfo>
 
-          <Link to={'/play'} className={'btn'}>Select</Link>
+          <button onClick={selectSummon} className={'btn'}>Select</button>
         </div>
       )
   })
@@ -137,7 +144,7 @@ const CharacterSelectionView: React.FC = () => {
         <Logo className={'logo'}>Select an summon</Logo>
 
         <StyledLoginWrapper className={'panel black'}>
-          <StyledAccountAddress>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summoners`}</StyledAccountAddress>
+          <StyledAccountAddress>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
 
           {
             summonersListElement
