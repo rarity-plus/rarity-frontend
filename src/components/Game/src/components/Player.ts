@@ -4,6 +4,7 @@ import MainScene from '../MainScene';
 
 import { modal } from '../../../../contexts/Modal';
 import AdventureModal from '../../../../modals/AdventureModal';
+import { isInteractable } from '../interfaces/IInteract';
 
 class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
@@ -21,6 +22,8 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
 
   private interactTextLabel:  Phaser.GameObjects.Text;
   inAdventureZone: boolean;
+
+  collidedObject: any
 
   private readonly sceneRef: Phaser.Scene;
 
@@ -103,32 +106,32 @@ class Player extends Phaser.GameObjects.Sprite implements IGameObject{
   };
 
   onCollisionEnter(obj) {
-      if(obj.type === "AdventureZone") {
-        this.inAdventureZone = true
-      }
+    this.collidedObject = obj
   }
 
   onCollisionExit(obj) {
-    if(obj.type === "AdventureZone") {
-        this.inAdventureZone = false
+    if(isInteractable(this.collidedObject)) {
+      this.inAdventureZone = false
 
       this.interactTextLabel.setVisible(false)
     }
+
+    this.collidedObject = null
   }
 
-  showAdventureModal() {
-    if(!modal.data){
-        modal.show("Start an adventure", AdventureModal, false)
-    }
-  }
 
   onUpdate() {
-    if(this.inAdventureZone){
+    if(this.collidedObject){
       this.interactTextLabel.setVisible(true)
       this.interactTextLabel.setPosition(this.x - 30, this.y -30)
 
-      if(this.keyInteract.isDown){
-        this.showAdventureModal()
+      if(this.keyInteract.isDown && this.collidedObject){
+        if(isInteractable(this.collidedObject)){
+          this.collidedObject.onInteract()
+        }else{
+          console.log("Not interactable")
+        }
+        // this.showAdventureModal()
       }
     }
 

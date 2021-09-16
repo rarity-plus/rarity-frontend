@@ -1,8 +1,11 @@
 import Phaser from 'phaser';
 import { IGameObject } from '../interfaces/IGameObject';
 import MainScene from '../MainScene';
+import { IInteract } from '../interfaces/IInteract';
+import { modal } from '../../../../contexts/Modal';
+import AdventureModal from '../../../../modals/AdventureModal';
 
-class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject{
+class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject, IInteract{
 
   sceneRef: Phaser.Scene;
   debug: boolean;
@@ -47,8 +50,17 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
 
     this.zone.on('leavezone', () => {
       ((mainScene.worldGameObjects['player'] as unknown) as IGameObject)?.onCollisionExit(this)
-      console.log("L")
     })
+  }
+
+  showAdventureModal() {
+    if(!modal.data){
+      modal.show("Start an adventure", AdventureModal, false)
+    }
+  }
+
+  onInteract() {
+    this.showAdventureModal()
   }
 
   onUpdate() {

@@ -8,6 +8,7 @@ import { useRarityContract } from '../hooks/useContract';
 import _ from 'lodash';
 import { RarityClasses } from '../utils/rarityHelper';
 import { gameState } from '../contexts/Game';
+import useWeb3 from '../hooks/useWeb3';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -61,10 +62,14 @@ const StyledAccountAddress = styled.p`
   opacity: .5;
 `
 
+type CharacterItemType = {
+  summonObj: any,
+  selectSummonHandle: () => void
+}
+
 //TODO: Use typings
-const CharacterItem = (summonObj: any, selectSummonHandle: () => void) => {
-  //TODO: Figure out why you need to do this
-  const {summonClass, level, id} = summonObj.summonObj
+const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHandle}: CharacterItemType) => {
+  const {summonClass, level, id} = summonObj
 
   return (
     <div className={'panel flex row justify-between'}>
@@ -83,8 +88,8 @@ const CharacterItem = (summonObj: any, selectSummonHandle: () => void) => {
 
 const CharacterSelectionView: React.FC = () => {
   const history = useHistory()
-  const {account} = useWeb3React()
   const rarityContract = useRarityContract()
+  const {library, account} = useWeb3()
 
   const [summoners, setSummoners] = useState([])
   const [loading, setLoading] = useState(false)
