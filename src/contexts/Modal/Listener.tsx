@@ -49,6 +49,7 @@ const StyledGrow = styled.div`
 `
 
 //TODO:Fix image rendering problems when modal showing animation is playing
+//TODO:Add transitions for the background too
 const ModalListener = observer(() => {
 
   const [modalActive, setModalActive] = useState(false)
@@ -64,6 +65,16 @@ const ModalListener = observer(() => {
 
   }, [modal.data])
 
+  const closeModal = () => {
+    setModalActive(false)
+
+    setTimeout(()=>{
+      modal.hide()
+
+      console.log("Hide modal")
+    }, 500)
+  }
+
   if(modal.data) {
     return (
       <StyledModalWrapper>
@@ -72,7 +83,7 @@ const ModalListener = observer(() => {
           <StyledModalTitle className={'panel title'}>
             <h1>{modal.data.modalTitle}</h1>
             <StyledGrow/>
-            {modal.data.important ? `` : <button onClick={modal.hide} className={'btn small'}>X</button>}
+            {modal.data.important ? `` : <button onClick={closeModal} className={'btn small'}>X</button>}
           </StyledModalTitle>
           <StyledModalBody>
             {modal.data.modalBody}
