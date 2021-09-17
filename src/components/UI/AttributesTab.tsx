@@ -26,7 +26,7 @@ const AttributeElement: React.FC<{attributeIndex, attributeValue}> = ({attribute
       </StyledAttributeElement>
     )
 }
-
+//TODO: Make this reusable
 const AttributesTab = () => {
     const rarityAttributeContract = useRarityAttributeContract()
 
@@ -34,6 +34,9 @@ const AttributesTab = () => {
 
     useEffect(() => {
         (async () => {
+          const characterCreated = await rarityAttributeContract.character_created(gameState.currentTokenId)
+
+          if(characterCreated){
             const rawSummonAbillities = await rarityAttributeContract.ability_scores(gameState.currentTokenId)
 
             let rawSummonAbillitiesArr = (rawSummonAbillities as []).slice(0,6)
@@ -41,6 +44,9 @@ const AttributesTab = () => {
             setRawAttributesValues(rawSummonAbillitiesArr)
 
             console.log(rawSummonAbillitiesArr)
+          }else{
+            setRawAttributesValues([8,8,8,8,8,8])
+          }
         })()
     }, [])
 
