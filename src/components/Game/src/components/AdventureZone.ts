@@ -4,6 +4,7 @@ import MainScene from '../MainScene';
 import { IInteract } from '../interfaces/IInteract';
 import { modal } from '../../../../contexts/Modal';
 import AdventureModal from '../../../../modals/AdventureModal';
+import { infoToast } from '../../../../contexts/Notifications';
 
 class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject, IInteract{
 
@@ -57,6 +58,7 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     if(!modal.data){
       modal.show("Start an adventure", AdventureModal, false)
     }
+    
   }
 
   onInteract() {

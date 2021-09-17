@@ -2,6 +2,7 @@ import { createElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRarityContract } from '../hooks/useContract';
 import { gameState } from '../contexts/Game';
+import { infoToast } from '../contexts/Notifications';
 
 const StyledAdventureModal = styled.div`
   display: flex;
@@ -93,6 +94,7 @@ const AdventureModal = createElement(() => {
 
   return (
     <StyledAdventureModal>
+      <button onClick={() => {infoToast("OOPS!!")}}>Notification</button>
       {getCurrentState()}
     </StyledAdventureModal>
   )
