@@ -54,7 +54,6 @@ const AdventureModal = createElement(() => {
       setAdventureState(3)
     }catch(e){
       setAdventureState(-1)
-      console.error(e)
     }
   }
 
@@ -94,7 +93,6 @@ const AdventureModal = createElement(() => {
 
   return (
     <StyledAdventureModal>
-      <button onClick={() => {infoToast("OOPS!!")}}>Notification</button>
       {getCurrentState()}
     </StyledAdventureModal>
   )
