@@ -58,7 +58,7 @@ class AdventureZone extends Phaser.GameObjects.GameObject implements IGameObject
     if(!modal.data){
       modal.show("Start an adventure", AdventureModal, false)
     }
-    
+
   }
 
   onInteract() {
