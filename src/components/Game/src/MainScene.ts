@@ -4,6 +4,7 @@ import { IGameObject } from './interfaces/IGameObject';
 import AdventureZone from './components/AdventureZone';
 
 import { myComm } from '../index';
+import AttributesZone from './components/AttributesZone';
 
 class MainScene extends Phaser.Scene {
 
@@ -67,8 +68,8 @@ class MainScene extends Phaser.Scene {
       this.worldGameObjects = {
           //Create the player
           "player": new Player(this, -10 , -10),
-          "adventureZone": new AdventureZone(this, true)
-
+          "adventureZone": new AdventureZone(this, true),
+          "attributesZone": new AttributesZone(this)
       }
   }
 
