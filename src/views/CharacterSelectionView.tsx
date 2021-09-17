@@ -9,6 +9,8 @@ import _ from 'lodash';
 import { RarityClasses } from '../utils/rarityHelper';
 import { gameState } from '../contexts/Game';
 import useWeb3 from '../hooks/useWeb3';
+import { modal } from '../contexts/Modal';
+import RecruitSummonModal from '../modals/RecruitSummonModal';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -98,7 +100,7 @@ const CharacterSelectionView: React.FC = () => {
     if(!account){
       history.push("/")
     }
-
+    //TODO: Handle errors correctly
     account && (async () => {
       let response = await wrappedAxiosGet(getRaritySummonsAPIUrl(account), {
         delay: 600,
@@ -169,7 +171,9 @@ const CharacterSelectionView: React.FC = () => {
           }
 
           {
-            (summoners.length <= 0 && loading) && <button className={'btn'}>New Summon</button>
+            (summoners.length <= 0 && loading) && <button onClick={() => {
+              modal.show("My first summon", RecruitSummonModal, false)
+            }} className={'btn'}>New Summon</button>
           }
         </StyledLoginWrapper>
 

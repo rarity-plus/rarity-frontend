@@ -5,7 +5,7 @@ const StyledInfoToast = styled.div`
   font-size: 10px;
   font-weight: normal;
   text-shadow: black 1px 1px 2px;
-  
+  z-index: 11;
 `
 
 //TODO: Make it smarter

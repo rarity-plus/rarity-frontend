@@ -17,6 +17,9 @@ const StyledModalWrapper = styled.div`
   align-items: start;
 
   background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+  
+  overflow: auto;
 `
 
 const StyledModal = styled.div<{expanded}>`
