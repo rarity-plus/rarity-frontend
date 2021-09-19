@@ -6,10 +6,6 @@ import { useHistory } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
-  
-`
-
 const GameView: React.FC = () => {
   const history = useHistory()
   const {account} = useWeb3React()
