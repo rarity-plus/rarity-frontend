@@ -4,6 +4,11 @@ import Game from '../components/Game';
 import UI from '../components/UI';
 import { useHistory } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+  
+`
 
 const GameView: React.FC = () => {
   const history = useHistory()
@@ -17,11 +22,11 @@ const GameView: React.FC = () => {
   }, [account, history])
 
   return (
-    <div className={'game-container'}>
-        <Header />
-        <Game />
+    <StyledDiv>
+        {/*<Header />*/}
         <UI />
-    </div>
+        <Game />
+    </StyledDiv>
   );
 }
 

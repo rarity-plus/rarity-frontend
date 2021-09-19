@@ -23,14 +23,17 @@ const CharacterTitle = styled.div`
   margin-bottom: 1em;
 `
 
-
+const StyledUI = styled.div`
+    position: fixed;
+    z-index: 10;
+`
 
 const UI = observer(() => {
   const {level, summonClass} = useSummonData()
   const balance = useBalance()
 
   return (
-    <div className={`ui panel black`}>
+    <StyledUI className={`ui panel black`}>
       <div className={'panel'}>
         <CharacterTitle className={'panel title'}>
           <h1>{RarityClasses[summonClass]}</h1>
@@ -51,7 +54,7 @@ const UI = observer(() => {
         <Tab title="Attributes"><AttributesTab /></Tab>
       </Tabs>
 
-    </div>
+    </StyledUI>
   )
 })
 

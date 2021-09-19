@@ -10,29 +10,9 @@ import { observer } from "mobx-react-lite"
 import { modal } from '../../contexts/Modal';
 
 const GameWrapperPanel = styled.div`
-  padding: 0 0;
+  width: auto;
+  height: 100vh;
 `
-
-class Communication {
-  counter = 0
-
-  constructor() {
-    makeAutoObservable(this)
-  }
-
-  increment = () => {
-    this.counter++
-    return this.counter
-  }
-
-  decrement = () => {
-    this.counter++
-    return this.counter
-  }
-
-}
-
-export const myComm = new Communication()
 
 const Game = observer(() => {
 
@@ -85,7 +65,7 @@ const Game = observer(() => {
   }, [])
 
   return (
-    <GameWrapperPanel ref={panelRef} className={`game panel black`} >
+    <GameWrapperPanel ref={panelRef}>
       <IonPhaser ref={gameRef} game={game} initialize={initialize} />
     </GameWrapperPanel>
   )
