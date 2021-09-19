@@ -22,11 +22,9 @@ const GameView: React.FC = () => {
   }, [account, history])
 
   return (
-    <StyledDiv>
-        {/*<Header />*/}
-        <UI />
-        <Game />
-    </StyledDiv>
+    <Game>
+      <UI />
+    </Game>
   );
 }
 

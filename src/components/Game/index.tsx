@@ -11,10 +11,14 @@ import { modal } from '../../contexts/Modal';
 
 const GameWrapperPanel = styled.div`
   width: auto;
-  height: 100vh;
+  height: auto;
+  
+  max-height: 100vh;
+  
+  overflow: hidden;
 `
 
-const Game = observer(() => {
+const Game = observer(({children}) => {
 
 
   const adventureBoardModal = createElement(() => {
@@ -37,8 +41,8 @@ const Game = observer(() => {
     }
 
     setGame({
-      height: (panelRef.current as any).clientHeight,
-      width: (panelRef.current as any).clientWidth,
+      height: panelRef.current.clientHeight,
+      width: panelRef.current.clientWidth,
       type: Phaser.AUTO,
       render: {
         antialias: false,
@@ -66,7 +70,10 @@ const Game = observer(() => {
 
   return (
     <GameWrapperPanel ref={panelRef}>
-      <IonPhaser ref={gameRef} game={game} initialize={initialize} />
+      {children}
+        <canvas id="myCanvas" style={{border: "5px solid #fff", width: "100%", height: "100vh"}}>
+      </canvas>
+
     </GameWrapperPanel>
   )
 })

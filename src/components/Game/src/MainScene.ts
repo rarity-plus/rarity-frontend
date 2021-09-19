@@ -3,7 +3,6 @@ import Player from './components/Player';
 import { IGameObject } from './interfaces/IGameObject';
 import AdventureZone from './components/AdventureZone';
 
-import { myComm } from '../index';
 import AttributesZone from './components/AttributesZone';
 
 class MainScene extends Phaser.Scene {
@@ -78,7 +77,7 @@ class MainScene extends Phaser.Scene {
   }
 
   public openModal () {
-    myComm.increment()
+
   }
 
   create () {
