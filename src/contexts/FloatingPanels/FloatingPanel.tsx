@@ -7,6 +7,8 @@ const StyledFloatingPanel = styled.div`
   position: fixed;
   z-index: 50;
   pointer-events: all;
+
+  right: 0;
 `
 
 const StyledFloatingPanelHeader = styled.div`

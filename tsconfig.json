@@ -21,6 +21,7 @@
     "jsx": "react-jsx",
     "useDefineForClassFields": true,
     "types": [
+      "babylonjs-gui",
       "babylonjs"
     ]
   },

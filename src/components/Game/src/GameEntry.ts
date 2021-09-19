@@ -1,4 +1,5 @@
-import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, Mesh } from 'babylonjs';
+import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, Mesh,  } from 'babylonjs';
+import * as GUI from 'babylonjs-gui';
 
 
 class GameEntry {
@@ -7,15 +8,20 @@ class GameEntry {
   scene: Scene = null;
   canvas: HTMLCanvasElement = null;
 
-  constructor(engine: Engine, canvas: HTMLCanvasElement) {
-    this.engine = engine
+  fpsText: GUI.TextBlock;
+
+  constructor( canvas: HTMLCanvasElement) {
+    this.engine = new Engine(canvas, false, {preserveDrawingBuffer: true, stencil: true})
     this.canvas = canvas
 
     this.scene = new Scene(this.engine)
 
-
     //Create scenes/objs
     this.created()
+
+    this.scene.registerBeforeRender(() => {
+        this.update()
+    })
 
     //Update things
     this.engine.runRenderLoop(() => {
@@ -39,11 +45,43 @@ class GameEntry {
       // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
       var ground = Mesh.CreateGround('ground1', 6, 6, 2, this.scene, false);
 
+      var advText = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI",true,this.scene)
+
+      this.fpsText = new GUI.TextBlock("fpsText", "10 FPS")
+      advText.addControl( this.fpsText)
+
+      this.fpsText.left = '900px'
+      this.fpsText.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+      this.fpsText.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP
+
+
+      // this.scene.registerBeforeRender(() => {
+      //   this.fpsText.text = this.engine.getFps().toFixed()
+      // })
+
+  }
+
+  update() {
+
   }
 
   render() {
     if(this.scene){
       this.scene.render()
+
+      // console.log("FPS: ",this.engine.getFps().toFixed())
+    }
+  }
+
+  public engineResize() {
+    if(this.engine){
+      this.engine.resize()
+    }
+  }
+
+  public engineDispose() {
+    if(this.engine){
+      this.engine.dispose()
     }
   }
 }

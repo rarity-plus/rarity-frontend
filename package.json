@@ -15,6 +15,7 @@
     "@web3-react/injected-connector": "^6.0.7",
     "axios": "^0.21.4",
     "babylonjs": "^4.2.0",
+    "babylonjs-gui": "^4.2.0",
     "ethers": "^5.4.6",
     "interactjs": "^1.10.11",
     "lodash": "^4.17.21",

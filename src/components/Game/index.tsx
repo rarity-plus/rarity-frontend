@@ -19,26 +19,21 @@ const Game = observer(({children}) => {
 
 
   useEffect(() => {
-    const _engine = new Engine(canvasRef.current, true, {preserveDrawingBuffer: true, stencil: true})
-
-    setEngine(_engine);
-
-    if(_engine) {
-      const gameEntry = new GameEntry(_engine, canvasRef.current)
+    if(!game) {
+      const gameEntry = new GameEntry(canvasRef.current)
 
       setGame(gameEntry)
     }
 
-
     window.addEventListener('resize', function(){
-      if(_engine){
-        _engine.resize();
+      if(game){
+        game.engineResize();
       }
     });
 
     return () => {
-      if(_engine){
-        _engine.dispose()
+      if(game){
+        game.engineDispose()
       }
     }
   }, [])
