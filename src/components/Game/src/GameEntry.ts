@@ -1,11 +1,12 @@
 import { Scene, Engine, FreeCamera, KeyboardEventTypes, SceneLoader,Color3, Vector3, HemisphericLight, Mesh,ArcRotateCamera  } from 'babylonjs';
 import * as GUI from 'babylonjs-gui';
 import "@babylonjs/inspector";
+import MainScene from './scenes/MainScene';
 
 class GameEntry {
 
   engine: Engine = null;
-  scene: Scene = null;
+  scene: MainScene = null;
   canvas: HTMLCanvasElement = null;
 
   fpsText: GUI.TextBlock;
@@ -13,108 +14,8 @@ class GameEntry {
   constructor( canvas: HTMLCanvasElement) {
     this.engine = new Engine(canvas, false, {preserveDrawingBuffer: true, stencil: true})
     this.canvas = canvas
-
-    // this.scene = new Scene(this.engine)
-
-    //Create scenes/objs
-    this.created()
-
-    //Update things
-    this.engine.runRenderLoop(() => {
-      this.render()
-    })
-  }
-
-  loadScene() {
-
-  }
-
-  async created() {
-
-      this.scene = await SceneLoader.LoadAsync("/assets/scenes/", "test.babylon", this.engine)
-
-      var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
-
-      camera.attachControl(this.canvas, false);
-
-      var light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
-
-      this.scene.registerBeforeRender(() => {
-        this.update()
-      })
-
-    var sphere = Mesh.CreateSphere('sphere1', 16, 2, this.scene, false, BABYLON.Mesh.FRONTSIDE)
-
-
-    this.scene.onKeyboardObservable.add((kbInfo) => {
-          if(kbInfo.type === KeyboardEventTypes.KEYDOWN){
-            if(kbInfo.event.key === "9"){
-              this.scene.debugLayer.show({embedMode: true, overlay: true})
-            }
-          }
-      })
-
-      // SceneLoader.Load("/assets/", "test.babylon", this.engine, (scene) => {
-      //   this.scene = scene
-      //
-      //   var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
-      //
-      //   camera.attachControl(this.canvas, false);
-      //
-      //   // var light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
-      //
-      //   this.scene.clearColor = new Color3(1, 1, 1).toColor4(1);
-      //   this.scene.ambientColor = new Color3(1,1,1);
-      //
-      //   this.scene.registerBeforeRender(() => {
-      //     this.update()
-      //   })
-      //
-      //   let mesh = this.scene.getMeshByName("testCube")
-      //   console.log(mesh.position)
-      // })
-
-      // var camera = new FreeCamera('camera1', new Vector3(0, 5, -10), this.scene);
-      // // Target the camera to scene origin
-      // camera.setTarget(Vector3.Zero());
-      // // Attach the camera to the canvas
-      // camera.attachControl(this.canvas, false);
-      //
-      // // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
-      // var light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
-      // // Create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation
-      // var sphere = Mesh.CreateSphere('sphere1', 16, 2, this.scene, false, BABYLON.Mesh.FRONTSIDE);
-      // // Move the sphere upward 1/2 of its height
-      // sphere.position.y = 1;
-      // // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-      // var ground = Mesh.CreateGround('ground1', 6, 6, 2, this.scene, false);
-      //
-      // var advText = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI",true,this.scene)
-      //
-      // this.fpsText = new GUI.TextBlock("fpsText", "10 FPS")
-      // advText.addControl( this.fpsText)
-      //
-      // this.fpsText.left = '900px'
-      // this.fpsText.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-      // this.fpsText.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_TOP
-
-
-      // this.scene.registerBeforeRender(() => {
-      //   this.fpsText.text = this.engine.getFps().toFixed()
-      // })
-
-  }
-
-  update() {
-
-  }
-
-  render() {
-    if(this.scene){
-      this.scene.render()
-
-      // console.log("FPS: ",this.engine.getFps().toFixed())
-    }
+    
+    this.scene = new MainScene("/assets/scenes/", "test.babylon", this.engine)
   }
 
   public engineResize() {

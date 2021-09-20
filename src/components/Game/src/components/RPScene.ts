@@ -7,7 +7,7 @@ abstract class RPScene {
   readonly _engine: Engine;
   _scene: Scene;
 
-  protected constructor(
+  constructor(
     rootUrl: string,
     sceneFilename: string,
     engine: Engine
@@ -21,6 +21,10 @@ abstract class RPScene {
 
         this._scene.registerBeforeRender(() => {
           this.update()
+        })
+
+        this._engine.runRenderLoop(() => {
+          this._scene.render()
         })
     }, (event: ISceneLoaderProgressEvent) => {
         this.onSceneLoading(event)
@@ -46,7 +50,6 @@ abstract class RPScene {
   onSceneLoadingError(scene: Scene, message: string, exception?: any) {
 
   }
-
 
 }
 
