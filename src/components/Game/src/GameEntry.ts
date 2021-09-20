@@ -43,8 +43,10 @@ class GameEntry {
         this.update()
       })
 
+    var sphere = Mesh.CreateSphere('sphere1', 16, 2, this.scene, false, BABYLON.Mesh.FRONTSIDE)
 
-      this.scene.onKeyboardObservable.add((kbInfo) => {
+
+    this.scene.onKeyboardObservable.add((kbInfo) => {
           if(kbInfo.type === KeyboardEventTypes.KEYDOWN){
             if(kbInfo.event.key === "9"){
               this.scene.debugLayer.show({embedMode: true, overlay: true})
