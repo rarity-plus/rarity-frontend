@@ -1,4 +1,4 @@
-import { Scene, Engine, FreeCamera,SceneLoader, Vector3, HemisphericLight, Mesh,  } from 'babylonjs';
+import { Scene, Engine, FreeCamera,SceneLoader,Color3, Vector3, HemisphericLight, Mesh,ArcRotateCamera  } from 'babylonjs';
 import * as GUI from 'babylonjs-gui';
 
 
@@ -19,19 +19,32 @@ class GameEntry {
     //Create scenes/objs
     this.created()
 
-    this.scene.registerBeforeRender(() => {
-        this.update()
-    })
-
     //Update things
     this.engine.runRenderLoop(() => {
       this.render()
     })
   }
 
+  loadScene() {
+
+  }
+
   created() {
 
-      this.scene = SceneLoader.Load("/assets/", "")
+      SceneLoader.Load("/assets/", "test.babylon", this.engine, (scene) => {
+        this.scene = scene
+
+        var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
+
+        camera.attachControl(this.canvas, false);
+
+        this.scene.clearColor = new Color3(1, 1, 1).toColor4(1);
+        this.scene.ambientColor = new Color3(1,1,1);
+
+        this.scene.registerBeforeRender(() => {
+          this.update()
+        })
+      })
 
       // var camera = new FreeCamera('camera1', new Vector3(0, 5, -10), this.scene);
       // // Target the camera to scene origin
