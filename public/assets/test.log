@@ -12,7 +12,7 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		Texture directory   :  C:\Users\Ale\Documents\GitHub\rarity-frontend\public\assets\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently enabled collection
-	processing begun of mesh:  Cube.001
+	processing begun of mesh:  testCube
 		WARNING: No materials have been assigned: 
 		num positions      :  23
 		num normals        :  23
@@ -34,8 +34,8 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		num triangles      :  32
 	processing begun of light (POINT):  Point
 ========= Writing of JSON file started =========
-	writing mesh:  Cube.001
+	writing mesh:  testCube
 	writing mesh:  Cube
 ========= Writing of JSON file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 0.016 secs
+elapsed time:  0 min, 0.015 secs

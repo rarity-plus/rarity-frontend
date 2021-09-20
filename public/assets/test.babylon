@@ -3,7 +3,7 @@
 "materials":[{"name":"Material","id":"Material","customType":"BABYLON.PBRMaterial","albedo":[0.8,0.8,0.8],"emissive":[0,0,0],"reflectivity":[0.5,0.5,0.5],"roughness":0.4,"alpha":1,"transparencyMode":0,"alphaCutOff":0.4,"metallic":0},
 {"name":"Material.001","id":"Material.001","customType":"BABYLON.PBRMaterial","albedo":[0.2883,0.0058,0],"emissive":[0,0,0],"reflectivity":[0.5,0.5,0.5],"roughness":0.5,"alpha":1,"transparencyMode":0,"alphaCutOff":0.4,"metallic":0}],
 "multiMaterials":[{"name":"test.Multimaterial#0","id":"test.Multimaterial#0","materials":["Material","Material.001"]}],
-"meshes":[{"name":"Cube.001","id":"Cube.001","billboardMode":0,"position":[2.3759,2.5319,-3.8691],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":true,"isEnabled":true,"pickable":false
+"meshes":[{"name":"testCube","id":"testCube","billboardMode":0,"position":[2.3759,2.5319,-3.8691],"rotation":[0,0,0],"scaling":[1,1,1],"isVisible":true,"isEnabled":true,"pickable":false
 ,"positions":[-1,1,-1,-1,-1,1,-1,-1,-1,-1,1,1,1,-1,1,-1,-1,1,1,1,1,1,-1,-1,1,-1,1,1,1,-1,-1,-1,-1,1,-1,-1,-1,1,1,1,1,-1,1,1,1,-1,1,1,1,1,1
 ,1,1,-1,-1,1,-1,-1,-1,-1,-1,1,1,-1,1,-1,1,1,-1]
 ,"normals":[-1,0,0,-1,0,0,-1,0,0,0,0,1,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,-1,0,0,-1,0,0,-1,0,1,0,0,1,0,0,1,0,-1,0,0,0,0,1

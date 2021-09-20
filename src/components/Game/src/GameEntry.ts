@@ -44,6 +44,9 @@ class GameEntry {
         this.scene.registerBeforeRender(() => {
           this.update()
         })
+
+        let mesh = this.scene.getMeshByName("testCube")
+        console.log(mesh.position)
       })
 
       // var camera = new FreeCamera('camera1', new Vector3(0, 5, -10), this.scene);
