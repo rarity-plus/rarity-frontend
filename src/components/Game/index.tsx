@@ -25,15 +25,21 @@ const Game = observer(({children}) => {
       setGame(gameEntry)
     }
 
-    window.addEventListener('resize', function(){
+    const resize = () => {
       if(game){
         game.engineResize();
       }
-    });
+    }
+
+    window.addEventListener('resize', resize);
 
     return () => {
       if(game){
         game.engineDispose()
+      }
+
+      if(window){
+        window.removeEventListener('resize', resize)
       }
     }
   }, [])

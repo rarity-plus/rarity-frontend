@@ -1,6 +1,6 @@
-import { Scene, Engine, FreeCamera,SceneLoader,Color3, Vector3, HemisphericLight, Mesh,ArcRotateCamera  } from 'babylonjs';
+import { Scene, Engine, FreeCamera, KeyboardEventTypes, SceneLoader,Color3, Vector3, HemisphericLight, Mesh,ArcRotateCamera  } from 'babylonjs';
 import * as GUI from 'babylonjs-gui';
-
+import "@babylonjs/inspector";
 
 class GameEntry {
 
@@ -31,7 +31,7 @@ class GameEntry {
 
   async created() {
 
-      this.scene = await SceneLoader.LoadAsync("/assets/scenes", "test.babylon", this.engine)
+      this.scene = await SceneLoader.LoadAsync("/assets/scenes/", "test.babylon", this.engine)
 
       var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
 
@@ -41,6 +41,15 @@ class GameEntry {
 
       this.scene.registerBeforeRender(() => {
         this.update()
+      })
+
+
+      this.scene.onKeyboardObservable.add((kbInfo) => {
+          if(kbInfo.type === KeyboardEventTypes.KEYDOWN){
+            if(kbInfo.event.key === "9"){
+              this.scene.debugLayer.show({embedMode: true, overlay: true})
+            }
+          }
       })
 
       // SceneLoader.Load("/assets/", "test.babylon", this.engine, (scene) => {
