@@ -29,25 +29,39 @@ class GameEntry {
 
   }
 
-  created() {
+  async created() {
 
-      SceneLoader.Load("/assets/", "test.babylon", this.engine, (scene) => {
-        this.scene = scene
+      this.scene = await SceneLoader.LoadAsync("/assets/scenes", "test.babylon", this.engine)
 
-        var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
+      var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
 
-        camera.attachControl(this.canvas, false);
+      camera.attachControl(this.canvas, false);
 
-        this.scene.clearColor = new Color3(1, 1, 1).toColor4(1);
-        this.scene.ambientColor = new Color3(1,1,1);
+      var light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
 
-        this.scene.registerBeforeRender(() => {
-          this.update()
-        })
-
-        let mesh = this.scene.getMeshByName("testCube")
-        console.log(mesh.position)
+      this.scene.registerBeforeRender(() => {
+        this.update()
       })
+
+      // SceneLoader.Load("/assets/", "test.babylon", this.engine, (scene) => {
+      //   this.scene = scene
+      //
+      //   var camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this.scene);
+      //
+      //   camera.attachControl(this.canvas, false);
+      //
+      //   // var light = new HemisphericLight('light1', new Vector3(0, 1, 0), this.scene);
+      //
+      //   this.scene.clearColor = new Color3(1, 1, 1).toColor4(1);
+      //   this.scene.ambientColor = new Color3(1,1,1);
+      //
+      //   this.scene.registerBeforeRender(() => {
+      //     this.update()
+      //   })
+      //
+      //   let mesh = this.scene.getMeshByName("testCube")
+      //   console.log(mesh.position)
+      // })
 
       // var camera = new FreeCamera('camera1', new Vector3(0, 5, -10), this.scene);
       // // Target the camera to scene origin

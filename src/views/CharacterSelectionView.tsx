@@ -107,6 +107,8 @@ const CharacterSelectionView: React.FC = () => {
         tries: 3
       })
 
+      console.log(response)
+
       //TODO: Need to find a better way of fetching tokens ids
 
       const rawTokenID = response?.map((tx, index, array) => {
