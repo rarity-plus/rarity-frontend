@@ -6,6 +6,8 @@ import useBalance from '../../hooks/useBalance';
 
 const StyledProfilePicture = styled.div`
   padding: 0 0;
+  border-width: 3px;
+  align-self: center;
 `
 
 const StyledUsername = styled.div`
@@ -32,7 +34,6 @@ const ProfilePanel = () => {
   useEffect(() => {
 
   }, [])
-
 
   return (
     <div className={'panel black'} style={{position: "fixed",margin: '10px 10px', left: "0", top: "0", width: "25vh", height: "10vh", display: "flex", alignItems: "stretch"}}>
