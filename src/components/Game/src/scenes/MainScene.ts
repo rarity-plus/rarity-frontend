@@ -22,23 +22,7 @@ class MainScene extends RPScene {
     this.player = new RPPlayer(scene, this.camera)
 
     let plane = this._scene.getMeshByName("Plane") as Mesh
-
-    // this.navigationPlugin.createNavMesh([plane], {
-    //   ch: 0,
-    //   cs: 0,
-    //   detailSampleDist: 0,
-    //   detailSampleMaxError: 0,
-    //   maxEdgeLen: 0,
-    //   maxSimplificationError: 0,
-    //   maxVertsPerPoly: 0,
-    //   mergeRegionArea: 0,
-    //   minRegionArea: 0,
-    //   walkableClimb: 0,
-    //   walkableHeight: 0,
-    //   walkableRadius: 0,
-    //   walkableSlopeAngle: 0
-    //
-    // })
+    
 
   }
 
