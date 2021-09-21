@@ -1,6 +1,5 @@
 import React, { createElement, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, Mesh } from 'babylonjs';
 import { observer } from "mobx-react-lite"
 import GameEntry from './src/GameEntry';
 
@@ -12,11 +11,9 @@ const GameWrapperPanel = styled.div`
 `
 
 const Game = observer(({children}) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLDivElement>(null)
 
   const [game, setGame] = useState<GameEntry>(null)
-  const [engine, setEngine] = useState<Engine>()
-
 
   useEffect(() => {
     if(!game) {
@@ -48,9 +45,9 @@ const Game = observer(({children}) => {
     <GameWrapperPanel>
       {children}
 
-      <canvas ref={canvasRef} style={{width: "100%", height: "100vh"}}>
+      <div ref={canvasRef} style={{width: "100%", height: "100vh"}}>
 
-      </canvas>
+      </div>
     </GameWrapperPanel>
   )
 })
