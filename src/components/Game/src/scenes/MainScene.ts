@@ -15,6 +15,7 @@ class MainScene extends RPScene {
 
     try{
       this.navigationPlugin = new RecastJSPlugin();
+      this.navigationPlugin.setWorkerURL("workers/navMeshWorker.js")
     }catch (e){
       console.log(e)
     }
