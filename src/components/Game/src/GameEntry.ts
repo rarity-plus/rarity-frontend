@@ -13,6 +13,8 @@ class GameEntry {
 
   constructor( canvas: HTMLCanvasElement) {
     this.engine = new Engine(canvas, false, {preserveDrawingBuffer: true, stencil: true})
+    this.engine.enableOfflineSupport = false
+
     this.canvas = canvas
 
     this.scene = new MainScene("/assets/scenes/", "test.babylon", this.engine)
