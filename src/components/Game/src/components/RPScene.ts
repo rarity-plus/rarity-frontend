@@ -14,6 +14,8 @@ abstract class RPScene {
   ) {
     this._engine = engine
 
+    SceneLoader.ShowLoadingScreen = false
+
     SceneLoader.Load(rootUrl, sceneFilename, this._engine, (scene) => {
         this._scene = scene
 

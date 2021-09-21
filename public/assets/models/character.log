@@ -1,0 +1,60 @@
+Exporter version: 2.93.4, Blender version: 2.93.4
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  PBR
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  no
+		Texture directory   :  C:\Users\Ale\Documents\GitHub\rarity-frontend\public\assets\models\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of skeleton:  Armature, id:  0
+		processing begun of bone:  Root, index:  0
+		processing begun of bone:  Hip, index:  1
+		processing begun of bone:  Chest, index:  2
+		processing begun of bone:  Neck, index:  3
+		processing begun of bone:  Head, index:  4
+		processing begun of bone:  Head_end, index:  5
+		processing begun of bone:  UpperArm.L, index:  6
+		processing begun of bone:  LowerArm.L, index:  7
+		processing begun of bone:  Hand.L, index:  8
+		processing begun of bone:  Hand.L_end, index:  9
+		processing begun of bone:  UpperArm.R, index:  10
+		processing begun of bone:  LowerArm.R, index:  11
+		processing begun of bone:  Hand.R, index:  12
+		processing begun of bone:  Hand.R_end, index:  13
+		processing begun of bone:  UpperLeg.L, index:  14
+		processing begun of bone:  LowerLeg.L, index:  15
+		processing begun of bone:  Foot.L, index:  16
+		processing begun of bone:  Foot.L_end, index:  17
+		processing begun of bone:  UpperLeg.R, index:  18
+		processing begun of bone:  LowerLeg.R, index:  19
+		processing begun of bone:  Foot.R, index:  20
+		processing begun of bone:  Foot.R_end, index:  21
+	processing begun of mesh:  Cube
+		processing begun of material:  Texture
+
+ERROR: UN-EXCEPTED NODE TYPE(SHADERNODENORMALMAP).  CANNOT CONTINUE.
+
+			bake time:  0 min, 0.003 secs
+		Custom split normals with tangents being used
+		num positions      :  853
+		num normals        :  853
+		num tangents       :  3412
+		num uvs            :  1706
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  700
+		Skeleton stats:  
+			Total Influencers:  957
+			Avg # of influencers per vertex:  1.1219
+			Highest # of influencers observed:  2, num vertices with this:  104
+			exported as 2 influencers
+			num skeletonWeights and skeletonIndices:  3412
+	Mesh: Cube has un-applied transformations.  This will never work for a mesh with an armature.  Export cancelled
+========= end of processing =========
+elapsed time:  0 min, 0.12 secs
