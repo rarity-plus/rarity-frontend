@@ -1,7 +1,6 @@
 import RPScene from '../components/RPScene';
 import { ArcRotateCamera, Engine, HemisphericLight, Mesh, Scene, Vector3, RecastJSPlugin } from 'babylonjs';
 import RPPlayer from '../gameObjects/RPPlayer';
-
 class MainScene extends RPScene {
 
   light: HemisphericLight;
@@ -13,13 +12,7 @@ class MainScene extends RPScene {
   onSceneLoaded(scene: Scene) {
     super.onSceneLoaded(scene);
 
-    try{
-      this.navigationPlugin = new RecastJSPlugin();
-      this.navigationPlugin.setWorkerURL("workers/navMeshWorker.js")
-    }catch (e){
-      console.log(e)
-    }
-
+    
     this.camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this._scene)
 
     this.camera.attachControl(this._engine.inputElement, false);
