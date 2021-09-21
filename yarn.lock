@@ -2770,11 +2770,6 @@ abab@^2.0.3:
   resolved "https://registry.npmjs.org/abab/-/abab-2.0.5.tgz"
   integrity sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q==
 
-abitbol@^1.0.3:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/abitbol/-/abitbol-1.2.0.tgz#7c7b66cc6e7f1a3d458798d60eb708883652edad"
-  integrity sha1-fHtmzG5/Gj1Fh5jWDrcIiDZS7a0=
-
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.npmjs.org/accepts/-/accepts-1.3.7.tgz"
@@ -3355,15 +3350,6 @@ babel-runtime@^6.26.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
-babylon-navigation-mesh@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/babylon-navigation-mesh/-/babylon-navigation-mesh-1.2.6.tgz#10897fa882f45d2ab2e22d0347a50c20ff33873a"
-  integrity sha1-EIl/qIL0XSqy4i0DR6UMIP8zhzo=
-  dependencies:
-    abitbol "^1.0.3"
-    babylonjs "^2.3.0"
-    lodash "^4.5.1"
-
 babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.npmjs.org/babylon/-/babylon-6.18.0.tgz"
@@ -3393,11 +3379,6 @@ babylonjs@5.0.0-alpha.45, babylonjs@>=5.0.0-alpha.45:
   version "5.0.0-alpha.45"
   resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-5.0.0-alpha.45.tgz#f9260c973671042f4eef5643ea0bf2aed9b77bbb"
   integrity sha512-ShClf06uUn5mPZnQuHuMkvg51RtSbBTLL86odjmTZG+VurBnsMkm3hm4D0k54p9RL/sJkuhmByv1zxq8IgrbTg==
-
-babylonjs@^2.3.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-2.5.0.tgz#82e72922b6d681d46c766aeaaafda74f572a6ed3"
-  integrity sha1-gucpIrbWgdRsdmrqqv2nT1cqbtM=
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -7799,7 +7780,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@>=3.5 <5", lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.5, lodash@^4.5.1:
+"lodash@>=3.5 <5", lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==

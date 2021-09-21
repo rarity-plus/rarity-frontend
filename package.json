@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babylonjs/inspector": ">=5.0.0-alpha.45",
     "@ethersproject/providers": "^5.4.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,10 +14,6 @@
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "axios": "^0.21.4",
-    "babylon-navigation-mesh": "^1.2.6",
-    "babylonjs": ">=5.0.0-alpha.45",
-    "babylonjs-gui": ">=5.0.0-alpha.45",
-    "babylonjs-loaders": ">=5.0.0-alpha.45",
     "ethers": "^5.4.6",
     "interactjs": "^1.10.11",
     "lodash": "^4.17.21",

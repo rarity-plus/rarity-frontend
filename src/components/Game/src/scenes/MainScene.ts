@@ -12,7 +12,7 @@ class MainScene extends RPScene {
   onSceneLoaded(scene: Scene) {
     super.onSceneLoaded(scene);
 
-    
+
     this.camera = new ArcRotateCamera("Camera", 1, 1, 4, Vector3.Zero(), this._scene)
 
     this.camera.attachControl(this._engine.inputElement, false);
