@@ -22,10 +22,15 @@
 =======
     "babylonjs": ">=5.0.0-alpha.45",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@babylonjs/inspector": ">=5.0.0-alpha.45",
     "babylonjs-gui": ">=5.0.0-alpha.45",
     "babylonjs-loaders": ">=5.0.0-alpha.45",
 >>>>>>> parent of c851827 (Use another path finding library)
+=======
+    "babylonjs-gui": "^4.2.0",
+    "babylonjs-loaders": "^4.2.0",
+>>>>>>> parent of da4db06 (Engine dependency updated)
 =======
     "babylonjs-gui": "^4.2.0",
     "babylonjs-loaders": "^4.2.0",
