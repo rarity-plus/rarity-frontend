@@ -3370,27 +3370,27 @@ babylonjs-gltf2interface@4.2.0:
   resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-4.2.0.tgz#b0ef1e11e3574cf2c6f573d0c5c34857a2a7b322"
   integrity sha512-Fn/ThxwZWP9kEAqk+9FX9CAeF4ah/I0/8wzAZR8MQuYqlYpEfM+E/IztJ+4LoOOxQYMWNs5lgj8OXSkX0tqc4g==
 
-babylonjs-gltf2interface@5.0.0-alpha.45:
-  version "5.0.0-alpha.45"
-  resolved "https://registry.yarnpkg.com/babylonjs-gltf2interface/-/babylonjs-gltf2interface-5.0.0-alpha.45.tgz#6d78f96e3a556ab003d42e05cfeebf54a4c4d34e"
-  integrity sha512-R7JpNdIrxmiXsEPAPGl5Oq7P0T3d6mdhm7pX7cI30UrNuCEv51tEGvNncGOAAf7DvxNTZEcpCufYTDcYREQemA==
-
-babylonjs-gui@>=5.0.0-alpha.45:
-  version "5.0.0-alpha.45"
-  resolved "https://registry.yarnpkg.com/babylonjs-gui/-/babylonjs-gui-5.0.0-alpha.45.tgz#d300f9548b1ece0fd679e2d2f60020f0b1c5305c"
-  integrity sha512-wkZe6OoGfDl/doctyZ9PGKDBWiRARN3Quj0DYOPf5tWOFwKZQdNn5wKgyDwavmTS8jDp2tNOoAwwxWKGvaLJCA==
+babylonjs-gui@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-gui/-/babylonjs-gui-4.2.0.tgz#f9370e922d6de5f99ebbeddd4a15972621ee1941"
+  integrity sha512-eCLlUiShKFN8QCv/Xg8OInWXon9KFfZPVHQtI5A5yUggaNgjZrq1Ul6oveIYbg9UH32oU/jUDb4iChHn5Bsgjw==
   dependencies:
-    babylonjs "5.0.0-alpha.45"
+    babylonjs "4.2.0"
 
-babylonjs-loaders@>=5.0.0-alpha.45:
-  version "5.0.0-alpha.45"
-  resolved "https://registry.yarnpkg.com/babylonjs-loaders/-/babylonjs-loaders-5.0.0-alpha.45.tgz#568180c99ce50b001560e5d5ce47d287cfcfc7f7"
-  integrity sha512-UuPO7ueqFPeQVUltmwUjoDn0YaTjHkvZjjLHAUzcqB6LwcNTXMkQuiTmWGI/6t5Iw49pkc7yyaW+kVLKt5WnLA==
+babylonjs-loaders@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/babylonjs-loaders/-/babylonjs-loaders-4.2.0.tgz#3d536cb72bf8650fe7f1cee12380bea3227d79c0"
+  integrity sha512-GGLvo4ibbSHMY0Kj/DBu4827NBWeDT0NOBi/UuifXltzqPJtJRi3PCEcELj4Ga8cRxkfYi/7PMKcce2zVnpLZA==
   dependencies:
-    babylonjs "5.0.0-alpha.45"
-    babylonjs-gltf2interface "5.0.0-alpha.45"
+    babylonjs "4.2.0"
+    babylonjs-gltf2interface "4.2.0"
 
-babylonjs@5.0.0-alpha.45, babylonjs@>=5.0.0-alpha.45:
+babylonjs@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-4.2.0.tgz#8f0d957a726de4c065904b14c2f413f455145d38"
+  integrity sha512-4hniJzWRkV0tDTTYGEHPk1lnfWn0HIw7HOvNWPK0rpUIbJooyeD9E5uVyHnslDedt0mtrA7QZu4i2Cz1DEmSsA==
+
+babylonjs@>=5.0.0-alpha.45:
   version "5.0.0-alpha.45"
   resolved "https://registry.yarnpkg.com/babylonjs/-/babylonjs-5.0.0-alpha.45.tgz#f9260c973671042f4eef5643ea0bf2aed9b77bbb"
   integrity sha512-ShClf06uUn5mPZnQuHuMkvg51RtSbBTLL86odjmTZG+VurBnsMkm3hm4D0k54p9RL/sJkuhmByv1zxq8IgrbTg==
