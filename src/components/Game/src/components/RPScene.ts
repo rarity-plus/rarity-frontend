@@ -1,15 +1,36 @@
-import { Camera, PerspectiveCamera, Scene } from 'three';
+import { Scene, ArcRotateCamera, Engine ,Vector3 } from 'babylonjs';
 
 abstract class RPScene {
 
   scene: Scene;
-  camera: Camera;
+  engine: Engine;
 
-  constructor(camera: PerspectiveCamera) {
-      this.camera = camera
-      this.scene = new Scene()
+  constructor(engine: Engine) {
+      this.engine = engine;
+      this.scene = new Scene(engine)
+
+      this.create()
+
+      if(this.scene){
+        this.scene.registerBeforeRender(() => {
+          this.update()
+        })
+      }
+
+      if(this.engine){
+        this.engine.runRenderLoop(() => {
+          this.scene.render()
+        })
+      }
   }
 
+  create() {
+
+  }
+
+  update() {
+
+  }
 
   //
   // public readonly scene: Scene;
