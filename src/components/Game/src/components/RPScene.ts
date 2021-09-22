@@ -1,5 +1,16 @@
+import { Camera, PerspectiveCamera, Scene } from 'three';
 
 abstract class RPScene {
+
+  scene: Scene;
+  camera: Camera;
+
+  constructor(camera: PerspectiveCamera) {
+      this.camera = camera
+      this.scene = new Scene()
+  }
+
+
   //
   // public readonly scene: Scene;
   // public readonly renderer: WebGLRenderer
