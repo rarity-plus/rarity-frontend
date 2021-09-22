@@ -1,92 +1,53 @@
 import React, { createElement, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import Phaser from 'phaser'
-import { IonPhaser, GameInstance } from '@ion-phaser/react'
-import MainScene from './src/MainScene';
-
-import { makeAutoObservable } from 'mobx';
 import { observer } from "mobx-react-lite"
-
-import { modal } from '../../contexts/Modal';
+import GameEntry from './src/GameEntry';
 
 const GameWrapperPanel = styled.div`
-  padding: 0 0;
+  width: auto;
+  height: auto;
+  max-height: 100vh;
+  overflow: hidden;
 `
 
-class Communication {
-  counter = 0
+const Game = observer(({children}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  constructor() {
-    makeAutoObservable(this)
-  }
-
-  increment = () => {
-    this.counter++
-    return this.counter
-  }
-
-  decrement = () => {
-    this.counter++
-    return this.counter
-  }
-
-}
-
-export const myComm = new Communication()
-
-const Game = observer(() => {
-
-
-  const adventureBoardModal = createElement(() => {
-    return (
-      <h1>Start an adventure</h1>
-    )
-  })
-
-  const panelRef = useRef(null)
-
-  const gameRef = useRef<HTMLIonPhaserElement>(null)
-
-  const [game, setGame] = useState<GameInstance>()
-
-  const [initialize, setInitialize] = useState(false)
+  const [game, setGame] = useState<GameEntry>(null)
 
   useEffect(() => {
-    if(initialize){
-      return;
+    if(!game) {
+      const gameEntry = new GameEntry(canvasRef.current)
+
+      setGame(gameEntry)
     }
 
-    setGame({
-      height: (panelRef.current as any).clientHeight,
-      width: (panelRef.current as any).clientWidth,
-      type: Phaser.AUTO,
-      render: {
-        antialias: false,
-        antialiasGL: false,
-        pixelArt: true,
-        roundPixels: false
-      },
-      physics: {
-        default: 'arcade',
-        arcade: {
-          debug: true
-        }
-      },
-      scene: MainScene
-    })
+    const resize = () => {
+      if(game){
+        game.engineResize();
+      }
+    }
 
-    setInitialize(true)
+    window.addEventListener('resize', resize);
 
     return () => {
-      if(gameRef.current){
-        gameRef.current.destroy()
+      if(game){
+        game.engineDispose()
+      }
+
+      if(window){
+        window.removeEventListener('resize', resize)
       }
     }
   }, [])
 
   return (
-    <GameWrapperPanel ref={panelRef} className={`game panel black`} >
-      <IonPhaser ref={gameRef} game={game} initialize={initialize} />
+    <GameWrapperPanel>
+      {children}
+
+      <canvas ref={canvasRef} style={{width: "100%", height: "100vh"}}>
+
+      </canvas>
     </GameWrapperPanel>
   )
 })
