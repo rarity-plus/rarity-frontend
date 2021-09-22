@@ -11,7 +11,7 @@ const GameWrapperPanel = styled.div`
 `
 
 const Game = observer(({children}) => {
-  const canvasRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const [game, setGame] = useState<GameEntry>(null)
 
@@ -45,9 +45,9 @@ const Game = observer(({children}) => {
     <GameWrapperPanel>
       {children}
 
-      <div ref={canvasRef} style={{width: "100%", height: "100vh"}}>
+      <canvas ref={canvasRef} style={{width: "100%", height: "100vh"}}>
 
-      </div>
+      </canvas>
     </GameWrapperPanel>
   )
 })

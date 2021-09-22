@@ -1,6 +1,39 @@
-import { Scene } from 'three';
 
 abstract class RPScene {
+  //
+  // public readonly scene: Scene;
+  // public readonly renderer: WebGLRenderer
+  // public readonly camera: PerspectiveCamera;
+  //
+  // constructor(renderer: WebGLRenderer, camera: PerspectiveCamera) {
+  //     this.scene = new Scene()
+  //     this.renderer = renderer
+  //     this.camera = camera
+  //
+  // }
+  //
+  // public registerEvents() {
+  //   this.created()
+  //   this.animate()
+  // }
+  //
+  // animate()  {
+  //     requestAnimationFrame(() => {
+  //       this.animate()
+  //     })
+  //
+  //     this.update()
+  //
+  //     this.renderer.render(this.scene, this.camera)
+  // }
+  //
+  // created() {
+  //
+  // }
+  //
+  // update() {
+  //
+  // }
 
   // readonly _engine: Engine;
   // _scene: Scene;
