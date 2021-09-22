@@ -11,6 +11,7 @@ class GameEntry {
     this.engine.enableOfflineSupport = false
 
     this.scene = new MainScene(this.engine)
+    this.scene.registerEvents()
   }
 
   public engineResize() {

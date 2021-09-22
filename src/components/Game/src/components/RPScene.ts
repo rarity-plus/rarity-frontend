@@ -8,23 +8,25 @@ abstract class RPScene {
   constructor(engine: Engine) {
       this.engine = engine;
       this.scene = new Scene(engine)
-
-      this.create()
-
-      if(this.scene){
-        this.scene.registerBeforeRender(() => {
-          this.update()
-        })
-      }
-
-      if(this.engine){
-        this.engine.runRenderLoop(() => {
-          this.scene.render()
-        })
-      }
   }
 
-  create() {
+  registerEvents() {
+    this.asyncCreate()
+
+    if(this.scene){
+      this.scene.registerBeforeRender(() => {
+        this.update()
+      })
+    }
+
+    if(this.engine){
+      this.engine.runRenderLoop(() => {
+        this.scene.render()
+      })
+    }
+  }
+
+  async asyncCreate() {
 
   }
 
