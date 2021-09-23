@@ -1,10 +1,11 @@
-import { ArcRotateCamera, Scene, TransformNode, Vector3 } from 'babylonjs';
+import { ArcRotateCamera, Mesh, MeshBuilder, Scene, TransformNode, Vector3 } from 'babylonjs';
 import RPScene from '../components/RPScene';
 
 class RPPlayer extends TransformNode{
 
   scene: RPScene;
   camera: ArcRotateCamera;
+  mesh: Mesh;
 
     constructor(scene: RPScene) {
       super("player_transform", scene.instance);
@@ -14,6 +15,10 @@ class RPPlayer extends TransformNode{
     init() {
       this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new Vector3(0, 0, 0), this.scene.instance);
       this.camera.attachControl(this.scene.engineInstance.getRenderingCanvas(), true);
+
+
+      this.mesh = MeshBuilder.CreateBox("cube", { size: 200, height: 200 }, this.scene.instance);
+      this.camera.lockedTarget = this.mesh;
     }
 
     update() {
