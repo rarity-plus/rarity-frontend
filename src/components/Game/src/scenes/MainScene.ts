@@ -5,6 +5,7 @@ import { Engine, ArcRotateCamera,AbstractMesh, Mesh , Vector3, HemisphericLight,
 // @ts-ignore
 import Recast from 'recast-detour/recast'
 import NavigationSytem from '../systems/NavigationSytem';
+import RPWorld from '../gameObjects/RPWorld';
 
 class MainScene extends RPScene {
 
@@ -12,11 +13,13 @@ class MainScene extends RPScene {
   agents = []
 
   player: RPPlayer;
+  world: RPWorld;
   navigationSystem: NavigationSytem;
 
   constructor(engine: Engine) {
     super(engine);
 
+    this.world = new RPWorld(this)
     this.player = new RPPlayer(this)
     this.navigationSystem = new NavigationSytem(this)
   }

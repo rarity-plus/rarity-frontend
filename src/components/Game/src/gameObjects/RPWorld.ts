@@ -10,6 +10,10 @@ class RPWorld {
     this.scene = scene;
   }
 
+  init() {
+
+  }
+
 }
 
 export default RPWorld
