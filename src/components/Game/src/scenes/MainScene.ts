@@ -4,22 +4,26 @@ import { Engine, ArcRotateCamera,AbstractMesh, Mesh , Vector3, HemisphericLight,
 
 // @ts-ignore
 import Recast from 'recast-detour/recast'
+import NavigationSytem from '../systems/NavigationSytem';
 
 class MainScene extends RPScene {
 
-  navigationPlugin: RecastJSPlugin;
 
   agents = []
 
   player: RPPlayer;
+  navigationSystem: NavigationSytem;
 
   constructor(engine: Engine) {
     super(engine);
 
-    this.player = new RPPlayer(this.scene)
+    this.player = new RPPlayer(this)
+    this.navigationSystem = new NavigationSytem(this)
   }
 
   async asyncCreate() {
+    this.player.init()
+    await this.navigationSystem.init()
 
   }
 
@@ -193,6 +197,8 @@ class MainScene extends RPScene {
 
 
   update() {
+      //Call the navigation system update loop
+      this.navigationSystem && this.navigationSystem.update()
 
       //Call player update loop
       this.player && this.player.update()

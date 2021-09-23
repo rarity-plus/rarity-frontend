@@ -2,12 +2,12 @@ import { Scene, ArcRotateCamera, Engine ,Vector3 } from 'babylonjs';
 
 abstract class RPScene {
 
-  scene: Scene;
-  engine: Engine;
+  instance: Scene;
+  engineInstance: Engine;
 
   constructor(engine: Engine) {
-      this.engine = engine;
-      this.scene = new Scene(engine)
+      this.engineInstance = engine;
+      this.instance = new Scene(engine)
   }
 
   /**
@@ -16,22 +16,22 @@ abstract class RPScene {
   registerEvents() {
     this.asyncCreate()
 
-    if(this.scene){
-      this.scene.registerBeforeRender(() => {
+    if(this.instance){
+      this.instance.registerBeforeRender(() => {
         this.update()
         this.lateUpdate()
       })
 
-      this.scene.registerAfterRender(() => {
+      this.instance.registerAfterRender(() => {
         this.afterRender()
       })
     }
 
-    if(this.engine){
-      this.engine.runRenderLoop(() => {
+    if(this.engineInstance){
+      this.engineInstance.runRenderLoop(() => {
         //TODO: Check if the order is correct
         this.render()
-        this.scene.render()
+        this.instance.render()
       })
     }
   }

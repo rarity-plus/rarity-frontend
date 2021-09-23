@@ -1,16 +1,19 @@
 import { ArcRotateCamera, Scene, TransformNode, Vector3 } from 'babylonjs';
+import RPScene from '../components/RPScene';
 
 class RPPlayer extends TransformNode{
 
-  scene: Scene;
+  scene: RPScene;
   camera: ArcRotateCamera;
 
-    constructor(scene: Scene) {
-      super("player_transform", scene);
+    constructor(scene: RPScene) {
+      super("player_transform", scene.instance);
       this.scene = scene;
+    }
 
-      this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new Vector3(0, 0, 0), this.scene);
-      this.camera.attachControl(this.scene.getEngine().getRenderingCanvas(), true);
+    init() {
+      this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new Vector3(0, 0, 0), this.scene.instance);
+      this.camera.attachControl(this.scene.engineInstance.getRenderingCanvas(), true);
     }
 
     update() {
