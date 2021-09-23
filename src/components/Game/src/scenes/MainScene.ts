@@ -198,9 +198,7 @@ class MainScene extends RPScene {
 
 
   update() {
-        if(this.camera){
-          console.log("Camera exists")
-        }
+
   }
 
 }
