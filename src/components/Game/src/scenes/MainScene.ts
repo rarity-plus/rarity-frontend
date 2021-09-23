@@ -25,9 +25,10 @@ class MainScene extends RPScene {
   }
 
   async asyncCreate() {
+    this.world.init()
     this.player.init()
-    await this.navigationSystem.init()
 
+    await this.navigationSystem.init()
   }
 
   async create() {
