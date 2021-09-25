@@ -9,12 +9,13 @@ import RPWorld from '../gameObjects/RPWorld';
 
 class MainScene extends RPScene {
 
-
   agents = []
 
   player: RPPlayer;
   world: RPWorld;
   navigationSystem: NavigationSytem;
+
+  camera: ArcRotateCamera;
 
   constructor(engine: Engine) {
     super(engine);
@@ -22,6 +23,8 @@ class MainScene extends RPScene {
     this.world = new RPWorld(this)
     this.player = new RPPlayer(this)
     this.navigationSystem = new NavigationSytem(this)
+
+
   }
 
   async asyncCreate() {
@@ -29,6 +32,15 @@ class MainScene extends RPScene {
     this.player.init()
 
     await this.navigationSystem.init()
+  }
+
+
+  update() {
+    //Call the navigation system update loop
+    this.navigationSystem && this.navigationSystem.update()
+
+    //Call player update loop
+    this.player && this.player.update()
   }
 
   async create() {
@@ -198,15 +210,6 @@ class MainScene extends RPScene {
     // })
   }
 
-
-
-  update() {
-      //Call the navigation system update loop
-      this.navigationSystem && this.navigationSystem.update()
-
-      //Call player update loop
-      this.player && this.player.update()
-  }
 
 }
 

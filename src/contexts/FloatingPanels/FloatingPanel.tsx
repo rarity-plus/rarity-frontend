@@ -25,6 +25,12 @@ const StyledFloatingPanelBody = styled.div`
   padding: 2px 2px;
 `
 
+const StyledCloseButton = styled.button`
+  margin-left: 10px;
+  padding: 1px 1px;
+  height: 10px;
+`
+
 const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
   const panelRef = useRef<HTMLDivElement>()
   const dragHandle = useRef<HTMLDivElement>()
@@ -62,9 +68,9 @@ const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
       <StyledFloatingPanelHeader ref={dragHandle} className={'panel black'}>
         <span>{title}</span>
 
-        <button onClick={() => {
+        <StyledCloseButton className={'btn'} onClick={() => {
           floatingPanelState.destroyFloatingPanel(id)
-        }}>Close</button>
+        }}>X</StyledCloseButton>
       </StyledFloatingPanelHeader>
       <StyledFloatingPanelBody>
         {body}

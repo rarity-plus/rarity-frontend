@@ -1,11 +1,11 @@
-import { ArcRotateCamera, Mesh, MeshBuilder, Scene, TransformNode, Vector3 } from 'babylonjs';
+import { ArcRotateCamera, Mesh, MeshBuilder, Scene, SceneLoader, TransformNode, Vector3, AssetsManager } from 'babylonjs';
 import RPScene from '../components/RPScene';
 
 class RPPlayer extends TransformNode{
 
   scene: RPScene;
-  camera: ArcRotateCamera;
   mesh: Mesh;
+  camera: ArcRotateCamera;
 
     constructor(scene: RPScene) {
       super("player_transform", scene.instance);
@@ -13,12 +13,33 @@ class RPPlayer extends TransformNode{
     }
 
     init() {
-      this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new Vector3(0, 0, 0), this.scene.instance);
-      this.camera.attachControl(this.scene.engineInstance.getRenderingCanvas(), true);
 
+      var assetsManager = new AssetsManager(this.getScene());
 
-      this.mesh = MeshBuilder.CreateBox("cube", { size: 200, height: 200 }, this.scene.instance);
-      this.camera.lockedTarget = this.mesh;
+      var meshTask = assetsManager.addMeshTask("character_task", "", "/assets/models/", "character.glb");
+
+      meshTask.onSuccess =  (task) => {
+        this.mesh = task.loadedMeshes[0] as Mesh
+        this.mesh.setParent(this)
+
+        
+      }
+
+      assetsManager.load()
+
+      this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 50, this.position, this.getScene());
+      this.camera.attachControl(this.getEngine().getRenderingCanvas(), true);
+      this.camera.lowerRadiusLimit = 10;
+      this.camera.upperRadiusLimit = 100;
+
+      this.camera.upperBetaLimit = 1;
+
+      this.camera.lockedTarget = this.position;
+      this.camera.alpha += Math.PI;
+    }
+
+    async asyncInit() {
+
     }
 
     update() {

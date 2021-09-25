@@ -47,6 +47,12 @@ class NavigationSytem {
         }catch (e){
             console.error(e)
         }
+    }
+
+    createNavmesh() {
+        if(!this.navigationPlugin){
+            return;
+        }
 
         this.navigationPlugin.createNavMesh([], this.navMeshOptions, (navmeshData) => {
             this.navmeshData = navmeshData
