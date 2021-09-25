@@ -1,4 +1,4 @@
-import { HemisphericLight, Scene, SceneLoader, Vector3, Color3 } from 'babylonjs';
+import { HemisphericLight, Scene, SceneLoader, Vector3, Color3, AssetsManager, Mesh } from 'babylonjs';
 import RPScene from '../components/RPScene';
 
 import "babylonjs-loaders"
@@ -7,7 +7,7 @@ class RPWorld {
 
   scene: RPScene;
 
-  worldMesh;
+  mesh: Mesh;
 
 
   constructor(scene: RPScene) {
@@ -15,15 +15,20 @@ class RPWorld {
   }
 
   init() {
-    SceneLoader.Append("/assets/scenes/", "world.glb", this.scene.instance, (scene) => {
-        this.worldMesh = scene.getMeshById("__root__")
+    var assetsManager = new AssetsManager(this.scene.instance);
 
-        this.worldMesh.id = "world_mesh"
+    var world_task = assetsManager.addMeshTask("world_task", "", "/assets/scenes/", "world.glb");
 
-        var light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.scene.instance);
-        light.intensity = 0.6;
-        light.specular = Color3.Black();
-    })
+    world_task.onSuccess =  (task) => {
+      this.mesh = task.loadedMeshes[1] as Mesh
+
+      var light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.scene.instance);
+      light.intensity = 0.6;
+      light.specular = Color3.Black();
+    }
+
+    assetsManager.load()
+
   }
 
 }

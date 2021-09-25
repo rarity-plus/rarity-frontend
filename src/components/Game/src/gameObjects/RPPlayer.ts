@@ -1,11 +1,13 @@
 import { ArcRotateCamera, Mesh, MeshBuilder, Scene, SceneLoader, TransformNode, Vector3, AssetsManager } from 'babylonjs';
 import RPScene from '../components/RPScene';
+import MainScene from '../scenes/MainScene';
 
 class RPPlayer extends TransformNode{
 
   scene: RPScene;
   mesh: Mesh;
   camera: ArcRotateCamera;
+  mainScene: MainScene
 
     constructor(scene: RPScene) {
       super("player_transform", scene.instance);
@@ -13,6 +15,7 @@ class RPPlayer extends TransformNode{
     }
 
     init() {
+      this.mainScene = this.scene as MainScene
 
       var assetsManager = new AssetsManager(this.getScene());
 
@@ -21,8 +24,6 @@ class RPPlayer extends TransformNode{
       meshTask.onSuccess =  (task) => {
         this.mesh = task.loadedMeshes[0] as Mesh
         this.mesh.setParent(this)
-
-        
       }
 
       assetsManager.load()
@@ -34,7 +35,7 @@ class RPPlayer extends TransformNode{
 
       this.camera.upperBetaLimit = 1;
 
-      this.camera.lockedTarget = this.position;
+      this.camera.lockedTarget = this;
       this.camera.alpha += Math.PI;
     }
 
@@ -43,7 +44,19 @@ class RPPlayer extends TransformNode{
     }
 
     update() {
+      if(this.mainScene){
+        let navigationSystemInstance = this.mainScene.navigationSystem
 
+        if(navigationSystemInstance && this.mainScene.navigationSystem.agents.length > 0){
+          let crowdInstance = this.mainScene.navigationSystem.crowdInstance
+
+          let vel = crowdInstance.getAgentVelocity(0);
+
+          if(vel.length() > 0){
+            console.log("Moving")
+          }
+        }
+      }
     }
 
     // readonly scene: Scene;
