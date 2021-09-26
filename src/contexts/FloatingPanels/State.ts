@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 import TestPanel from './panels/testPanel';
 import SuperTestPanel from './panels/superTestPanel';
+import AttributesPanel from './panels/AttributesPanel';
 
 export type FloatingPanelType = {
   title: string,
@@ -20,7 +21,7 @@ export class FloatingPanelState {
   static FloatingPanels: {[key: string]: FloatingPanelType} = {
       "testPanel": {
         title: "Abilities",
-        body: TestPanel
+        body: AttributesPanel
       },
       "superTestPanel": {
         title: "Inventory",

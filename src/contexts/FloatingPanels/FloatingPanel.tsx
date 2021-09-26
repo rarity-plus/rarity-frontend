@@ -63,14 +63,16 @@ const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
     })
   }, [])
 
+  const closePanel = () => {
+    floatingPanelState.destroyFloatingPanel(id)
+  }
+
   return (
     <StyledFloatingPanel className={'panel black'} ref={panelRef}>
       <StyledFloatingPanelHeader ref={dragHandle} className={'panel black'}>
         <span>{title}</span>
 
-        <StyledCloseButton className={'btn'} onClick={() => {
-          floatingPanelState.destroyFloatingPanel(id)
-        }}>X</StyledCloseButton>
+        <StyledCloseButton className={'btn'} onClick={closePanel}>X</StyledCloseButton>
       </StyledFloatingPanelHeader>
       <StyledFloatingPanelBody>
         {body}

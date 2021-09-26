@@ -11,6 +11,7 @@ import {
 
 // @ts-ignore
 import Recast from 'recast-detour/recast'
+
 import RPScene from '../components/RPScene';
 import MainScene from '../scenes/MainScene';
 
@@ -142,10 +143,11 @@ class NavigationSytem {
             }
         }
 
+        //TODO: Stop using switch
         this.scene.instance.onPointerObservable.add((pointerInfo) => {
             switch (pointerInfo.type) {
                     case BABYLON.PointerEventTypes.POINTERDOWN:
-                      if(pointerInfo.pickInfo.hit) {
+                      if((pointerInfo.event as any).which === 1 && pointerInfo.pickInfo.hit) {
                         pointerDown(pointerInfo.pickInfo.pickedMesh)
                       }
                       break;
