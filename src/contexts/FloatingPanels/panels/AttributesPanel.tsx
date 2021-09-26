@@ -119,140 +119,135 @@ const AttributeElement: React.FC<AttributeElementType> = ({characterCreated,attr
 
 const AttributesPanel = () => {
 
+  const [rawAttributeValues, setRawAttributeValues] = useState([8,8,8,8,8,8])
+  const [pointsToAssign, setPointsToAssign] = useState(32)
+  const [characterCreated, setCharacterCreted] = useState(false)
+
+  const rarityAttributeContract = useRarityAttributeContract()
+  const rarityContract = useRarityContract()
+
+  function abilitiesByLevel(level) {
+    return BigNumber.from(level).div(4)
+  }
+
   useEffect(() => {
-      console.log("Mounted")
+    (async () => {
+      //TODO: Take in account that when you had created your character you can increase stats just one by one
+      const characterCreated = await rarityAttributeContract.character_created(gameState.currentTokenId)
+
+      setCharacterCreted(characterCreated)
+
+      if(characterCreated){
+        const rawSummonAbillities = await rarityAttributeContract.ability_scores(gameState.currentTokenId)
+
+        let rawSummonAbillitiesArr = (rawSummonAbillities as []).slice(0,6)
+
+        setRawAttributeValues(rawSummonAbillitiesArr)
+
+        const level = await rarityContract.level(gameState.currentTokenId)
+
+        const pointsSpent = await rarityAttributeContract.level_points_spent(gameState.currentTokenId)
+
+        //TODO: Make it smarter
+        if(abilitiesByLevel(level).sub(pointsSpent) > BigNumber.from(0)){
+          setPointsToAssign(abilitiesByLevel(level).sub(pointsSpent).toNumber())
+        }else {
+          setPointsToAssign(0)
+        }
+      }
+    })()
   }, [])
 
-  // const [rawAttributeValues, setRawAttributeValues] = useState([8,8,8,8,8,8])
-  // const [pointsToAssign, setPointsToAssign] = useState(32)
-  // const [characterCreated, setCharacterCreted] = useState(false)
-  //
-  // const rarityAttributeContract = useRarityAttributeContract()
-  // const rarityContract = useRarityContract()
-  //
-  // function abilitiesByLevel(level) {
-  //   return BigNumber.from(level).div(4)
-  // }
+  useEffect(() => {
+    const totalComputeCost = Object.keys(rawAttributeValues).reduce(
+      (acc, item) => {
+        const computeLevelingScore = (value) => {
+          const base = value - 8;
+          if (value <= 14) {
+            return base;
+          } else {
+            return Math.floor(base ** 2 / 6);
+          }
+        };
+        return acc + computeLevelingScore(rawAttributeValues[item]);
+      },
+      0
+    );
 
-  // useEffect(() => {
-  //   (async () => {
-  //     //TODO: Take in account that when you had created your character you can increase stats just one by one
-  //     const characterCreated = await rarityAttributeContract.character_created(gameState.currentTokenId)
-  //
-  //     setCharacterCreted(characterCreated)
-  //
-  //     if(characterCreated){
-  //       const rawSummonAbillities = await rarityAttributeContract.ability_scores(gameState.currentTokenId)
-  //
-  //       let rawSummonAbillitiesArr = (rawSummonAbillities as []).slice(0,6)
-  //
-  //       setRawAttributeValues(rawSummonAbillitiesArr)
-  //
-  //       const level = await rarityContract.level(gameState.currentTokenId)
-  //
-  //       const pointsSpent = await rarityAttributeContract.level_points_spent(gameState.currentTokenId)
-  //
-  //       //TODO: Make it smarter
-  //       if(abilitiesByLevel(level).sub(pointsSpent) > BigNumber.from(0)){
-  //         setPointsToAssign(abilitiesByLevel(level).sub(pointsSpent).toNumber())
-  //       }else {
-  //         setPointsToAssign(0)
-  //       }
-  //     }
-  //   })()
-  // }, [])
-  //
-  // useEffect(() => {
-  //   const totalComputeCost = Object.keys(rawAttributeValues).reduce(
-  //     (acc, item) => {
-  //       const computeLevelingScore = (value) => {
-  //         const base = value - 8;
-  //         if (value <= 14) {
-  //           return base;
-  //         } else {
-  //           return Math.floor(base ** 2 / 6);
-  //         }
-  //       };
-  //       return acc + computeLevelingScore(rawAttributeValues[item]);
-  //     },
-  //     0
-  //   );
-  //
-  //   setPointsToAssign(
-  //     Math.ceil(32 - totalComputeCost)
-  //   );
-  // }, [rawAttributeValues])
+    setPointsToAssign(
+      Math.ceil(32 - totalComputeCost)
+    );
+  }, [rawAttributeValues])
 
 
-  // const increaseHandle = (index) => {
-  //
-  //   if(!(pointsToAssign <= 0)){
-  //     let array = [...rawAttributeValues]
-  //     array[index] += 1
-  //
-  //     setRawAttributeValues(array)
-  //   }
-  //   // let array = [...rawAttributeValues]
-  //
-  // }
-  //
-  // const decreaseHandle = (index) => {
-  //   if(pointsToAssign > 0 && rawAttributeValues[index] > 8){
-  //     let array = [...rawAttributeValues]
-  //     array[index] -= 1
-  //
-  //     setRawAttributeValues(array)
-  //   }
-  // }
-  //
-  // const assignPointsHandle = async () => {
-  //   try {
-  //     const assignPointsTX = await rarityAttributeContract.point_buy(
-  //       gameState.currentTokenId,
-  //       rawAttributeValues[0],
-  //       rawAttributeValues[1],
-  //       rawAttributeValues[2],
-  //       rawAttributeValues[3],
-  //       rawAttributeValues[4],
-  //       rawAttributeValues[5]
-  //     )
-  //     infoToast("Assigning points...")
-  //     await assignPointsTX.wait()
-  //     infoToast("Points assigned...")
-  //   }catch (e){
-  //     infoToast("An error happened when assigning points...")
-  //     console.error(e)
-  //   }
-  // }
+  const increaseHandle = (index) => {
+
+    if(!(pointsToAssign <= 0)){
+      let array = [...rawAttributeValues]
+      array[index] += 1
+
+      setRawAttributeValues(array)
+    }
+    // let array = [...rawAttributeValues]
+
+  }
+
+  const decreaseHandle = (index) => {
+    if(pointsToAssign > 0 && rawAttributeValues[index] > 8){
+      let array = [...rawAttributeValues]
+      array[index] -= 1
+
+      setRawAttributeValues(array)
+    }
+  }
+
+  const assignPointsHandle = async () => {
+    try {
+      const assignPointsTX = await rarityAttributeContract.point_buy(
+        gameState.currentTokenId,
+        rawAttributeValues[0],
+        rawAttributeValues[1],
+        rawAttributeValues[2],
+        rawAttributeValues[3],
+        rawAttributeValues[4],
+        rawAttributeValues[5]
+      )
+      infoToast("Assigning points...")
+      await assignPointsTX.wait()
+      infoToast("Points assigned...")
+    }catch (e){
+      infoToast("An error happened when assigning points...")
+      console.error(e)
+    }
+  }
 
   return (
     <div>
-      {/*<StyledPointsToSpend className={'panel black flex justify-between'}>*/}
-      {/*  <span>Points to spend:</span>*/}
-      {/*  <span>{pointsToAssign}</span>*/}
-      {/*</StyledPointsToSpend>*/}
+      <StyledPointsToSpend className={'panel black flex justify-between'}>
+        <span>Points to spend:</span>
+        <span>{pointsToAssign}</span>
+      </StyledPointsToSpend>
 
-      {/*{*/}
-      {/*  rawAttributeValues.map((value, index, array) => (*/}
-      {/*      <AttributeElement*/}
-      {/*        key={index}*/}
-      {/*        attributesArr={rawAttributeValues}*/}
-      {/*        pointsToAssign={pointsToAssign}*/}
-      {/*        attributeIndex={index}*/}
-      {/*        attributeValue={value}*/}
-      {/*        increaseHandle={increaseHandle}*/}
-      {/*        decreaseHandle={decreaseHandle}*/}
-      {/*        characterCreated={characterCreated}*/}
-      {/*      />*/}
-      {/*    )*/}
-      {/*  )*/}
-      {/*}*/}
-sss
-      {/*{*/}
-      {/*  !characterCreated && (() => {*/}
-      {/*    return (<button onClick={assignPointsHandle} className={'btn'}>Assign Points</button>)*/}
-      {/*  })()*/}
-      {/*}*/}
+      {
+        rawAttributeValues.map((value, index, array) => (
+            <AttributeElement
+              key={index}
+              attributesArr={rawAttributeValues}
+              pointsToAssign={pointsToAssign}
+              attributeIndex={index}
+              attributeValue={value}
+              increaseHandle={increaseHandle}
+              decreaseHandle={decreaseHandle}
+              characterCreated={characterCreated}
+            />
+          )
+        )
+      }
+      {
+        !characterCreated && (() => {
+          return (<button onClick={assignPointsHandle} className={'btn'}>Assign Points</button>)
+        })()
+      }
     </div>
   )
 }

@@ -33,7 +33,7 @@ export class FloatingPanelState {
       }
   }
 
-  currentFloatingPanels: {id: string}[] = []
+  currentFloatingPanels: {[key: string]: string} = {}
 
   constructor(){
       makeAutoObservable(this)
@@ -45,27 +45,28 @@ export class FloatingPanelState {
         return;
       }
 
-      let panelExists = this.currentFloatingPanels.find((val) => {
-          return val.id === panelName
-      })
+      // let panelExists = this.currentFloatingPanels.find((val) => {
+      //     return val.id === panelName
+      // })
 
-      if(panelExists){
+      if(this.currentFloatingPanels[panelName]){
         console.log("Panel already created")
         return;
       }
 
-      return this.currentFloatingPanels.push({
-        id: panelName,
-      })
+      return this.currentFloatingPanels[panelName] = panelName
   }
 
   //TODO: When you delete an element the list gets reordoned if you delete the first object
   destroyFloatingPanel = (id: string) => {
-    const newArr = this.currentFloatingPanels.filter((val) => {
-      return val.id != id
-    })
+    // const newArr = this.currentFloatingPanels.filter((val) => {
+    //   return val.id != id
+    // })
+    //
+    // this.currentFloatingPanels = newArr
 
-    this.currentFloatingPanels = newArr
+    delete this.currentFloatingPanels[id]
+
     // console.log(this.currentFloatingPanels)
     // delete this.currentFloatingPanels[id]
   }
