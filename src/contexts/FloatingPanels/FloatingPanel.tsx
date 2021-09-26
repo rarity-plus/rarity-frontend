@@ -72,7 +72,7 @@ const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
       <StyledFloatingPanelHeader ref={dragHandle} className={'panel black'}>
         <span>{title}</span>
 
-        <StyledCloseButton className={'btn'} onClick={closePanel}>X</StyledCloseButton>
+        <StyledCloseButton className={'btn'} onClick={() => closePanel()}>X</StyledCloseButton>
       </StyledFloatingPanelHeader>
       <StyledFloatingPanelBody>
         {body}

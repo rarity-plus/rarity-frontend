@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { ReactNode } from 'react';
+import { createElement, ReactNode } from 'react';
 
 import TestPanel from './panels/testPanel';
 import SuperTestPanel from './panels/superTestPanel';
@@ -21,7 +21,7 @@ export class FloatingPanelState {
   static FloatingPanels: {[key: string]: FloatingPanelType} = {
       "testPanel": {
         title: "Abilities",
-        body: AttributesPanel
+        body: createElement(AttributesPanel)
       },
       "superTestPanel": {
         title: "Inventory",
@@ -33,7 +33,7 @@ export class FloatingPanelState {
       }
   }
 
-  currentFloatingPanels: {id: string, obj: FloatingPanelType}[] = []
+  currentFloatingPanels: {id: string}[] = []
 
   constructor(){
       makeAutoObservable(this)
@@ -56,7 +56,6 @@ export class FloatingPanelState {
 
       return this.currentFloatingPanels.push({
         id: panelName,
-        obj: FloatingPanelState.FloatingPanels[panelName]
       })
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { floatingPanelState } from './State';
+import { FloatingPanelState, floatingPanelState } from './State';
 import { autorun } from 'mobx';
 import FloatingPanel from './FloatingPanel';
 import styled from 'styled-components';
@@ -34,8 +34,9 @@ const FloatingPanelsCanvas = () => {
     <StyledPanelsCanvas>
       {
         canvasPanels.map((value, index) => {
-          console.log(value)
-            return <FloatingPanel key={index} id={value.id} title={value.obj.title} body={value.obj.body()} />
+            const panelInfo = FloatingPanelState.FloatingPanels[value.id]
+
+            return <FloatingPanel key={index} id={value.id} title={panelInfo.title} body={panelInfo.body} />
         })
       }
     </StyledPanelsCanvas>

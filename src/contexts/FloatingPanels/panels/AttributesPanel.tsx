@@ -247,7 +247,7 @@ const AttributesPanel = () => {
       {/*    )*/}
       {/*  )*/}
       {/*}*/}
-
+sss
       {/*{*/}
       {/*  !characterCreated && (() => {*/}
       {/*    return (<button onClick={assignPointsHandle} className={'btn'}>Assign Points</button>)*/}
