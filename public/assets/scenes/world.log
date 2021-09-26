@@ -12,7 +12,29 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		Texture directory   :  C:\Users\Ale\Documents\GitHub\rarity-frontend\public\assets\scenes\
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently enabled collection
-	processing begun of mesh:  Plane
+	processing begun of mesh:  AdventureNPC_Point
+		WARNING: No materials have been assigned: 
+		num positions      :  29
+		num normals        :  29
+		num tangents       :  0
+		num uvs            :  58
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  12
+	processing begun of mesh:  static_house
+		processing begun of material:  Floor
+		processing begun of material:  Walls
+			processing texture dc6pbds_a354d62b_93ba_41e0_9b4a_1dd35eb0323b
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		processing begun of multimaterial:  world.Multimaterial#0
+		num positions      :  1471
+		num normals        :  1471
+		num tangents       :  0
+		num uvs            :  2942
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  1408
+	processing begun of mesh:  static_plane
 		processing begun of material:  Material.002
 		num positions      :  10904
 		num normals        :  10904
@@ -21,18 +43,10 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		num uvs2           :  0
 		num colors         :  0
 		num triangles      :  20628
-	processing begun of mesh:  Grid
-		processing begun of material:  Material.001
-		num positions      :  1471
-		num normals        :  1471
-		num tangents       :  0
-		num uvs            :  2942
-		num uvs2           :  0
-		num colors         :  0
-		num triangles      :  1408
 ========= Writing of JSON file started =========
-	writing mesh:  Plane
-	writing mesh:  Grid
+	writing mesh:  AdventureNPC_Point
+	writing mesh:  static_house
+	writing mesh:  static_plane
 ========= Writing of JSON file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 1.329 secs
+elapsed time:  0 min, 1.2688 secs

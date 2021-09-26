@@ -14,7 +14,11 @@ abstract class RPScene {
    * Registers the events
    */
   registerEvents() {
-    this.asyncCreate()
+    try{
+      this.asyncCreate()
+    }catch (e){
+      console.error(e)
+    }
 
     if(this.instance){
       this.instance.registerBeforeRender(() => {

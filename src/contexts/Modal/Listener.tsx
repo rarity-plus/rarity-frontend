@@ -20,6 +20,12 @@ const StyledModalWrapper = styled.div`
   z-index: 10;
   
   overflow: auto;
+
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  -o-user-select: none;
+  user-select: none;
 `
 
 const StyledModal = styled.div<{expanded}>`

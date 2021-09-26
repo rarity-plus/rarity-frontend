@@ -18,7 +18,12 @@ class RPWorld {
   init() {
 
     SceneLoader.ImportMesh('','/assets/scenes/', 'world.babylon', this.scene.instance, (meshes, particleSystems, skeletons) => {
-      this.mesh = Mesh.MergeMeshes(meshes as Mesh[], true, true, undefined, false, true)
+      console.log(meshes)
+
+      let meshesToMerge = meshes.filter((mesh) => mesh.name.startsWith("static")) as Mesh[]
+
+
+      this.mesh = Mesh.MergeMeshes(meshesToMerge, true, true, undefined, false, true)
 
       var light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.scene.instance);
       light.intensity = 0.6;

@@ -4,8 +4,8 @@ import { Toaster } from 'react-hot-toast';
 const Layout: React.FC = ({children}) => {
     return (
       <>
-        {/*<Toaster position={'bottom-left'}/>*/}
-        {/*<ModalListener />*/}
+        <Toaster position={'bottom-left'}/>
+        <ModalListener />
 
         {children}
       </>
