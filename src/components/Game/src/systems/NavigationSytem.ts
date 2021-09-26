@@ -15,7 +15,7 @@ import RPScene from '../components/RPScene';
 import MainScene from '../scenes/MainScene';
 
 
-
+//TODO: Refactor
 class NavigationSytem {
 
     navigationPlugin: RecastJSPlugin;
@@ -26,14 +26,14 @@ class NavigationSytem {
     crowdInstance: ICrowd;
 
     navMeshOptions: INavMeshParameters = {
-          cs: 0.1,
-          ch: 0.1,
+          cs: 0.22,
+          ch: 0.01,
           walkableSlopeAngle: 90,
-          walkableHeight: 1.0,
-          walkableClimb: 1,
+          walkableHeight: 1.5,
+          walkableClimb: 2,
           walkableRadius: 1,
           maxEdgeLen: 12.,
-          maxSimplificationError: 1.3,
+          maxSimplificationError: 0,
           minRegionArea: 8,
           mergeRegionArea: 20,
           maxVertsPerPoly: 6,
@@ -68,9 +68,9 @@ class NavigationSytem {
 
         let mainScene = this.scene as MainScene
 
-        console.log(mainScene.world.mesh)
+        console.log(mainScene.world.getMergedMesh())
 
-        this.navigationPlugin.createNavMesh([mainScene.world.mesh], this.navMeshOptions, (navmeshData) => {
+        this.navigationPlugin.createNavMesh([mainScene.world.getMergedMesh()], this.navMeshOptions, (navmeshData) => {
             console.log("Got worker data:", navmeshData)
 
             this.navmeshData = navmeshData
@@ -86,17 +86,24 @@ class NavigationSytem {
             navmeshdebug.material = matdebug;
 
             this.crowdInstance = this.navigationPlugin.createCrowd(1, 0.1, this.scene.instance);
-
-            this.navmeshCreated()
+            try {
+              this.navmeshCreated()
+            }catch (e){
+              console.error(e)
+            }
         })
     }
 
     navmeshCreated() {
+        if(!this.navigationPlugin){
+          return;
+        }
+
         var agentParams = {
                 radius: 0.1,
                 height: 0.2,
                 maxAcceleration: 2,
-                maxSpeed: 1.0,
+                maxSpeed: 2,
                 collisionQueryRange: 0.5,
                 pathOptimizationRange: 0.0,
                 separationWeight: 1.0
@@ -104,8 +111,7 @@ class NavigationSytem {
 
         let mainScene = this.scene as MainScene
 
-        let aPos = this.navigationPlugin.getRandomPointAround(new Vector3(-2.0, 0.1, -1.8), 0.5);
-        var agentIndex = this.crowdInstance.addAgent(aPos, agentParams, mainScene.player);
+        var agentIndex = this.crowdInstance.addAgent(new Vector3(0,0,0), agentParams, mainScene.player);
 
         this.agents.push({idx:agentIndex, trf:mainScene.player});
 

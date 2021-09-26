@@ -13,51 +13,26 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 	Python World class constructor completed
 	WARNING: No active camera has been assigned, or is not in a currently enabled collection
 	processing begun of mesh:  Plane
-		processing begun of material:  Material.001
-		num positions      :  794
-		num normals        :  794
+		processing begun of material:  Material.002
+		num positions      :  10904
+		num normals        :  10904
 		num tangents       :  0
-		num uvs            :  1588
+		num uvs            :  21808
 		num uvs2           :  0
 		num colors         :  0
-		num triangles      :  968
-	processing begun of mesh:  Barrel
-		processing begun of material:  Water
-
-ERROR: UN-EXCEPTED NODE TYPE(SHADERNODENORMALMAP).  CANNOT CONTINUE.
-
-		processing begun of material:  Barrel Wood
-
-ERROR: UN-EXCEPTED NODE TYPE(SHADERNODENORMALMAP).  CANNOT CONTINUE.
-
-		processing begun of material:  Metal
-
-ERROR: UN-EXCEPTED NODE TYPE(SHADERNODENORMALMAP).  CANNOT CONTINUE.
-
-			WARNING: Metal channel baking required, but not possible, ignored
-			WARNING: Roughness channel baking required, but not possible, ignored
-			WARNING: Refraction channel baking required, but not possible, ignored
-			Baking texture, type: DIFFUSE, mapped using: BakingUV
-			processing texture Barrel_baked_DIFFUSE
-				texture type:  diffuseTexture, mapped using: "BakingUV"
-			Diffuse / albeto channel baked
-			Baking texture, type: EMIT, mapped using: BakingUV
-			processing texture Barrel_baked_EMIT
-				texture type:  emissiveTexture, mapped using: "BakingUV"
-			emissive channel baked
-			Baking texture, type: GLOSSY, mapped using: BakingUV
-			processing texture Barrel_baked_GLOSSY
-				texture type:  specularTexture, mapped using: "BakingUV"
-			specular channel baked
-			bake time:  0 min, 20.4105 secs
-		Custom split normals with tangents being used
-		num positions      :  1444
-		num normals        :  1444
-		num tangents       :  5776
-		num uvs            :  2888
+		num triangles      :  20628
+	processing begun of mesh:  Grid
+		processing begun of material:  Material.001
+		num positions      :  1471
+		num normals        :  1471
+		num tangents       :  0
+		num uvs            :  2942
 		num uvs2           :  0
 		num colors         :  0
-		num triangles      :  626
-	Output cancelled due to data error
+		num triangles      :  1408
+========= Writing of JSON file started =========
+	writing mesh:  Plane
+	writing mesh:  Grid
+========= Writing of JSON file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 20.4989 secs
+elapsed time:  0 min, 1.329 secs
