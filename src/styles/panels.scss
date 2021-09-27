@@ -11,7 +11,7 @@
     content: "";
     position: absolute;
     pointer-events: none;
-    background-color: rgba(24, 25, 29, .8);
+    background-color: rgba(24, 25, 29, .9);
     top: 0;
     right: 0;
     bottom: 0;
@@ -24,7 +24,8 @@
     border-color: rgb(29, 31, 36);
 
     &:before {
-      background: radial-gradient(ellipse at center top, rgba(121, 76, 9, 0.1) 0%, rgba(24, 25, 29, 0.1) 100%);
+      z-index: -20;
+      background: radial-gradient(ellipse at center top, rgba(121, 76, 9, 0.2) 0%, rgba(24, 25, 29, 0.1) 100%);
       filter: blur(1px);
       //opacity: .5;
     }
@@ -51,43 +52,3 @@
   }
 }
 
-
-
-//.panel {
-//  border: 11px solid transparent;
-//
-//  &.black {
-//    border-color: rgba(154, 130, 63, .7);
-//    border-width: 1px;
-//    border-style: ridge;
-//    position: relative;
-//
-//
-//
-//    &:before {
-//      content: "";
-//      position: absolute;
-//      pointer-events: none;
-//      background-color: rgba(24, 25, 29, .8);
-//      //background: radial-gradient(ellipse at center, rgba(121, 76, 9, 0.5) 0%, rgba(24, 25, 29, 0.4) 100%);
-//      top: 0;
-//      right: 0;
-//      bottom: 0;
-//      left: 0;
-//      filter: blur(3px);
-//      z-index: -20;
-//
-//    }
-//  }
-//
-//
-//  &.title {
-//    border-image: url("./assets/imgs/panels/panel-title-border.png") 10 round;
-//
-//    background-image: url("./assets/imgs/panels/panel-title-bg.png");
-//  }
-//
-//  &.just-border {
-//    background-image: none;
-//  }
-//}

@@ -10,6 +10,8 @@ const StyledAttributeElement = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  font-size: small;
 `
 
 const StyledAttributeTitle = styled.span`
@@ -97,7 +99,7 @@ const AttributeElement: React.FC<AttributeElementType> = ({characterCreated,attr
   }, [attributesArr])
 
   return (
-    <StyledAttributeElement className={'panel black'}>
+    <StyledAttributeElement className={'panel'}>
       <StyledAttributeTitle>{RarityAttributes[attributeIndex].attributeTitle}</StyledAttributeTitle>
       <StyledAttributeLevel>
         {
@@ -223,7 +225,7 @@ const AttributesPanel = () => {
 
   return (
     <div>
-      <StyledPointsToSpend className={'panel black flex justify-between'}>
+      <StyledPointsToSpend className={'panel flex justify-between'}>
         <span>Points to spend:</span>
         <span>{pointsToAssign}</span>
       </StyledPointsToSpend>

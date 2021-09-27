@@ -1,8 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { createElement, ReactNode } from 'react';
 
-import TestPanel from './panels/testPanel';
-import SuperTestPanel from './panels/superTestPanel';
 import AttributesPanel from './panels/AttributesPanel';
 
 export type FloatingPanelType = {
@@ -25,11 +23,11 @@ export class FloatingPanelState {
       },
       "superTestPanel": {
         title: "Inventory",
-        body: SuperTestPanel
+        body:  createElement(AttributesPanel)
       },
       "coolTestPanel": {
         title: "Skills",
-        body: SuperTestPanel
+        body:  createElement(AttributesPanel)
       }
   }
 

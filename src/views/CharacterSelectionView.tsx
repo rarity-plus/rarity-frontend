@@ -66,6 +66,10 @@ const StyledSummonsBody = styled.div`
   padding: 0.5rem;
 `
 
+const StyledButton = styled.button`
+  width: 30%;
+`
+
 type CharacterItemType = {
   summonObj: any,
   selectSummonHandle: () => void
@@ -85,7 +89,7 @@ const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHand
         <CharacterId>#{id}</CharacterId>
       </CharacterInfo>
 
-      <button onClick={() => selectSummonHandle()} className={'btn danger sm-border'}>Select</button>
+      <StyledButton onClick={() => selectSummonHandle()} className={'btn sm-border'}>Select</StyledButton>
     </div>
   )
 }
@@ -171,9 +175,7 @@ const CharacterSelectionView: React.FC = () => {
         <StyledSummonsWrapper className={'panel'}>
           <StyledAccountAddress className={'panel title'}>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
           <StyledSummonsBody>
-            {
-              summonersListElement
-            }
+            {summonersListElement}
           </StyledSummonsBody>
           {
             (summoners.length <= 0 && loading) && <button onClick={() => {
