@@ -6,8 +6,11 @@ import useBalance from '../../hooks/useBalance';
 
 const StyledProfilePicture = styled.div`
   padding: 0 0;
-  border-width: 3px;
-  align-self: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
 `
 
 const StyledUsername = styled.div`
@@ -36,15 +39,22 @@ const ProfilePanel = () => {
   }, [])
 
   return (
-    <div className={'panel black'} style={{position: "fixed",margin: '10px 10px', left: "0", top: "0", width: "25vh", height: "10vh", display: "flex", alignItems: "stretch"}}>
-      <StyledProfilePicture className={'panel black'}>
-        <img src={'/imgs/noAvatar.png'} width={'50'} />
-      </StyledProfilePicture>
+    <div className={'panel sm-blur'} style={{position: "fixed",margin: '10px 10px', left: "0", top: "0", width: "25vh", height: "10vh", display: "flex", alignItems: "stretch"}}>
+      {/*<StyledProfilePicture className={'panel black'}>*/}
+      {/*  <img src={'/imgs/noAvatar.png'} width={'70'} />*/}
+      {/*</StyledProfilePicture>*/}
 
       <div style={{display: "flex",width: "100%", justifyContent: 'space-between' , flexDirection: "column", padding: "3px 10px"}}>
         <StyledUsername>Username</StyledUsername>
         <StyledClass>{RarityClasses[summonClass]}</StyledClass>
-
+        <StyledRow>
+          <div className={'bar'}>
+            <div className={'title'}>
+               200XP/20XP
+            </div>
+            <div className={'progress'} style={{ width: '100%' }} />
+          </div>
+        </StyledRow>
         <StyledRow>
           <span>Level</span>
           <span>{level}</span>

@@ -43,7 +43,7 @@ const UI = observer(() => {
       <FloatingPanelsCanvas />
         <ProfilePanel />
 
-        <div className={'panel black'} style={{position: "fixed",margin: '10px 10px', right: "0", bottom: "0", width: "50vh", height: "5vh", display: "flex", alignItems: "center"}}>
+        <div className={'panel sm-blur'} style={{position: "fixed",margin: '10px 10px', right: "0", bottom: "0", width: "50vh", height: "5vh", display: "flex", alignItems: "center"}}>
           <button title={'Attributes'} onClick={() => {
             floatingPanelState.createFloatingPanel('testPanel')
           }} className={'btn'} style={{height: '100%'}}>
