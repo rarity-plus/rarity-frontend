@@ -1,39 +1,47 @@
 
+$bg-opacity: 0.05;
+$bg-hover-opacity: 0.3;
+$bg-active-opacity: 0.1;
+
+// rgb(41, 44, 51)
+// background: radial-gradient(ellipse at center top, rgba(121, 76, 9, 0.1) 0%, rgba(24, 25, 29, 0.1) 100%);
+// border-color: rgb(29, 31, 36);
 .btn {
-  display: flex;
   text-decoration: none;
-}
-
-.btn {
-  justify-content: center;
+  display: flex;
   align-items: center;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
+  justify-content: center;
 
-  padding: 0.4rem 1rem;
+  background: radial-gradient(ellipse at center top, rgba(121, 76, 9, $bg-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
+  border-color: rgba(41, 44, 51, .5);
+  border-width: 1px;
+  border-style: solid;
+  color: gray;
 
-  border: 10px solid transparent;
-  border-image: url("./assets/imgs/button/button-border.png") 10 round;
+  padding: 0.5rem;
 
-  background-image: url("./assets/imgs/button/button-bg.png");
-  background-repeat: repeat;
-  background-position: center;
-  background-attachment:fixed;
-  background-size:auto;
-
-  &:hover {
-    opacity: 75%;
+  &.sm-border {
+    border-width: 0.1px;
+    border-color: rgba(41, 44, 51, .2);
   }
 
-  &.small {
-    padding: 0.1em 0.1em;
-    font-weight: normal;
+  &:hover {
+    background: radial-gradient(ellipse at center top, rgba(121, 76, 9, $bg-hover-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
   }
 
   &:active {
-    border-image: url("./assets/imgs/button/button-border-hover.png") 10 round;
+    background: radial-gradient(ellipse at center top, rgba(121, 76, 9, $bg-active-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
+  }
 
-    background-image: url("./assets/imgs/button/button-bg-hover.png");
+  &.danger {
+    background: radial-gradient(ellipse at center top, rgba(255, 0, 0, $bg-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
+
+    &:hover {
+      background: radial-gradient(ellipse at center top, rgba(121, 9, 9, $bg-hover-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
+    }
+
+    &:active {
+      background: radial-gradient(ellipse at center top, rgba(121, 9, 9, $bg-active-opacity) 0%, rgba(24, 25, 29, 0.1) 100%);
+    }
   }
 }

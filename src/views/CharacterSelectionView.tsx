@@ -12,9 +12,8 @@ import useWeb3 from '../hooks/useWeb3';
 import { modal } from '../contexts/Modal';
 import RecruitSummonModal from '../modals/RecruitSummonModal';
 
-const StyledLoginWrapper = styled.div`
+const StyledSummonsWrapper = styled.div`
   width: 100%;
-  padding: 1rem 1rem;
 `
 
 const StyledWrapper = styled.div`
@@ -60,6 +59,10 @@ const CharacterLevel = styled.span`
 `
 
 const StyledAccountAddress = styled.p`
+  padding: 1rem;
+`
+
+const StyledSummonsBody = styled.div`
   padding: 0.5rem;
 `
 
@@ -82,7 +85,7 @@ const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHand
         <CharacterId>#{id}</CharacterId>
       </CharacterInfo>
 
-      <button onClick={() => selectSummonHandle()} className={'btn'}>Select</button>
+      <button onClick={() => selectSummonHandle()} className={'btn danger sm-border'}>Select</button>
     </div>
   )
 }
@@ -165,19 +168,19 @@ const CharacterSelectionView: React.FC = () => {
       <StyledWrapper>
         <Logo className={'logo'}>Select an summon</Logo>
 
-        <StyledLoginWrapper className={'panel'}>
+        <StyledSummonsWrapper className={'panel'}>
           <StyledAccountAddress className={'panel title'}>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
-
-          {
-            summonersListElement
-          }
-
+          <StyledSummonsBody>
+            {
+              summonersListElement
+            }
+          </StyledSummonsBody>
           {
             (summoners.length <= 0 && loading) && <button onClick={() => {
               modal.show("My first summon", RecruitSummonModal, false)
             }} className={'btn'}>New Summon</button>
           }
-        </StyledLoginWrapper>
+        </StyledSummonsWrapper>
 
       </StyledWrapper>
     </div>
