@@ -44,8 +44,8 @@ const ProfilePanel = () => {
       {/*  <img src={'/imgs/noAvatar.png'} width={'70'} />*/}
       {/*</StyledProfilePicture>*/}
 
-      <div style={{display: "flex",width: "100%", justifyContent: 'space-between' , flexDirection: "column", padding: "3px 10px"}}>
-        <StyledUsername>Username</StyledUsername>
+      <div style={{display: "flex",width: "100%", justifyContent: 'space-between' , flexDirection: "column"}}>
+        <StyledUsername className={'panel title'}>Username</StyledUsername>
         <StyledClass>{RarityClasses[summonClass]}</StyledClass>
         <StyledRow>
           <div className={'bar'}>

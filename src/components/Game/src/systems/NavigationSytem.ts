@@ -103,7 +103,7 @@ class NavigationSytem {
         var agentParams = {
                 radius: 0.1,
                 height: 0.2,
-                maxAcceleration: 2,
+                maxAcceleration: 10,
                 maxSpeed: 2,
                 collisionQueryRange: 0.5,
                 pathOptimizationRange: 0.0,
