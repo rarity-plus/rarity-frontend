@@ -31,7 +31,7 @@ const FloatingPanelsCanvas = () => {
         Object.keys(canvasPanels).map((value, index) => {
           const panelInfo = FloatingPanelState.FloatingPanels[value]
 
-          return <FloatingPanel key={index} id={value} title={panelInfo.title} body={panelInfo.body} />
+          return <FloatingPanel key={value} id={value} title={panelInfo.title} body={panelInfo.body} />
         })
       }
     </StyledPanelsCanvas>
