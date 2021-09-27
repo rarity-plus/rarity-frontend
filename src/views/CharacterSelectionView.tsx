@@ -61,7 +61,6 @@ const CharacterLevel = styled.span`
 
 const StyledAccountAddress = styled.p`
   padding: 0.5rem;
-  opacity: .5;
 `
 
 type CharacterItemType = {
@@ -74,7 +73,7 @@ const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHand
   const {summonClass, level, id} = summonObj
 
   return (
-    <div className={'panel flex row justify-between'}>
+    <div className={'panel border-gray small-blur flex row justify-between'}>
       <CharacterInfo>
         <ChracterTitle>
           <span>{RarityClasses[summonClass?.toString()]}</span>
@@ -166,8 +165,9 @@ const CharacterSelectionView: React.FC = () => {
       <StyledWrapper>
         <Logo className={'logo'}>Select an summon</Logo>
 
-        <StyledLoginWrapper className={'panel black'}>
-          <StyledAccountAddress>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
+        <StyledLoginWrapper className={'panel'}>
+          <StyledAccountAddress className={'panel title'}>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
+
           {
             summonersListElement
           }
