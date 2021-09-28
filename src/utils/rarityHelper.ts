@@ -55,6 +55,8 @@ export const RarityAttributes = {
 }
 
 export function getXPRequired(currentLevel: number) {
+    if(currentLevel <= 0) return 0
+
     let xpRequired = BigNumber.from(currentLevel).mul(1000)
     for(let i = 1; i < currentLevel; i++){
         xpRequired = xpRequired.add(BigNumber.from(i).mul(1000))

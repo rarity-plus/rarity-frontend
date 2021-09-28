@@ -4,6 +4,7 @@ import useSummonData from '../../hooks/useSummonData';
 import { getXPRequired, RarityClasses } from '../../utils/rarityHelper';
 import useBalance from '../../hooks/useBalance';
 import { gameState } from '../../contexts/Game';
+import { BigNumber, BigNumberish, utils } from 'ethers';
 
 const StyledProfilePicture = styled.div`
   padding: 0 0;
@@ -75,12 +76,29 @@ const StyledBody = styled.div`
 `
 
 const ProfilePanel = () => {
-  const {level, summonClass} = useSummonData()
+  const {level, summonClass, xp} = useSummonData()
   const balance = useBalance()
 
   useEffect(() => {
 
   }, [])
+
+  const getXP = () => {
+    if(xp.length <= 0) return "0" ;
+
+    let x = BigNumber.from(xp).div(BigNumber.from(10).pow(18))
+
+    return x.toString()
+  }
+
+  const getPercentBar = () => {
+    const currentXP = getXP()
+    const requiredXP = getXPRequired(Number(level))
+
+    const progress = BigNumber.from(currentXP).div(requiredXP).mul(100)
+
+    return progress
+  }
 
   return (
     <StyledWrapper className={'panel sm-blur no-transparent'}>
@@ -114,13 +132,13 @@ const ProfilePanel = () => {
             {balance}
           </div>
         </div>
-        {getXPRequired(2).toNumber()}
+
         <div className={'row'}>
           <div className={'bar'}>
             <div className={'title'}>
-              200XP/20XP
+              {`${getXP()} / ${getXPRequired(Number(level))} XP`}
             </div>
-            <div className={'progress'} style={{ width: '100%' }} />
+            <div className={'progress'} style={{ width: `${getPercentBar().toString()}%` }} />
           </div>
         </div>
       </StyledBody>
