@@ -3,6 +3,7 @@ import { useHistory} from 'react-router-dom';
 import styled from 'styled-components';
 import useAuth from '../hooks/useAuth';
 import { useWeb3React } from '@web3-react/core';
+import Loading from '../components/Loading';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -13,6 +14,8 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  width: 10%;
 `
 
 const Logo = styled.h1`

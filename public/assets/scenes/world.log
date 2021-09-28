@@ -34,19 +34,19 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		num uvs2           :  0
 		num colors         :  0
 		num triangles      :  1408
-	processing begun of mesh:  static_plane
-		processing begun of material:  Material.002
-		num positions      :  10904
-		num normals        :  10904
+	processing begun of mesh:  static_terrain
+		WARNING: No materials have been assigned: 
+		num positions      :  10201
+		num normals        :  10201
 		num tangents       :  0
-		num uvs            :  21808
+		num uvs            :  20402
 		num uvs2           :  0
 		num colors         :  0
-		num triangles      :  20628
+		num triangles      :  20000
 ========= Writing of JSON file started =========
 	writing mesh:  AdventureNPC_Point
 	writing mesh:  static_house
-	writing mesh:  static_plane
+	writing mesh:  static_terrain
 ========= Writing of JSON file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 1.2688 secs
+elapsed time:  0 min, 1.3447 secs
