@@ -225,7 +225,7 @@ const AttributesPanel = () => {
 
   return (
     <div>
-      <StyledPointsToSpend className={'panel flex justify-between'}>
+      <StyledPointsToSpend className={'panel flex justify-between no-transparent'}>
         <span>Points to spend:</span>
         <span>{pointsToAssign}</span>
       </StyledPointsToSpend>

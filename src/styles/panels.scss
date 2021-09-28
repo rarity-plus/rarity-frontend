@@ -50,5 +50,10 @@
   &.border-gray {
     border-color: rgb(29, 31, 36);
   }
+
+  &.no-transparent {
+    background-color: rgba(24, 25, 29, .9);
+    opacity: 1;
+  }
 }
 

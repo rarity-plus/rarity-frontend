@@ -14,7 +14,7 @@ const StyledProfilePicture = styled.div`
 `
 
 const StyledUsername = styled.div`
-
+  padding: 0.2rem;
 `
 
 const StyledClass = styled.div`
@@ -30,6 +30,49 @@ const StyledRow = styled.div`
   font-size: small;
 `
 
+const StyledWrapper = styled.div`
+    width: 10%;
+    position: fixed;
+    left: 0;top: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  
+    margin-top: 1rem;
+    margin-left: 1rem;
+  
+`
+
+const StyledHeader = styled.div`
+  padding: 0.5rem 0.5rem;
+  font-size: 70%;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .class-label {
+    opacity: .5;
+  }
+`
+
+const StyledBody = styled.div`
+  padding: 0.5rem 0.5rem;
+  font-size: 70%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    
+    padding-top: 5px;
+  }
+`
+
 const ProfilePanel = () => {
   const {level, summonClass} = useSummonData()
   const balance = useBalance()
@@ -39,32 +82,41 @@ const ProfilePanel = () => {
   }, [])
 
   return (
-    <div className={'panel sm-blur'} style={{position: "fixed",margin: '10px 10px', left: "0", top: "0", width: "25vh", height: "10vh", display: "flex", alignItems: "stretch"}}>
-      {/*<StyledProfilePicture className={'panel black'}>*/}
-      {/*  <img src={'/imgs/noAvatar.png'} width={'70'} />*/}
-      {/*</StyledProfilePicture>*/}
+    <StyledWrapper className={'panel sm-blur no-transparent'}>
+      <StyledHeader className={'panel title'}>
+        <span>Player</span>
+        <span className={'class-label'}>{RarityClasses[summonClass]}</span>
+      </StyledHeader>
+      <StyledBody className={'panel'}>
+        <div className={'row'}>
+          <div>
+            Level
+          </div>
+          <div>
+            {level}
+          </div>
+        </div>
 
-      <div style={{display: "flex",width: "100%", justifyContent: 'space-between' , flexDirection: "column"}}>
-        <StyledUsername className={'panel title'}>Username</StyledUsername>
-        <StyledClass>{RarityClasses[summonClass]}</StyledClass>
-        <StyledRow>
+        <div className={'row'}>
+          <div>
+            Gold
+          </div>
+          <div>
+            {balance}
+          </div>
+        </div>
+
+        <div className={'row'}>
           <div className={'bar'}>
             <div className={'title'}>
-               200XP/20XP
+              200XP/20XP
             </div>
             <div className={'progress'} style={{ width: '100%' }} />
           </div>
-        </StyledRow>
-        <StyledRow>
-          <span>Level</span>
-          <span>{level}</span>
-        </StyledRow>
-        <StyledRow>
-          <span>Gold</span>
-          <span>{balance}</span>
-        </StyledRow>
-      </div>
-    </div>
+        </div>
+      </StyledBody>
+
+    </StyledWrapper>
   )
 }
 
