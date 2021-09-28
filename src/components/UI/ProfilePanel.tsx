@@ -6,32 +6,6 @@ import useBalance from '../../hooks/useBalance';
 import { gameState } from '../../contexts/Game';
 import { BigNumber, BigNumberish, utils } from 'ethers';
 
-const StyledProfilePicture = styled.div`
-  padding: 0 0;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-`
-
-const StyledUsername = styled.div`
-  padding: 0.2rem;
-`
-
-const StyledClass = styled.div`
-  margin-top: 5px;
-  opacity: 0.5;
-  font-size: 12px;
-`
-
-const StyledRow = styled.div`
-  margin-top: 0.1rem;
-  display: flex;
-  justify-content: space-between;
-  font-size: small;
-`
-
 const StyledWrapper = styled.div`
     width: 10%;
     position: fixed;
@@ -75,6 +49,7 @@ const StyledBody = styled.div`
   }
 `
 
+//TODO: Fetch it on mount and then every 5 seconds
 const ProfilePanel = () => {
   const {level, summonClass, xp} = useSummonData()
   const balance = useBalance()
@@ -95,7 +70,9 @@ const ProfilePanel = () => {
     const currentXP = getXP()
     const requiredXP = getXPRequired(Number(level))
 
-    const progress = BigNumber.from(currentXP).div(requiredXP).mul(100)
+    if(requiredXP <= 0) return 0
+
+    const progress = BigNumber.from(currentXP).mul(100).div(requiredXP)
 
     return progress
   }
