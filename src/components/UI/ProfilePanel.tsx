@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useSummonData from '../../hooks/useSummonData';
-import { RarityClasses } from '../../utils/rarityHelper';
+import { getXPRequired, RarityClasses } from '../../utils/rarityHelper';
 import useBalance from '../../hooks/useBalance';
+import { gameState } from '../../contexts/Game';
 
 const StyledProfilePicture = styled.div`
   padding: 0 0;
@@ -85,9 +86,17 @@ const ProfilePanel = () => {
     <StyledWrapper className={'panel sm-blur no-transparent'}>
       <StyledHeader className={'panel title'}>
         <span>Player</span>
-        <span className={'class-label'}>{RarityClasses[summonClass]}</span>
+        <span>#{gameState.currentTokenId}</span>
       </StyledHeader>
       <StyledBody className={'panel'}>
+        <div className={'row'}>
+          <div>
+            Class
+          </div>
+          <div>
+            {RarityClasses[summonClass]}
+          </div>
+        </div>
         <div className={'row'}>
           <div>
             Level
@@ -105,7 +114,7 @@ const ProfilePanel = () => {
             {balance}
           </div>
         </div>
-
+        {getXPRequired(2).toNumber()}
         <div className={'row'}>
           <div className={'bar'}>
             <div className={'title'}>
