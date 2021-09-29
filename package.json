@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babylonjs/inspector": ">=5.0.0-alpha.45",
-    "@babylonjs/materials": "^4.2.0",
+    "@babylonjs/materials": ">=5.0.0-alpha.45",
     "@ethersproject/providers": "^5.4.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

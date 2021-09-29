@@ -12,13 +12,14 @@ const StyledFloatingPanel = styled.div`
 `
 
 const StyledFloatingPanelHeader = styled.div`
-  padding: 0.5rem 1rem;
+  padding: 0.1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   
   & > span {
     pointer-events: none;
+    font-size: .8rem;
   }
 `
 

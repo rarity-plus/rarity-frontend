@@ -69,9 +69,7 @@ class NavigationSytem {
 
         let mainScene = this.scene as MainScene
 
-        console.log(mainScene.world.getMergedMesh())
-
-        this.navigationPlugin.createNavMesh([mainScene.world.getMergedMesh()], this.navMeshOptions, (navmeshData) => {
+        this.navigationPlugin.createNavMesh([mainScene.world.mesh], this.navMeshOptions, (navmeshData) => {
             console.log("Got worker data:", navmeshData)
 
             this.navmeshData = navmeshData

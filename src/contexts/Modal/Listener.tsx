@@ -46,6 +46,8 @@ const StyledModalTitle = styled.div`
   
   font-weight: bold;
   text-shadow: black 1px 1px 5px;
+  
+  padding: 0.1rem 0.5rem;
 `
 
 const StyledModalBody = styled.div`
@@ -92,7 +94,7 @@ const ModalListener = observer(() => {
           <StyledModalTitle className={'panel title'}>
             <h1>{modal.data.modalTitle}</h1>
             <StyledGrow/>
-            {modal.data.important ? `` : <button onClick={closeModal} className={'btn small'}>X</button>}
+            {modal.data.important ? `` : <button onClick={closeModal} className={'btn danger'}>X</button>}
           </StyledModalTitle>
           <StyledModalBody>
             {modal.data.modalBody}

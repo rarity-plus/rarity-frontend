@@ -17,17 +17,22 @@ class RPWorld {
 
   init() {
 
-    SceneLoader.ImportMesh('','/assets/scenes/', 'world.babylon', this.scene.instance, (meshes, particleSystems, skeletons) => {
-      console.log(meshes)
+    SceneLoader.ImportMesh(undefined,'/assets/scenes/', 'world.babylon', this.scene.instance, (meshes, particleSystems, skeletons) => {
+      // console.log(meshes)
 
       let meshesToMerge = meshes.filter((mesh) => mesh.name.startsWith("static")) as Mesh[]
 
-
-      this.mesh = Mesh.MergeMeshes(meshesToMerge, true, true, undefined, false, true)
+      try {
+        this.mesh = Mesh.MergeMeshes(meshesToMerge, true, true, undefined, true, true)
+      }catch (e){
+        console.error(e)
+      }
 
       var light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.scene.instance);
       light.intensity = 0.6;
       light.specular = Color3.Black();
+    }, () => {}, (scene,err) => {
+      console.error(err)
     })
 
     // var assetsManager = new AssetsManager(this.scene.instance);
@@ -52,10 +57,6 @@ class RPWorld {
 
   }
 
-  getMergedMesh() {
-    console.log( this.loadedMeshes)
-    return  this.mesh
-  }
 }
 
 export default RPWorld
