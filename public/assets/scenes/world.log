@@ -22,9 +22,9 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 		num colors         :  0
 		num triangles      :  12
 	processing begun of mesh:  static_house
+		processing begun of material:  Floor
 		processing begun of material:  InWalls
-		processing begun of material:  Material.002
-			processing texture Dirt_01_512
+			processing texture Wood_02_512
 				texture type:  diffuseTexture, mapped using: "UVMap"
 			processing texture Rock_01_512
 				texture type:  diffuseTexture, mapped using: "UVMap"
@@ -53,4 +53,4 @@ Exporter version: 2.93.4, Blender version: 2.93.4
 	writing mesh:  static_terrain
 ========= Writing of JSON file completed =========
 ========= end of processing =========
-elapsed time:  0 min, 1.2512 secs
+elapsed time:  0 min, 1.2094 secs
