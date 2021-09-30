@@ -44,8 +44,8 @@ class NavigationSystem {
 
     navMeshes: Mesh[] = []
 
-    agentsToRegister: AgentType[];
-    registeredAgents: RegisteredAgentsType;
+    agentsToRegister: AgentType[] = [];
+    registeredAgents: RegisteredAgentsType = {};
 
     crowdInstance: ICrowd;
 
@@ -117,6 +117,8 @@ class NavigationSystem {
 
     public registerMesh(mesh: Mesh) {
         this.navMeshes.push(mesh)
+
+        console.info("[NavigationSystem]:", "Mesh registered!")
     }
 
     public isInitialized() : boolean {
@@ -140,6 +142,7 @@ class NavigationSystem {
             return;
           }
 
+
           console.log("[NavigationSystem]:", "Generated navmesh data: " + navmeshData)
           this.currentNavmeshData = navmeshData
 
@@ -152,18 +155,22 @@ class NavigationSystem {
 
           this.createDebugMaterial()
 
-          this.crowdInstance = this.navigationPlugin.createCrowd(this.agentsToRegister.length, 0.1, this.scene.instance)
+          if(this.agentsToRegister.length > 0) {
+            this.crowdInstance = this.navigationPlugin.createCrowd(this.agentsToRegister.length, 0.1, this.scene.instance)
 
-          this.agentsToRegister.forEach((agent, index) => {
-             let agentIndex = this.crowdInstance.addAgent(agent.pos, agent.parameters, agent.transform)
+            this.agentsToRegister.forEach((agent, index) => {
+              let agentIndex = this.crowdInstance.addAgent(agent.pos, agent.parameters, agent.transform)
 
-             this.registeredAgents[agent.name] = {
-               agentId: agentIndex,
-               onUpdate: agent.onUpdate
-             }
+              this.registeredAgents[agent.name] = {
+                agentId: agentIndex,
+                onUpdate: agent.onUpdate
+              }
 
-             agent.onCreate(this, agentIndex)
-          })
+              agent.onCreate(this, agentIndex)
+            })
+          }else{
+            console.warn("[NavigationSystem]:", "0 agents to generate.")
+          }
 
       })
     }
