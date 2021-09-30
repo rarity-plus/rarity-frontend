@@ -137,6 +137,11 @@ class NavigationSytem {
         return;
       }
 
+      if(this.navMeshes.length <= 0){
+        console.error("[NavigationSystem]:", "Can't generate navmesh without a mesh!");
+        return;;
+      }
+
       this.navigationPlugin.createNavMesh(this.navMeshes, this.navmeshConfig, (navmeshData ) => {
           if(navmeshData.length <= 0){
             console.error("[NavigationSystem]:", "Couldn't generate navmesh!")

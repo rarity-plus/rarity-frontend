@@ -74,7 +74,7 @@ class RPPlayer extends TransformNode{
       }
     }
 
-  
+
 }
 
 export default RPPlayer
