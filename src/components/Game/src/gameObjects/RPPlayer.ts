@@ -81,7 +81,7 @@ class RPPlayer extends TransformNode{
         const getGroundPosition = () => {
           let pickInfo = this.scene.instance.pick(this.scene.instance.pointerX, this.scene.instance.pointerY);
           if (pickInfo.hit) {
-                          return pickInfo.pickedPoint;
+             return pickInfo.pickedPoint;
           }
           return null;
         }
@@ -113,7 +113,7 @@ class RPPlayer extends TransformNode{
       })
     }
 
-    
+
   update() {
       if(this.mainScene){
         let navigationSystemRef = NavigationSystem.get()
