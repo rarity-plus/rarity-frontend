@@ -56,21 +56,21 @@ class RPPlayer extends TransformNode{
 
     update() {
       if(this.mainScene){
-        let navigationSystemInstance = this.mainScene.navigationSystem
-
-        if(navigationSystemInstance && this.mainScene.navigationSystem.agents.length > 0){
-          let crowdInstance = this.mainScene.navigationSystem.crowdInstance
-
-          let vel = crowdInstance.getAgentVelocity(0);
-
-          if(vel.length() > 0){
-            this.idleAnimationGroup.stop()
-            this.walkAnimationGroup.start(true, 1)
-          }else{
-            this.walkAnimationGroup.stop()
-            this.idleAnimationGroup.start(true,1)
-          }
-        }
+        // let navigationSystemInstance = this.mainScene.navigationSystem
+        //
+        // if(navigationSystemInstance && this.mainScene.navigationSystem.agents.length > 0){
+        //   let crowdInstance = this.mainScene.navigationSystem.crowdInstance
+        //
+        //   let vel = crowdInstance.getAgentVelocity(0);
+        //
+        //   if(vel.length() > 0){
+        //     this.idleAnimationGroup.stop()
+        //     this.walkAnimationGroup.start(true, 1)
+        //   }else{
+        //     this.walkAnimationGroup.stop()
+        //     this.idleAnimationGroup.start(true,1)
+        //   }
+        // }
       }
     }
 

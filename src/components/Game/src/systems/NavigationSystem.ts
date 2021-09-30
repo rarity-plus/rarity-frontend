@@ -13,7 +13,6 @@ import {
 import Recast from 'recast-detour/recast'
 
 import RPScene from '../components/RPScene';
-import MainScene from '../scenes/MainScene';
 
 type AgentType = {
     name: string;
@@ -21,7 +20,7 @@ type AgentType = {
     transform: TransformNode;
     parameters:  IAgentParameters;
 
-    onCreate: (navigationSystem: NavigationSytem, agentId: number) => void,
+    onCreate: (navigationSystem: NavigationSystem, agentId: number) => void,
     onUpdate: () => void,
 }
 
@@ -34,9 +33,9 @@ type RegisteredAgentsType = {
 
 
 //TODO: Refactor
-class NavigationSytem {
+class NavigationSystem {
 
-    private static instance: NavigationSytem;
+    private static instance: NavigationSystem;
 
     navigationPlugin: RecastJSPlugin;
     recastInstance: Recast;
@@ -54,8 +53,7 @@ class NavigationSytem {
 
     navmeshDebug;
     navmeshDebugMaterial;
-    // agents = []
-    // crowdInstance: ICrowd;
+
 
     // navMeshOptions: INavMeshParameters = {
     //       cs: 0.22,
@@ -73,28 +71,21 @@ class NavigationSytem {
     //       detailSampleMaxError: 1,
     // }
 
-    // navmeshData: Uint8Array;
-
     private constructor() {}
 
-    // constructor(scene: RPScene) {
-    //     this.scene = scene;
-    //
-    // }
-
     public static get() {
-        if(!NavigationSytem.instance){
-            NavigationSytem.instance = new NavigationSytem()
+        if(!NavigationSystem.instance){
+            NavigationSystem.instance = new NavigationSystem()
         }
 
-        return NavigationSytem.instance
+        return NavigationSystem.instance
     }
 
-    register(scene: RPScene, navmeshConfig: INavMeshParameters) {
+    async register(scene: RPScene, navmeshConfig: INavMeshParameters) {
       this.scene = scene
       this.navmeshConfig = navmeshConfig
 
-      this.init()
+      await this.init()
     }
 
     private async init() {
@@ -104,6 +95,7 @@ class NavigationSytem {
         }
 
         try{
+            console.info("[NavigationSystem]:", "Initializing NavigationSystem")
             this.recastInstance = await Recast()
             this.navigationPlugin = new RecastJSPlugin(this.recastInstance)
             this.navigationPlugin.setWorkerURL("/workers/navMeshWorker.js");
@@ -131,7 +123,7 @@ class NavigationSytem {
       return !!(this.recastInstance && this.navigationPlugin);
     }
 
-    public createNavmesh() {
+    public async createNavmesh() {
       if(!this.isInitialized()){
         console.error("[NavigationSystem]:", "NavigationSystem isn't registered!");
         return;
@@ -139,7 +131,7 @@ class NavigationSytem {
 
       if(this.navMeshes.length <= 0){
         console.error("[NavigationSystem]:", "Can't generate navmesh without a mesh!");
-        return;;
+        return;
       }
 
       this.navigationPlugin.createNavMesh(this.navMeshes, this.navmeshConfig, (navmeshData ) => {
@@ -177,11 +169,17 @@ class NavigationSytem {
     }
 
     public update() {
-      if(Object.keys(this.registeredAgents).length > 0){
-        Object.keys(this.registeredAgents).forEach((key) => {
-          this.registeredAgents[key].onUpdate()
-        })
-      }
+      this.isInitialized() && (() => {
+        if(!this.registeredAgents){
+          return;
+        }
+
+        if(Object.keys(this.registeredAgents).length > 0){
+          Object.keys(this.registeredAgents).forEach((key) => {
+            this.registeredAgents[key].onUpdate()
+          })
+        }
+      })()
     }
 
     private createDebugMaterial() {
@@ -314,4 +312,4 @@ class NavigationSytem {
     // }
 }
 
-export default NavigationSytem
+export default NavigationSystem

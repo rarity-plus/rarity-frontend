@@ -2,6 +2,7 @@ import { HemisphericLight, Scene, SceneLoader, Vector3, Color3, AssetsManager, M
 import RPScene from '../components/RPScene';
 
 import "babylonjs-loaders"
+import NavigationSystem from '../systems/NavigationSystem';
 
 class RPWorld {
 
@@ -24,6 +25,8 @@ class RPWorld {
 
       try {
         this.mesh = Mesh.MergeMeshes(meshesToMerge, true, true, undefined, true, true)
+
+        NavigationSystem.get().registerMesh(this.mesh)
       }catch (e){
         console.error(e)
       }
