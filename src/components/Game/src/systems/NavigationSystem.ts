@@ -166,7 +166,11 @@ class NavigationSystem {
                 onUpdate: agent.onUpdate
               }
 
-              agent.onCreate(this, agentIndex)
+              if(agent.onCreate){
+                agent.onCreate(this, agentIndex)
+              }else{
+                console.warn("[NavigationSystem]:", `${agent.name} : Can't call onCreate because is undefined`)
+              }
             })
           }else{
             console.warn("[NavigationSystem]:", "0 agents to generate.")
@@ -183,7 +187,11 @@ class NavigationSystem {
 
         if(Object.keys(this.registeredAgents).length > 0){
           Object.keys(this.registeredAgents).forEach((key) => {
-            this.registeredAgents[key].onUpdate()
+            if(this.registeredAgents[key].onUpdate){
+              this.registeredAgents[key].onUpdate()
+            }else{
+              console.warn("[NavigationSystem]:", `${key} : Can't call onUpdate because is undefined`)
+            }
           })
         }
       })()

@@ -1,6 +1,7 @@
 import { ArcRotateCamera, Mesh, MeshBuilder, Scene, SceneLoader,AnimationGroup, TransformNode, Vector3, AssetsManager } from 'babylonjs';
 import RPScene from '../components/RPScene';
 import MainScene from '../scenes/MainScene';
+import NavigationSystem from '../systems/NavigationSystem';
 
 class RPPlayer extends TransformNode{
 
@@ -48,7 +49,23 @@ class RPPlayer extends TransformNode{
 
       this.camera.lockedTarget = this;
       this.camera.alpha += Math.PI;
+
+      NavigationSystem.get().registerAgent({
+        name: "player",
+        onCreate(navigationSystem: NavigationSystem, agentId: number): void {
+
+        },
+
+        onUpdate(): void {
+
+        },
+
+        parameters: undefined,
+        pos: undefined,
+        transform: undefined
+      })
     }
+
 
     async asyncInit() {
 
