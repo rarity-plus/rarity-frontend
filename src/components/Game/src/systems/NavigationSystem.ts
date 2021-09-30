@@ -143,7 +143,7 @@ class NavigationSystem {
           }
 
 
-          console.log("[NavigationSystem]:", "Generated navmesh data: " + navmeshData)
+          console.log("[NavigationSystem]: Generated navmesh data:", navmeshData)
           this.currentNavmeshData = navmeshData
 
           try {
