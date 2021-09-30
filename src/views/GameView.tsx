@@ -17,6 +17,10 @@ const GameView: React.FC = () => {
     }
   }, [account, history])
 
+  if(!account){
+    return <></>
+  }
+
   return (
     <Game>
       <UI />
