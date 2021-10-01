@@ -45,7 +45,7 @@ const LoginView: React.FC = () => {
   return (
     <div className={'container'}>
       <StyledWrapper>
-        <Logo className={'logo'}>Rarity</Logo>
+        <Logo className={'logo'}>rarity.plus</Logo>
 
         <StyledLoginWrapper className={'panel black'}>
           <StyledConnectButton onClick={connectHandle} className={'btn'}>Connect</StyledConnectButton>

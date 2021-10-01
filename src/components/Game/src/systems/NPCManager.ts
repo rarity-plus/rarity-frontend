@@ -42,7 +42,7 @@ class NPCManager {
         console.warn("[NPCManager]:", "Empty NPC collection obj")
         return;
       }
-      
+
 
       Object.keys(npcObj).forEach((key) => {
           this.createdNPCs[key].npcInstance = new npcObj[key].npcClass(key, this.scene);
