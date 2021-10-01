@@ -3,7 +3,7 @@ import BaseRPNPC from '../gameObjects/BaseRPNPC';
 
 interface NPCListObj {
   [key: string]: {
-    npcClass: BaseRPNPC
+    npcClass: typeof BaseRPNPC
   }
 }
 
@@ -14,7 +14,7 @@ class NPCManager {
 
   private static instance: NPCManager;
 
-  createdNPCs: NPCListObj;
+  createdNPCs: {[key: string] : {npcInstance: BaseRPNPC}};
 
   private constructor() {
 
@@ -42,22 +42,28 @@ class NPCManager {
         console.warn("[NPCManager]:", "Empty NPC collection obj")
         return;
       }
+      
 
       Object.keys(npcObj).forEach((key) => {
-          this.createdNPCs[key] = npcObj[key]
+          this.createdNPCs[key].npcInstance = new npcObj[key].npcClass(key, this.scene);
 
-          if(this.createdNPCs[key].npcClass.create){
-            this.createdNPCs[key].npcClass.create(this)
+          if(this.createdNPCs[key].npcInstance.create){
+            this.createdNPCs[key].npcInstance.create(this)
           }
       })
   }
 
   public update() {
+    if(Object.keys(this.createdNPCs).length <= 0){
+      return;
+    }
+
     Object.keys(this.createdNPCs).forEach((key) => {
 
-      if(this.createdNPCs[key].npcClass.update){
-        this.createdNPCs[key].npcClass.update()
+      if(this.createdNPCs[key].npcInstance.update){
+        this.createdNPCs[key].npcInstance.update()
       }
+
     })
   }
 

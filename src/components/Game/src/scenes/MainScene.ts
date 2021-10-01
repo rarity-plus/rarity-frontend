@@ -23,8 +23,8 @@ class MainScene extends RPScene {
     this.player = new RPPlayer(this)
     // this.navigationSystem = new NavigationSytem(this)
 
-    this.adventureNPC = new AdventureNPC("adventure_npc", this)
-    
+    // this.adventureNPC = new AdventureNPC("adventure_npc", this)
+
   }
 
   async asyncCreate() {

@@ -8,7 +8,7 @@ class BaseRPNPC extends TransformNode {
   actionManager: ActionManager;
   scene: RPScene;
 
-  constructor(name: string, scene: RPScene) {
+  public constructor(name: string, scene: RPScene) {
     super(name, scene.instance);
     this.scene = scene;
     this.actionManager = new ActionManager(this.scene.instance)
