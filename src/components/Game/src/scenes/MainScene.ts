@@ -5,6 +5,7 @@ import { Engine, ArcRotateCamera,AbstractMesh, Mesh , Vector3, HemisphericLight,
 import NavigationSystem from '../systems/NavigationSystem';
 import RPWorld from '../gameObjects/RPWorld';
 import AdventureNPC from '../gameObjects/AdventureNPC';
+import WorldGUISystem from '../systems/WorldGUISystem';
 
 class MainScene extends RPScene {
 
@@ -23,8 +24,7 @@ class MainScene extends RPScene {
     // this.navigationSystem = new NavigationSytem(this)
 
     this.adventureNPC = new AdventureNPC("adventure_npc", this)
-
-
+    
   }
 
   async asyncCreate() {
@@ -50,6 +50,7 @@ class MainScene extends RPScene {
 
     //Create the navmesh after all the meshes and agents are registered
     await NavigationSystem.get().createNavmesh()
+
   }
 
 

@@ -10,8 +10,6 @@ class RPWorld {
 
   mesh: Mesh;
 
-  loadedMeshes;
-
   constructor(scene: RPScene) {
     this.scene = scene;
   }

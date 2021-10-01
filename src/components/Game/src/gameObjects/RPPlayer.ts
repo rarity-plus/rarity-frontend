@@ -2,6 +2,7 @@ import { ArcRotateCamera, Mesh, MeshBuilder, Scene, SceneLoader,AnimationGroup, 
 import RPScene from '../components/RPScene';
 import MainScene from '../scenes/MainScene';
 import NavigationSystem from '../systems/NavigationSystem';
+import { PlanePanel, TextBlock } from 'babylonjs-gui';
 
 class RPPlayer extends TransformNode{
 
@@ -69,6 +70,8 @@ class RPPlayer extends TransformNode{
         pos: new Vector3(0,0,0),
         transform: this
       })
+
+
     }
 
 

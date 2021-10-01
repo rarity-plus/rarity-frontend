@@ -87,12 +87,8 @@ class NavigationSystem {
     }
 
     public registerAgent(agent: AgentType) {
-      if(!this.isInitialized()){
-        console.warn("[NavigationSystem]:", "Looks like the system isn't initialized , please initialize it before you create a navmesh")
-      }
 
       return this.agentsToRegister.push(agent)
-
     }
 
     public registerMesh(mesh: Mesh) {
@@ -148,9 +144,8 @@ class NavigationSystem {
 
               if(agent.onCreate){
                 agent.onCreate(this, agentIndex)
-              }else{
-                console.warn("[NavigationSystem]:", `${agent.name} : Can't call onCreate because is undefined`)
               }
+
             })
           }else{
             console.warn("[NavigationSystem]:", "0 agents to generate.")
@@ -169,8 +164,6 @@ class NavigationSystem {
           Object.keys(this.registeredAgents).forEach((key) => {
             if(this.registeredAgents[key].onUpdate){
               this.registeredAgents[key].onUpdate()
-            }else{
-              console.warn("[NavigationSystem]:", `${key} : Can't call onUpdate because is undefined`)
             }
           })
         }

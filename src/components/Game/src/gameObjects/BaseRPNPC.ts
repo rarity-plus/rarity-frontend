@@ -1,5 +1,6 @@
 import { Mesh, MeshBuilder, Scene, TransformNode, ActionManager, ExecuteCodeAction } from 'babylonjs';
 import RPScene from '../components/RPScene';
+import NPCManager from '../systems/NPCManager';
 
 
 class BaseRPNPC extends TransformNode {
@@ -14,9 +15,14 @@ class BaseRPNPC extends TransformNode {
 
   }
 
-  init() {
+  public create(npcManager: NPCManager) {
 
   }
+
+  public update() {
+
+  }
+
 }
 
 export default BaseRPNPC
