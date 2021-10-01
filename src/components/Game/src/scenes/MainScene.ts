@@ -28,6 +28,9 @@ class MainScene extends RPScene {
   }
 
   async asyncCreate() {
+
+
+
     this.world.init()
     this.player.init()
     this.adventureNPC.init()

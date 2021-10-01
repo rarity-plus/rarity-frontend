@@ -15,6 +15,7 @@ class NPCManager {
   private static instance: NPCManager;
 
   createdNPCs: {[key: string] : {npcInstance: BaseRPNPC}};
+  toCreateNPCs: NPCListObj;
 
   private constructor() {
 
@@ -43,14 +44,22 @@ class NPCManager {
         return;
       }
 
+      this.toCreateNPCs = Object.assign(this.toCreateNPCs, npcObj)
+  }
 
-      Object.keys(npcObj).forEach((key) => {
-          this.createdNPCs[key].npcInstance = new npcObj[key].npcClass(key, this.scene);
+  public createNPCs() {
+    if(Object.keys(this.toCreateNPCs).length <= 0){
+      console.warn("[NPCManager]:", "0 NPCs to create!")
+      return;
+    }
 
-          if(this.createdNPCs[key].npcInstance.create){
-            this.createdNPCs[key].npcInstance.create(this)
-          }
-      })
+    Object.keys(this.toCreateNPCs).forEach((key) => {
+      this.createdNPCs[key].npcInstance = new this.toCreateNPCs[key].npcClass(key, this.scene);
+
+      if(this.createdNPCs[key].npcInstance.create){
+        this.createdNPCs[key].npcInstance.create(this)
+      }
+    })
   }
 
   public update() {
