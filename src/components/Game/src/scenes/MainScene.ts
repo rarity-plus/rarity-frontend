@@ -28,32 +28,38 @@ class MainScene extends RPScene {
   }
 
   async asyncCreate() {
+    // this.world.init()
 
-
-
-    this.world.init()
     this.player.init()
-    this.adventureNPC.init()
 
-    await NavigationSystem.get().register(this, {
-      cs: 0.22,
-      ch: 0.01,
-      walkableSlopeAngle: 90,
-      walkableHeight: 1.5,
-      walkableClimb: 2,
-      walkableRadius: 1,
-      maxEdgeLen: 12.,
-      maxSimplificationError: 0,
-      minRegionArea: 8,
-      mergeRegionArea: 20,
-      maxVertsPerPoly: 6,
-      detailSampleDist: 6,
-      detailSampleMaxError: 1,
+    this.world.createWorld((world) => {
+      let light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.instance);
+          light.intensity = 0.6;
+          light.specular = Color3.Black();
+
+      NavigationSystem.get().registerMesh(world.getWorldMesh());
+
+      (async () => {
+        await NavigationSystem.get().register(this, {
+          cs: 0.22,
+          ch: 0.01,
+          walkableSlopeAngle: 90,
+          walkableHeight: 1.5,
+          walkableClimb: 2,
+          walkableRadius: 1,
+          maxEdgeLen: 12.,
+          maxSimplificationError: 0,
+          minRegionArea: 8,
+          mergeRegionArea: 20,
+          maxVertsPerPoly: 6,
+          detailSampleDist: 6,
+          detailSampleMaxError: 1,
+        })
+
+        await NavigationSystem.get().createNavmesh()
+      })()
+
     })
-
-    //Create the navmesh after all the meshes and agents are registered
-    await NavigationSystem.get().createNavmesh()
-
   }
 
 
