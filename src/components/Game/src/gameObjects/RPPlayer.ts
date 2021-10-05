@@ -3,6 +3,7 @@ import RPScene from '../components/RPScene';
 import MainScene from '../scenes/MainScene';
 import NavigationSystem from '../systems/NavigationSystem';
 import { PlanePanel, TextBlock } from 'babylonjs-gui';
+import RPWorld from './RPWorld';
 
 class RPPlayer extends TransformNode{
 
@@ -16,12 +17,15 @@ class RPPlayer extends TransformNode{
 
   agentId: number;
 
+  worldRef: RPWorld;
+
     constructor(scene: RPScene) {
       super("player_transform", scene.instance);
       this.scene = scene;
     }
 
     init() {
+
       this.mainScene = this.scene as MainScene
 
       var assetsManager = new AssetsManager(this.getScene());
@@ -39,6 +43,7 @@ class RPPlayer extends TransformNode{
         // console.log(this.mesh.getAnimationByName("Armature|mixamo.com|Layer0"))
 
         this.walkAnimationGroup.stop()
+
       }
 
       assetsManager.load()
@@ -75,10 +80,19 @@ class RPPlayer extends TransformNode{
     }
 
 
+    setWorld(world) {
+     this.worldRef = world;
+    }
+
     onAgentCreate(navigationSystem: NavigationSystem, agentId: number): void {
+
       let pathLine;
 
       this.agentId = agentId
+
+
+      let spawnPoint = this.worldRef.worldPoints.find((mesh) => mesh.name === "point_spawn");
+      NavigationSystem.get().crowdInstance.agentTeleport(this.agentId, new Vector3(spawnPoint.position.x, 0.01, spawnPoint.position.z))
 
       const pointerDown = (mesh) => {
         const getGroundPosition = () => {

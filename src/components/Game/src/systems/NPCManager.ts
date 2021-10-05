@@ -1,25 +1,27 @@
 import RPScene from '../components/RPScene';
 import BaseRPNPC from '../gameObjects/BaseRPNPC';
 
-interface NPCListObj {
-  [key: string]: {
-    npcClass: typeof BaseRPNPC
-  }
+type CreatedNPCType = {
+  name: string,
+  instance: BaseRPNPC
 }
 
-//TODO: Find a better naming
+type RegisteredNPCType = {
+  name: string,
+  classType: typeof BaseRPNPC
+}
+
 class NPCManager {
 
   scene: RPScene;
 
   private static instance: NPCManager;
 
-  createdNPCs: {[key: string] : {npcInstance: BaseRPNPC}};
-  toCreateNPCs: NPCListObj;
+  createdNPCs: CreatedNPCType[] = []
 
-  private constructor() {
+  registeredNPCs: RegisteredNPCType[] = []
 
-  }
+  private constructor() {}
 
   public static get() {
     if(!NPCManager.instance){
@@ -38,42 +40,46 @@ class NPCManager {
     this.scene = scene
   }
 
-  public registerNPCs(npcObj: NPCListObj) {
-      if(!npcObj){
-        console.warn("[NPCManager]:", "Empty NPC collection obj")
-        return;
-      }
-
-      this.toCreateNPCs = Object.assign(this.toCreateNPCs, npcObj)
+  public registerNPCs(npcs: RegisteredNPCType[]) {
+      this.registeredNPCs = this.registeredNPCs.concat(npcs)
   }
 
-  public createNPCs() {
-    if(Object.keys(this.toCreateNPCs).length <= 0){
+  public async createNPCs() {
+    if(this.registeredNPCs.length <= 0){
       console.warn("[NPCManager]:", "0 NPCs to create!")
       return;
     }
 
-    Object.keys(this.toCreateNPCs).forEach((key) => {
-      this.createdNPCs[key].npcInstance = new this.toCreateNPCs[key].npcClass(key, this.scene);
+    if(!this.scene){
+      console.error("[NPCManager]:", "Scene is invalid!")
+      return;
+    }
 
-      if(this.createdNPCs[key].npcInstance.create){
-        this.createdNPCs[key].npcInstance.create(this)
+    console.info("[NPCManager]:", `Creating ${this.registerNPCs.length} NPCs!`)
+
+    this.registeredNPCs.forEach((npc) => {
+      const classInstance =  new npc.classType(npc.name, this.scene)
+
+      this.createdNPCs.push({
+        name: npc.name,
+        instance: classInstance
+      })
+
+      if(classInstance.create){
+        classInstance.create(this)
       }
+
     })
   }
 
   public update() {
-    if(Object.keys(this.createdNPCs).length <= 0){
-      return;
+    if(this.createdNPCs.length > 0){
+      this.createdNPCs.forEach((npc) => {
+        if(npc.instance.update){
+          npc.instance.update()
+        }
+      })
     }
-
-    Object.keys(this.createdNPCs).forEach((key) => {
-
-      if(this.createdNPCs[key].npcInstance.update){
-        this.createdNPCs[key].npcInstance.update()
-      }
-
-    })
   }
 
   public getNPCByKey(key: string) {

@@ -4,9 +4,11 @@ import { Engine, ArcRotateCamera,AbstractMesh, Mesh , Vector3, HemisphericLight,
 
 import NavigationSystem from '../systems/NavigationSystem';
 import RPWorld from '../gameObjects/RPWorld';
+import NPCManager from '../systems/NPCManager';
 import AdventureNPC from '../gameObjects/AdventureNPC';
-import WorldGUISystem from '../systems/WorldGUISystem';
 
+//Execution LOOP:
+// Create World (Merge Meshes, Sort Meshes, Create LIGHTS) -> Register Mesh
 class MainScene extends RPScene {
 
   player: RPPlayer;
@@ -14,30 +16,32 @@ class MainScene extends RPScene {
 
   camera: ArcRotateCamera;
 
-  adventureNPC: AdventureNPC;
-
   constructor(engine: Engine) {
     super(engine);
 
     this.world = new RPWorld(this)
     this.player = new RPPlayer(this)
-    // this.navigationSystem = new NavigationSytem(this)
-
-    // this.adventureNPC = new AdventureNPC("adventure_npc", this)
-
   }
 
   async asyncCreate() {
-    // this.world.init()
-
     this.player.init()
+
+    NPCManager.get().register(this)
+
+    NPCManager.get().registerNPCs([{
+      name: "adventure_npc",
+      classType: AdventureNPC
+    }])
 
     this.world.createWorld((world) => {
       let light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.instance);
-          light.intensity = 0.6;
+          light.intensity = 0.9;
           light.specular = Color3.Black();
 
       NavigationSystem.get().registerMesh(world.getWorldMesh());
+
+      this.player.setWorld(world);
+
 
       (async () => {
         await NavigationSystem.get().register(this, {
@@ -57,9 +61,12 @@ class MainScene extends RPScene {
         })
 
         await NavigationSystem.get().createNavmesh()
+
+        await NPCManager.get().createNPCs();
       })()
 
     })
+
   }
 
 

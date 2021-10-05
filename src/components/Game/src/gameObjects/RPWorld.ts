@@ -34,6 +34,10 @@ class RPWorld {
         return mesh.name.startsWith("point") || mesh.id.startsWith("point")
       })
 
+      this.worldPoints.forEach((mesh) => {
+        mesh.visibility = 0;
+      })
+
       console.info("[WorldSystem]:", "World loaded!")
 
       onCreated(this)
@@ -43,7 +47,7 @@ class RPWorld {
   }
 
   getWorldMesh() {
-    return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, true,true)
+    return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
   }
 }
 
