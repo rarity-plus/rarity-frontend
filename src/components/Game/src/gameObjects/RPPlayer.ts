@@ -92,7 +92,9 @@ class RPPlayer extends TransformNode{
 
 
       let spawnPoint = this.worldRef.worldPoints.find((mesh) => mesh.name === "point_spawn");
-      NavigationSystem.get().crowdInstance.agentTeleport(this.agentId, new Vector3(spawnPoint.position.x, 0.01, spawnPoint.position.z))
+
+
+      NavigationSystem.get().crowdInstance.agentTeleport(this.agentId, new Vector3( spawnPoint.absolutePosition.x, 0.01,  spawnPoint.absolutePosition.z))
 
       const pointerDown = (mesh) => {
         const getGroundPosition = () => {

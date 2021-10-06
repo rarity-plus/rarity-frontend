@@ -24,8 +24,6 @@ class RPWorld {
       
       let castedMeshArr = meshes as Mesh[]
 
-
-
       //Filter static meshes
       this.staticMeshes = castedMeshArr.filter((mesh ) => {
         return mesh.name.startsWith("static") || mesh.id.startsWith("static")
@@ -34,7 +32,12 @@ class RPWorld {
 
       //Filter world points
       this.worldPoints = castedMeshArr.filter((mesh) => {
-        return mesh.name.startsWith("point") || mesh.id.startsWith("point")
+        if( mesh.name.startsWith("point") || mesh.id.startsWith("point")){
+          mesh.parent = null;
+          return true;
+        }else{
+          return false;
+        }
       })
 
       this.worldPoints.forEach((mesh) => {
