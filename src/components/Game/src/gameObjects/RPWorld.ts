@@ -16,18 +16,21 @@ class RPWorld {
   }
 
   createWorld(onCreated: (world:RPWorld) => void) {
-    SceneLoader.ImportMesh(undefined, '/assets/scenes/', 'world.babylon', this.scene.instance, (meshes) => {
+    SceneLoader.ImportMesh(undefined, '/assets/scenes/', 'world.glb', this.scene.instance, (meshes) => {
       if(meshes.length <= 0){
         console.error("[WorldSystem]:", "0 meshes to load!")
         return;
       }
-
+      
       let castedMeshArr = meshes as Mesh[]
+
+
 
       //Filter static meshes
       this.staticMeshes = castedMeshArr.filter((mesh ) => {
         return mesh.name.startsWith("static") || mesh.id.startsWith("static")
       })
+
 
       //Filter world points
       this.worldPoints = castedMeshArr.filter((mesh) => {
@@ -47,7 +50,11 @@ class RPWorld {
   }
 
   getWorldMesh() {
-    return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
+    try {
+      return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
+    }catch(e){
+      console.error("[WorldSystem]:", e)
+    }
   }
 }
 

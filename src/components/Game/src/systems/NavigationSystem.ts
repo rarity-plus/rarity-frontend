@@ -124,6 +124,7 @@ class NavigationSystem {
 
           try {
             //Build the navmesh data
+
             this.navigationPlugin.buildFromNavmeshData(this.currentNavmeshData)
           }catch (e){
             console.error("[NavigationSystem]:", e)
