@@ -20,14 +20,45 @@ class AdventureNPC extends BaseRPNPC {
   mainSceneRef;
 
   create(instance) {
+    let rpScene = this.scene as MainScene
+    let spawnPoint = rpScene.world.worldPoints.find((mesh) => {
+      return mesh.name === "point_npc"
+    })
+
+    this.position = new Vector3(spawnPoint.absolutePosition.x , 0.01, spawnPoint.absolutePosition.z)
+
+    this.zoneBox = MeshBuilder.CreateBox("adventurer_zone", {
+      width: 2,
+      depth: 2,
+      height: 3
+    })
+
+    this.zoneBox.visibility = 0.1;
+    this.zoneBox.position.y = 1
+    this.zoneBox.parent = this
+
+    this.mainSceneRef = this.scene as MainScene
+    this.zoneBox.actionManager = this.actionManager
+
+    this.zoneBox.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnRightPickTrigger, (event) => {
+      if(Vector3.Distance(this.zoneBox.absolutePosition,  this.mainSceneRef.player.position) < 1.5){
+        modal.show("Nomad Merchant", MerchantModal, false)
+      }else{
+        infoToast("Too far to interact!")
+      }
+    }))
+
     let assetsManager = new AssetsManager(this.getScene());
 
     let meshTask = assetsManager.addMeshTask("character_task", "", "/assets/models/", "character.glb");
 
     meshTask.onSuccess =  (task) => {
       this.mesh = task.loadedMeshes[0] as Mesh
-      this.mesh.setParent(this)
-      this.mesh.checkCollisions = true;
+      this.mesh.parent = this
+
+      task.loadedMeshes.forEach((mesh) => {
+        mesh.isPickable = false
+      })
 
       this.walkAnimationGroup = task.loadedAnimationGroups[1]
       this.idleAnimationGroup = task.loadedAnimationGroups[0]
@@ -35,30 +66,12 @@ class AdventureNPC extends BaseRPNPC {
 
       this.walkAnimationGroup.stop()
       this.idleAnimationGroup.start()
-
-      let rpScene = this.scene as MainScene
-      let spawnPoint = rpScene.world.worldPoints.find((mesh) => {
-        return mesh.name === "point_npc"
-      })
-
-      this.mesh.isPickable = false
-
-      this.position = new Vector3(spawnPoint.absolutePosition.x , 0.01, spawnPoint.absolutePosition.z)
     }
 
     assetsManager.load()
 
-    this.zoneBox = MeshBuilder.CreateBox("adventurer_zone", {
-      width: 1.5,
-      height: 3
-    })
-
-    this.zoneBox.parent = this
-
-    this.zoneBox.visibility = 0.1;
-
     this.guiPlane = Mesh.CreatePlane("plane", 5, this.scene.instance);
-    this.guiPlane.parent = this.zoneBox;
+    this.guiPlane.parent = this;
     this.guiPlane.position.y = 2;
     this.guiPlane.billboardMode = Mesh.BILLBOARDMODE_ALL
     this.guiPlane.isPickable = false
@@ -71,20 +84,7 @@ class AdventureNPC extends BaseRPNPC {
     standTitleText.color = "white";
     standTitleText.fontSize = 30;
 
-    this.mainSceneRef = this.scene as MainScene
-
     this.guiTexture.addControl(standTitleText)
-
-    this.zoneBox.actionManager = this.actionManager
-
-    this.zoneBox.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnRightPickTrigger, (event) => {
-      if(Vector3.Distance(this.zoneBox.absolutePosition,  this.mainSceneRef.player.position) < 1.5){
-        modal.show("Nomad Merchant", MerchantModal, false)
-      }else{
-        infoToast("Too far to interact!")
-      }
-    }))
-
 
   }
 
