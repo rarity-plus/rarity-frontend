@@ -55,7 +55,7 @@ class NPCManager {
       return;
     }
 
-    console.info("[NPCManager]:", `Creating ${this.registerNPCs.length} NPCs!`)
+    console.info("[NPCManager]:", `Creating ${this.registeredNPCs.length} NPCs!`)
 
     this.registeredNPCs.forEach((npc) => {
       const classInstance =  new npc.classType(npc.name, this.scene)
@@ -75,6 +75,7 @@ class NPCManager {
   public update() {
     if(this.createdNPCs.length > 0){
       this.createdNPCs.forEach((npc) => {
+
         if(npc.instance.update){
           npc.instance.update()
         }

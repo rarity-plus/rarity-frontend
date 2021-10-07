@@ -37,6 +37,8 @@ class RPPlayer extends TransformNode{
         this.mesh.setParent(this)
         this.mesh.checkCollisions = true;
 
+        console.log(task.loadedAnimationGroups)
+
         this.walkAnimationGroup = task.loadedAnimationGroups[1]
         this.idleAnimationGroup = task.loadedAnimationGroups[0]
         console.log(task.loadedAnimationGroups)
@@ -143,10 +145,10 @@ class RPPlayer extends TransformNode{
 
           let vel = crowdInstance.getAgentVelocity(this.agentId);
 
-          let desiredRotation = Math.atan2(vel.x, vel.z);
-          this.rotation.y = this.rotation.y + (desiredRotation - this.rotation.y) * 0.05;
-
           if(vel.length() > 0){
+            let desiredRotation = Math.atan2(vel.x, vel.z);
+            this.rotation.y = this.rotation.y + (desiredRotation - this.rotation.y) * 0.05;
+            
             this.idleAnimationGroup.stop()
             this.walkAnimationGroup.start(true, 1)
           }else{

@@ -6,14 +6,15 @@ import NavigationSystem from '../systems/NavigationSystem';
 import RPWorld from '../gameObjects/RPWorld';
 import NPCManager from '../systems/NPCManager';
 import AdventureNPC from '../gameObjects/AdventureNPC';
+import AdventureBookNPC from '../gameObjects/AdventureBookNPC';
+import { AdvancedDynamicTexture } from 'babylonjs-gui';
 
-//Execution LOOP:
-// Create World (Merge Meshes, Sort Meshes, Create LIGHTS) -> Register Mesh
+
 class MainScene extends RPScene {
 
   player: RPPlayer;
   world: RPWorld;
-
+  guiTexture;
   camera: ArcRotateCamera;
 
   constructor(engine: Engine) {
@@ -24,6 +25,8 @@ class MainScene extends RPScene {
   }
 
   async asyncCreate() {
+
+
     this.player.init()
 
     NPCManager.get().register(this)
@@ -31,12 +34,16 @@ class MainScene extends RPScene {
     NPCManager.get().registerNPCs([{
       name: "adventure_npc",
       classType: AdventureNPC
+    }, {
+      name: "bookstand_npc",
+      classType: AdventureBookNPC
     }])
 
     this.world.createWorld((world) => {
-      let light = new HemisphericLight("light1", new Vector3(0, 1, 0), this.instance);
-          light.intensity = 0.9;
+      let light = new HemisphericLight("light1", new Vector3(3, 6, 3), this.instance);
+          light.intensity = .7;
           light.specular = Color3.Black();
+
 
       world.getWorldMesh().forEach((mesh) => {
         NavigationSystem.get().registerMesh(mesh)
@@ -49,18 +56,18 @@ class MainScene extends RPScene {
 
       (async () => {
         await NavigationSystem.get().register(this, {
-          cs: 0.22,
-          ch: 0.01,
+          cs: 0.34,
+          ch: 0.02,
           walkableSlopeAngle: 90,
-          walkableHeight: 1.5,
+          walkableHeight: 0.5,
           walkableClimb: 2,
           walkableRadius: 1,
-          maxEdgeLen: 12.,
-          maxSimplificationError: 0,
-          minRegionArea: 8,
-          mergeRegionArea: 20,
-          maxVertsPerPoly: 6,
-          detailSampleDist: 6,
+          maxEdgeLen: 2,
+          maxSimplificationError: 0.05,
+          minRegionArea: 1,
+          mergeRegionArea: 10,
+          maxVertsPerPoly: 3,
+          detailSampleDist: 3,
           detailSampleMaxError: 1,
         })
 
@@ -77,6 +84,8 @@ class MainScene extends RPScene {
   update() {
     //Call the navigation system update loop
     NavigationSystem.get().update()
+
+    NPCManager.get().update()
 
     //Call player update loop
     this.player && this.player.update()
