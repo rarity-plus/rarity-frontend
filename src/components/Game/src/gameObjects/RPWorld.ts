@@ -26,18 +26,22 @@ class RPWorld {
 
       //Filter static meshes
       this.staticMeshes = castedMeshArr.filter((mesh ) => {
-        return mesh.name.startsWith("static") || mesh.id.startsWith("static")
+        if(mesh.name.startsWith("static") || mesh.id.startsWith("static")){
+          if(mesh.getClassName() === "Mesh")
+            return true;
+
+          return false;
+        }
+
+        return false;
       })
+
+      console.log(this.staticMeshes)
 
 
       //Filter world points
       this.worldPoints = castedMeshArr.filter((mesh) => {
-        if( mesh.name.startsWith("point") || mesh.id.startsWith("point")){
-          mesh.parent = null;
-          return true;
-        }else{
-          return false;
-        }
+        return mesh.name.startsWith("point") || mesh.id.startsWith("point")
       })
 
       this.worldPoints.forEach((mesh) => {
@@ -53,11 +57,13 @@ class RPWorld {
   }
 
   getWorldMesh() {
-    try {
-      return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
-    }catch(e){
-      console.error("[WorldSystem]:", e)
-    }
+    return this.staticMeshes
+
+    // try {
+    //   return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
+    // }catch(e){
+    //   console.error("[WorldSystem]:", e)
+    // }
   }
 }
 

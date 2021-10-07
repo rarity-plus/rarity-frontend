@@ -38,7 +38,11 @@ class MainScene extends RPScene {
           light.intensity = 0.9;
           light.specular = Color3.Black();
 
-      NavigationSystem.get().registerMesh(world.getWorldMesh());
+      world.getWorldMesh().forEach((mesh) => {
+        NavigationSystem.get().registerMesh(mesh)
+      })
+
+      // NavigationSystem.get().registerMesh(world.getWorldMesh());
 
       this.player.setWorld(world);
 

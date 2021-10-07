@@ -59,7 +59,7 @@ class AdventureNPC extends BaseRPNPC {
         return mesh.name === "point_npc"
       })
 
-      this.position = new Vector3(spawnPoint.position.x , 0.01, spawnPoint.position.z)
+      this.position = new Vector3(spawnPoint.absolutePosition.x , 0.01, spawnPoint.absolutePosition.z)
 
       console.log("Mesh loaded")
     }
