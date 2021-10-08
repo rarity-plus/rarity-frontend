@@ -28,8 +28,8 @@ class AdventureNPC extends BaseRPNPC {
     this.position = new Vector3(spawnPoint.absolutePosition.x , 0.01, spawnPoint.absolutePosition.z)
 
     this.zoneBox = MeshBuilder.CreateBox("adventurer_zone", {
-      width: 2,
-      depth: 2,
+      width: 1.5,
+      depth: 1.5,
       height: 3
     })
 
@@ -41,7 +41,7 @@ class AdventureNPC extends BaseRPNPC {
     this.zoneBox.actionManager = this.actionManager
 
     this.zoneBox.actionManager.registerAction(new ExecuteCodeAction(ActionManager.OnRightPickTrigger, (event) => {
-      if(Vector3.Distance(this.zoneBox.absolutePosition,  this.mainSceneRef.player.position) < 1.5){
+      if(Vector3.Distance(this.zoneBox.absolutePosition,  this.mainSceneRef.player.position) < 2){
         modal.show("Nomad Merchant", MerchantModal, false)
       }else{
         infoToast("Too far to interact!")

@@ -69,8 +69,8 @@ class RPPlayer extends TransformNode{
 
         parameters: { radius: 0.1,
                       height: 0.2,
-                      maxAcceleration: 10,
-                      maxSpeed: 2,
+                      maxAcceleration: 15,
+                      maxSpeed: 3,
                       collisionQueryRange: 0.5,
                       pathOptimizationRange: 0.0,
                       separationWeight: 1.0 },
@@ -132,6 +132,7 @@ class RPPlayer extends TransformNode{
                           break;
                 }
       })
+
     }
 
 

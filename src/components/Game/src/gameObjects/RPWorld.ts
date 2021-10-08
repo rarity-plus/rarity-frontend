@@ -27,8 +27,10 @@ class RPWorld {
       //Filter static meshes
       this.staticMeshes = castedMeshArr.filter((mesh ) => {
         if(mesh.name.startsWith("static") || mesh.id.startsWith("static")){
-          if(mesh.getClassName() === "Mesh")
+          if(mesh.getClassName() === "Mesh"){
+            mesh.isPickable = false;
             return true;
+          }
 
           return false;
         }

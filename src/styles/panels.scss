@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,900&display=swap');
 
 
 .panel {
@@ -28,6 +28,21 @@
       background: radial-gradient(ellipse at center top, rgba(121, 76, 9, 0.2) 0%, rgba(24, 25, 29, 0.1) 100%);
       filter: blur(1px);
       //opacity: .5;
+    }
+  }
+
+  &.book {
+    font-family: 'Merriweather', serif;
+
+    background-color: #c7ab7b;
+    color: #5a3c18;
+    width: 100%;
+
+    border-style: solid;
+    border-radius: 0.3rem;
+
+    &:before {
+      background-image: url("https://www.transparenttextures.com/patterns/buried.png");
     }
   }
 

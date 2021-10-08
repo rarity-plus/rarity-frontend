@@ -46,7 +46,7 @@ class AdventureBookNPC extends BaseRPNPC {
     this.guiTexture = AdvancedDynamicTexture.CreateForMesh(this.guiPlane)
 
     let standTitleText = new TextBlock();
-    standTitleText.text = "Lost Tails Book";
+    standTitleText.text = "Lost Tales Book";
     standTitleText.color = "white";
     standTitleText.fontSize = 30;
 
@@ -60,7 +60,7 @@ class AdventureBookNPC extends BaseRPNPC {
           }
 
           if(Vector3.Distance(this.zoneBox.absolutePosition,  this.mainSceneRef.player.position) < 1.5){
-            modal.show("Adventure", AdventureModal, false)
+            modal.show("Lost Tales Book", AdventureModal, false)
           }else{
             infoToast("Too far to interact!")
           }
