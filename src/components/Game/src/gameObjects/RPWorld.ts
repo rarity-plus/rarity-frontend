@@ -1,8 +1,6 @@
 import { HemisphericLight, Scene, SceneLoader, Vector3, Color3, AssetsManager, Mesh } from 'babylonjs';
 import RPScene from '../components/RPScene';
-
 import "babylonjs-loaders"
-import NavigationSystem from '../systems/NavigationSystem';
 
 class RPWorld {
 
@@ -10,19 +8,38 @@ class RPWorld {
 
   staticMeshes: Mesh[];
   worldPoints: Mesh[];
+  worldLights;
 
   constructor(scene: RPScene) {
     this.scene = scene;
   }
 
-  createWorld(onCreated: (world:RPWorld) => void) {
-    SceneLoader.ImportMesh(undefined, '/assets/scenes/', 'world.glb', this.scene.instance, (meshes) => {
+  create(worldUrl:string, worldFilename: string, onCreated: (world:RPWorld) => void) {
+    //  /assets/scenes/
+    //  'world.glb
+
+    SceneLoader.ImportMesh(undefined, worldUrl, worldFilename, this.scene.instance, (meshes,
+                                                                                     particles,
+                                                                                     skeletons,
+                                                                                     animationGroup,
+                                                                                     transformNodes) => {
+      //
       if(meshes.length <= 0){
         console.error("[WorldSystem]:", "0 meshes to load!")
         return;
       }
       
       let castedMeshArr = meshes as Mesh[]
+
+      //Filter world lights
+      this.worldLights = transformNodes.filter((transform) => {
+          if(transform.name.startsWith("light") || transform.id.startsWith("light")){
+            console.log("light", transform)
+            return true;
+          }
+
+          return false;
+      })
 
       //Filter static meshes
       this.staticMeshes = castedMeshArr.filter((mesh ) => {
@@ -31,24 +48,23 @@ class RPWorld {
             mesh.isPickable = false;
             return true;
           }
-
-          return false;
         }
 
         return false;
       })
 
-      console.log(this.staticMeshes)
-
 
       //Filter world points
       this.worldPoints = castedMeshArr.filter((mesh) => {
-        return mesh.name.startsWith("point") || mesh.id.startsWith("point")
+        if(mesh.name.startsWith("point") || mesh.id.startsWith("point")) {
+          mesh.visibility = 0;
+
+          return true;
+        }
+
+        return false
       })
 
-      this.worldPoints.forEach((mesh) => {
-        mesh.visibility = 0;
-      })
 
       console.info("[WorldSystem]:", "World loaded!")
 
@@ -60,12 +76,6 @@ class RPWorld {
 
   getWorldMesh() {
     return this.staticMeshes
-
-    // try {
-    //   return Mesh.MergeMeshes(this.staticMeshes, true, true, undefined, false,true)
-    // }catch(e){
-    //   console.error("[WorldSystem]:", e)
-    // }
   }
 }
 

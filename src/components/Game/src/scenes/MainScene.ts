@@ -39,7 +39,7 @@ class MainScene extends RPScene {
       classType: AdventureBookNPC
     }])
 
-    this.world.createWorld((world) => {
+    this.world.create("/assets/scenes/","world.glb", (world) => {
       let light = new HemisphericLight("light1", new Vector3(3, 6, 3), this.instance);
           light.intensity = .7;
           light.specular = Color3.Black();
