@@ -22,6 +22,9 @@
 
             "@game": ["./game"],
             "@game/*": ["./game/*"],
+
+            "@contexts": ["./contexts"],
+            "@contexts/*": ["./contexts/*"],
         }
       }
 }
