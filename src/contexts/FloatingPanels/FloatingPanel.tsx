@@ -12,17 +12,27 @@ const StyledFloatingPanel = styled.div`
 `
 
 const StyledFloatingPanelHeader = styled.div`
+  padding: 0.1rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   
   & > span {
     pointer-events: none;
+    font-size: .8rem;
   }
 `
 
+const StyledGrow = styled.div`
+  width: 10rem;
+`
+
 const StyledFloatingPanelBody = styled.div`
-  padding: 2px 2px;
+  padding: 1rem;
+`
+
+const StyledCloseButton = styled.button`
+  width: 25%;
 `
 
 const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
@@ -57,15 +67,18 @@ const FloatingPanel = ({title, id, body}: FloatingPanelProps) => {
     })
   }, [])
 
-  return (
-    <StyledFloatingPanel className={'panel black'} ref={panelRef}>
-      <StyledFloatingPanelHeader ref={dragHandle} className={'panel black'}>
-        <span>{title}</span>
+  const closePanel = () => {
+    floatingPanelState.destroyFloatingPanel(id)
+  }
 
-        <button onClick={() => {
-          floatingPanelState.destroyFloatingPanel(id)
-        }}>Close</button>
+  return (
+    <StyledFloatingPanel className={'panel sm-blur'} ref={panelRef}>
+      <StyledFloatingPanelHeader ref={dragHandle} className={'panel title'}>
+        <span>{title}</span>
+        <StyledGrow></StyledGrow>
+        <StyledCloseButton className={'btn danger'} onClick={() => closePanel()}>X</StyledCloseButton>
       </StyledFloatingPanelHeader>
+
       <StyledFloatingPanelBody>
         {body}
       </StyledFloatingPanelBody>

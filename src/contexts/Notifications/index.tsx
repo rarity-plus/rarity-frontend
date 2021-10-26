@@ -6,6 +6,8 @@ const StyledInfoToast = styled.div`
   font-weight: normal;
   text-shadow: black 1px 1px 2px;
   z-index: 11;
+  
+  padding: 5px 2px;
 `
 
 //TODO: Make it smarter

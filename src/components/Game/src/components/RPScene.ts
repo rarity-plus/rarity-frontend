@@ -1,100 +1,79 @@
-import { Camera, PerspectiveCamera, Scene } from 'three';
+import { Scene, ArcRotateCamera, Engine ,Vector3 } from 'babylonjs';
 
 abstract class RPScene {
 
-  scene: Scene;
-  camera: Camera;
+  instance: Scene;
+  engineInstance: Engine;
 
-  constructor(camera: PerspectiveCamera) {
-      this.camera = camera
-      this.scene = new Scene()
+  constructor(engine: Engine) {
+      this.engineInstance = engine;
+      this.instance = new Scene(engine)
   }
 
+  /**
+   * Registers the events
+   */
+  registerEvents() {
+    try{
+      this.asyncCreate()
+    }catch (e){
+      console.error(e)
+    }
 
-  //
-  // public readonly scene: Scene;
-  // public readonly renderer: WebGLRenderer
-  // public readonly camera: PerspectiveCamera;
-  //
-  // constructor(renderer: WebGLRenderer, camera: PerspectiveCamera) {
-  //     this.scene = new Scene()
-  //     this.renderer = renderer
-  //     this.camera = camera
-  //
-  // }
-  //
-  // public registerEvents() {
-  //   this.created()
-  //   this.animate()
-  // }
-  //
-  // animate()  {
-  //     requestAnimationFrame(() => {
-  //       this.animate()
-  //     })
-  //
-  //     this.update()
-  //
-  //     this.renderer.render(this.scene, this.camera)
-  // }
-  //
-  // created() {
-  //
-  // }
-  //
-  // update() {
-  //
-  // }
+    if(this.instance){
+      this.instance.registerBeforeRender(() => {
+        this.update()
+        this.lateUpdate()
+      })
 
-  // readonly _engine: Engine;
-  // _scene: Scene;
-  //
-  // constructor(
-  //   rootUrl: string,
-  //   sceneFilename: string,
-  //   engine: Engine
-  // ) {
-  //   this._engine = engine
-  //
-  //   SceneLoader.ShowLoadingScreen = false
-  //
-  //   SceneLoader.Load(rootUrl, sceneFilename, this._engine, (scene) => {
-  //       this._scene = scene
-  //
-  //       this.onSceneLoaded(this._scene)
-  //
-  //       this._scene.registerBeforeRender(() => {
-  //         this.update()
-  //       })
-  //
-  //       this._engine.runRenderLoop(() => {
-  //         this._scene.render()
-  //       })
-  //   }, (event: ISceneLoaderProgressEvent) => {
-  //       this.onSceneLoading(event)
-  //   }, (scene: Scene, message: string, exception?: any) => {
-  //       console.error(message)
-  //
-  //       this.onSceneLoadingError(scene, message, exception)
-  //   })
-  // }
-  //
-  // update() {
-  //
-  // }
-  //
-  // onSceneLoaded(scene: Scene) {
-  //
-  // }
-  //
-  // onSceneLoading(event: ISceneLoaderProgressEvent) {
-  //
-  // }
-  //
-  // onSceneLoadingError(scene: Scene, message: string, exception?: any) {
-  //
-  // }
+      this.instance.registerAfterRender(() => {
+        this.afterRender()
+      })
+    }
 
+    if(this.engineInstance){
+      this.engineInstance.runRenderLoop(() => {
+        //TODO: Check if the order is correct
+        this.render()
+        this.instance.render()
+      })
+    }
+  }
+
+  /**
+   * Is called after the constructor
+   */
+  async asyncCreate() {
+
+  }
+
+  /**
+   * Is called before rendering
+   */
+  update() {
+
+  }
+
+  /**
+   * Is called after update and before rendering
+   */
+  lateUpdate() {
+
+  }
+
+  /**
+   * Is called after rendering
+   */
+  afterRender() {
+
+  }
+
+  /**
+   * Is called when rendering
+   */
+  render() {
+
+  }
 }
 
 

@@ -12,9 +12,8 @@ import useWeb3 from '../hooks/useWeb3';
 import { modal } from '../contexts/Modal';
 import RecruitSummonModal from '../modals/RecruitSummonModal';
 
-const StyledLoginWrapper = styled.div`
+const StyledSummonsWrapper = styled.div`
   width: 100%;
-  padding: 1rem 1rem;
 `
 
 const StyledWrapper = styled.div`
@@ -60,8 +59,15 @@ const CharacterLevel = styled.span`
 `
 
 const StyledAccountAddress = styled.p`
+  padding: 1rem;
+`
+
+const StyledSummonsBody = styled.div`
   padding: 0.5rem;
-  opacity: .5;
+`
+
+const StyledButton = styled.button`
+  width: 30%;
 `
 
 type CharacterItemType = {
@@ -74,7 +80,7 @@ const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHand
   const {summonClass, level, id} = summonObj
 
   return (
-    <div className={'panel flex row justify-between'}>
+    <div className={'panel border-gray small-blur flex row justify-between'}>
       <CharacterInfo>
         <ChracterTitle>
           <span>{RarityClasses[summonClass?.toString()]}</span>
@@ -83,7 +89,7 @@ const CharacterItem: React.FC<CharacterItemType> = ({summonObj, selectSummonHand
         <CharacterId>#{id}</CharacterId>
       </CharacterInfo>
 
-      <button onClick={() => selectSummonHandle()} className={'btn'}>Select</button>
+      <StyledButton onClick={() => selectSummonHandle()} className={'btn sm-border'}>Select</StyledButton>
     </div>
   )
 }
@@ -166,18 +172,17 @@ const CharacterSelectionView: React.FC = () => {
       <StyledWrapper>
         <Logo className={'logo'}>Select an summon</Logo>
 
-        <StyledLoginWrapper className={'panel black'}>
-          <StyledAccountAddress>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
-          {
-            summonersListElement
-          }
-
+        <StyledSummonsWrapper className={'panel'}>
+          <StyledAccountAddress className={'panel title'}>{`${account?.substring(0,5)}...${account?.substring(account.length - 4, account.length)}'s summons`}</StyledAccountAddress>
+          <StyledSummonsBody>
+            {summonersListElement}
+          </StyledSummonsBody>
           {
             (summoners.length <= 0 && loading) && <button onClick={() => {
               modal.show("My first summon", RecruitSummonModal, false)
             }} className={'btn'}>New Summon</button>
           }
-        </StyledLoginWrapper>
+        </StyledSummonsWrapper>
 
       </StyledWrapper>
     </div>

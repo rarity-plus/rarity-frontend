@@ -1,8 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import { ReactNode } from 'react';
+import { createElement, ReactNode } from 'react';
 
-import TestPanel from './panels/testPanel';
-import SuperTestPanel from './panels/superTestPanel';
+import AttributesPanel from './panels/AttributesPanel';
+import InventoryPanel from './panels/InventoryPanel';
 
 export type FloatingPanelType = {
   title: string,
@@ -20,19 +20,15 @@ export class FloatingPanelState {
   static FloatingPanels: {[key: string]: FloatingPanelType} = {
       "testPanel": {
         title: "Abilities",
-        body: TestPanel
+        body: createElement(AttributesPanel)
       },
       "superTestPanel": {
         title: "Inventory",
-        body: SuperTestPanel
+        body:  createElement(InventoryPanel)
       },
-      "coolTestPanel": {
-        title: "Skills",
-        body: SuperTestPanel
-      }
   }
 
-  currentFloatingPanels: {id: string, obj: FloatingPanelType}[] = []
+  currentFloatingPanels: {[key: string]: string} = {}
 
   constructor(){
       makeAutoObservable(this)
@@ -44,28 +40,28 @@ export class FloatingPanelState {
         return;
       }
 
-      let panelExists = this.currentFloatingPanels.find((val) => {
-          return val.id === panelName
-      })
+      // let panelExists = this.currentFloatingPanels.find((val) => {
+      //     return val.id === panelName
+      // })
 
-      if(panelExists){
+      if(this.currentFloatingPanels[panelName]){
         console.log("Panel already created")
         return;
       }
 
-      return this.currentFloatingPanels.push({
-        id: panelName,
-        obj: FloatingPanelState.FloatingPanels[panelName]
-      })
+      return this.currentFloatingPanels[panelName] = panelName
   }
 
   //TODO: When you delete an element the list gets reordoned if you delete the first object
   destroyFloatingPanel = (id: string) => {
-    const newArr = this.currentFloatingPanels.filter((val) => {
-      return val.id != id
-    })
+    // const newArr = this.currentFloatingPanels.filter((val) => {
+    //   return val.id != id
+    // })
+    //
+    // this.currentFloatingPanels = newArr
 
-    this.currentFloatingPanels = newArr
+    delete this.currentFloatingPanels[id]
+
     // console.log(this.currentFloatingPanels)
     // delete this.currentFloatingPanels[id]
   }

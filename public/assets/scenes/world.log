@@ -1,0 +1,134 @@
+Exporter version: 2.93.4, Blender version: 2.93.4
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  PBR
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  no
+		Texture directory   :  C:\Users\Ale\Documents\GitHub\rarity-frontend\public\assets\scenes\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of mesh:  static_terrain
+		processing begun of material:  Material
+		processing begun of material:  road
+		processing begun of multimaterial:  world.Multimaterial#0
+		num positions      :  10319
+		num normals        :  10319
+		num tangents       :  0
+		num uvs            :  20638
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  20000
+	processing begun of mesh:  point_spawn
+		processing begun of material:  Material.002
+		num positions      :  29
+		num normals        :  29
+		num tangents       :  0
+		num uvs            :  58
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  12
+	processing begun of mesh:  static_tree.006
+		processing begun of material:  palette.005
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree.001
+		processing begun of material:  palette.007
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree.002
+		processing begun of material:  palette.008
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree.003
+		processing begun of material:  palette.009
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree.004
+		processing begun of material:  palette.010
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree.005
+		processing begun of material:  palette.011
+			processing texture pink_tree1
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1133
+		num normals        :  1133
+		num tangents       :  0
+		num uvs            :  2266
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  768
+	processing begun of mesh:  static_tree
+		processing begun of material:  palette.012
+			processing texture tree3
+				texture type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  715
+		num normals        :  715
+		num tangents       :  0
+		num uvs            :  1430
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  480
+	processing begun of mesh:  point_npc
+		WARNING: No materials have been assigned: 
+		num positions      :  29
+		num normals        :  29
+		num tangents       :  0
+		num uvs            :  58
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  12
+========= Writing of JSON file started =========
+	writing mesh:  static_terrain
+	writing mesh:  point_spawn
+	writing mesh:  static_tree.006
+	writing mesh:  static_tree.001
+	writing mesh:  static_tree.002
+	writing mesh:  static_tree.003
+	writing mesh:  static_tree.004
+	writing mesh:  static_tree.005
+	writing mesh:  static_tree
+	writing mesh:  point_npc
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 1.6662 secs

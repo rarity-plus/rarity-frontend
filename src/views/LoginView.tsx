@@ -3,6 +3,8 @@ import { useHistory} from 'react-router-dom';
 import styled from 'styled-components';
 import useAuth from '../hooks/useAuth';
 import { useWeb3React } from '@web3-react/core';
+import Loading from '../components/Loading';
+import { gameState } from '../contexts/Game';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -13,6 +15,8 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  width: 10%;
 `
 
 const Logo = styled.h1`
@@ -35,6 +39,8 @@ const LoginView: React.FC = () => {
 
   useEffect(() => {
     if(account){
+      gameState.setEthAddress(account)
+
       history.push("/character")
     }
   }, [account])
@@ -42,7 +48,7 @@ const LoginView: React.FC = () => {
   return (
     <div className={'container'}>
       <StyledWrapper>
-        <Logo className={'logo'}>Rarity</Logo>
+        <Logo className={'logo'}>rarity.plus</Logo>
 
         <StyledLoginWrapper className={'panel black'}>
           <StyledConnectButton onClick={connectHandle} className={'btn'}>Connect</StyledConnectButton>

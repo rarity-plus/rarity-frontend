@@ -13,26 +13,41 @@ const GameWrapperPanel = styled.div`
 const Game = observer(({children}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const [game, setGame] = useState<GameEntry>(null)
+  const gameInstance = useRef<GameEntry>();
+
+  const [inspectorState, setInspectorState] = useState(false)
 
   useEffect(() => {
-    if(!game) {
-      const gameEntry = new GameEntry(canvasRef.current)
+    if(!gameInstance.current) {
+      gameInstance.current = new GameEntry(canvasRef.current)
 
-      setGame(gameEntry)
+      window.addEventListener("keydown", (event) => {
+        const keyName = event.key;
+
+        if(keyName === '9'){
+          if(inspectorState){
+            gameInstance.current.setInspectorState(false)
+            setInspectorState(false)
+          }else{
+            gameInstance.current.setInspectorState(true)
+            setInspectorState(true)
+          }
+        }
+
+      })
     }
 
     const resize = () => {
-      if(game){
-        game.engineResize();
+      if(gameInstance.current){
+        gameInstance.current.engineResize();
       }
     }
 
     window.addEventListener('resize', resize);
 
     return () => {
-      if(game){
-        game.engineDispose()
+      if(gameInstance.current){
+        gameInstance.current.engineDispose()
       }
 
       if(window){
