@@ -4,7 +4,7 @@ import { NetworksType } from "./types";
 const Networks: NetworksType = {
     "FTM": {
         name: "Fantom Opera Mainnet",
-        chainId: 9,
+        chainId: 250,
         rpcNodes: [
             "https://rpcapi.fantom.network"
         ],

@@ -24,7 +24,7 @@
             "@game/*": ["./game/*"],
 
             "@contexts": ["./contexts"],
-            "@contexts/*": ["./contexts/*"],
+            "@contexts/*": ["./contexts/*"]
         }
       }
 }
