@@ -9,7 +9,11 @@ export type NetworkType = {
 
     currencyName: string,
     currencySymbol: string,
-    currencyDecimals: number
+    currencyDecimals: number,
+
+    addresses: {
+        [key: string]: string
+    }
 }
 
 export type ConnectorType = {

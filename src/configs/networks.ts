@@ -12,7 +12,13 @@ const Networks: NetworksType = {
         
         currencyName: "FTM",
         currencySymbol: "ftm",
-        currencyDecimals: 18
+        currencyDecimals: 18,
+
+        addresses: {
+            RARITY_CONTRACT: "",
+            RARITY_GOLD_CONTRACT: "",
+            RARITY_ATTRIBUTE_CONTRACT: ""
+        }
     }
 }
 
