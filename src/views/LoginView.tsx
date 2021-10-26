@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useAuth from '../hooks/useAuth';
 import { useWeb3React } from '@web3-react/core';
 import Loading from '../components/Loading';
+import { gameState } from '../contexts/Game';
 
 const StyledLoginWrapper = styled.div`
   width: 100%;
@@ -38,6 +39,8 @@ const LoginView: React.FC = () => {
 
   useEffect(() => {
     if(account){
+      gameState.setEthAddress(account)
+
       history.push("/character")
     }
   }, [account])

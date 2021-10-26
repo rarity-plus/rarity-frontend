@@ -50,16 +50,6 @@ class RPPlayer extends TransformNode{
 
       assetsManager.load()
 
-      this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 50, this.position, this.getScene());
-      this.camera.attachControl(this.getEngine().getRenderingCanvas(), true);
-      this.camera.lowerRadiusLimit = 10;
-      this.camera.upperRadiusLimit = 100;
-
-      this.camera.upperBetaLimit = 1;
-
-      this.camera.lockedTarget = this;
-      this.camera.alpha += Math.PI;
-
       NavigationSystem.get().registerAgent({
         name: "player",
 

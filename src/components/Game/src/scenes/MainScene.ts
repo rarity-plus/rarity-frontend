@@ -7,15 +7,17 @@ import RPWorld from '../gameObjects/RPWorld';
 import NPCManager from '../systems/NPCManager';
 import AdventureNPC from '../gameObjects/AdventureNPC';
 import AdventureBookNPC from '../gameObjects/AdventureBookNPC';
-import { AdvancedDynamicTexture } from 'babylonjs-gui';
+import NetworkingSystem from '../systems/NetworkingSystem';
+import { gameState } from '../../../../contexts/Game';
 
 
 class MainScene extends RPScene {
 
   player: RPPlayer;
   world: RPWorld;
-  guiTexture;
   camera: ArcRotateCamera;
+
+  socketId: string;
 
   constructor(engine: Engine) {
     super(engine);
@@ -26,57 +28,88 @@ class MainScene extends RPScene {
 
   async asyncCreate() {
 
+    this.camera = new ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 50, new Vector3(10,10,10), this.world.scene.instance);
+    this.camera.attachControl(this.engineInstance.getRenderingCanvas(), true);
+    this.camera.lowerRadiusLimit = 10;
+    this.camera.upperRadiusLimit = 100;
 
-    this.player.init()
+    this.camera.upperBetaLimit = 1;
 
-    NPCManager.get().register(this)
+    // this.camera.lockedTarget = this;
+    this.camera.alpha += Math.PI;
 
-    NPCManager.get().registerNPCs([{
-      name: "adventure_npc",
-      classType: AdventureNPC
-    }, {
-      name: "bookstand_npc",
-      classType: AdventureBookNPC
-    }])
-
-    this.world.create("/assets/scenes/","world.glb", (world) => {
-      let light = new HemisphericLight("light1", new Vector3(3, 6, 3), this.instance);
-          light.intensity = .7;
-          light.specular = Color3.Black();
+    this.world.create("/assets/scenes/", "world.glb", (world) => {
+        let light = new HemisphericLight("light1", new Vector3(3, 6, 3), this.instance);
+            light.intensity = .7;
+            light.specular = Color3.Black();
 
 
-      world.getWorldMesh().forEach((mesh) => {
-        NavigationSystem.get().registerMesh(mesh)
+      NetworkingSystem.get().connect(gameState.ethAddress, (res, socket) => {
+        if(res.status === "ok"){
+          this.player.init()
+          this.player.setWorld(world)
+        }
+
+          console.info(res)
       })
-
-      // NavigationSystem.get().registerMesh(world.getWorldMesh());
-
-      this.player.setWorld(world);
-
-
-      (async () => {
-        await NavigationSystem.get().register(this, {
-          cs: 0.34,
-          ch: 0.02,
-          walkableSlopeAngle: 90,
-          walkableHeight: 0.5,
-          walkableClimb: 2,
-          walkableRadius: 1,
-          maxEdgeLen: 2,
-          maxSimplificationError: 0.05,
-          minRegionArea: 1,
-          mergeRegionArea: 10,
-          maxVertsPerPoly: 3,
-          detailSampleDist: 3,
-          detailSampleMaxError: 1,
-        })
-
-        await NavigationSystem.get().createNavmesh()
-
-        await NPCManager.get().createNPCs();
-      })()
-
     })
+
+    // NetworkingSystem.get().connect()
+    //
+    // this.player.init()
+    //
+    // NetworkingSystem.get().registerEvent("", (res, socket) => {
+    //
+    // })
+    //
+    // NPCManager.get().register(this)
+    //
+    // NPCManager.get().registerNPCs([{
+    //   name: "adventure_npc",
+    //   classType: AdventureNPC
+    // }, {
+    //   name: "bookstand_npc",
+    //   classType: AdventureBookNPC
+    // }])
+    //
+    // this.world.create("/assets/scenes/","world.glb", (world) => {
+    //   let light = new HemisphericLight("light1", new Vector3(3, 6, 3), this.instance);
+    //       light.intensity = .7;
+    //       light.specular = Color3.Black();
+    //
+    //
+    //   world.getWorldMesh().forEach((mesh) => {
+    //     NavigationSystem.get().registerMesh(mesh)
+    //   })
+    //
+    //   // NavigationSystem.get().registerMesh(world.getWorldMesh());
+    //
+    //   this.player.setWorld(world);
+    //
+    //
+    //   (async () => {
+    //     await NavigationSystem.get().register(this, {
+    //       cs: 0.34,
+    //       ch: 0.02,
+    //       walkableSlopeAngle: 90,
+    //       walkableHeight: 0.5,
+    //       walkableClimb: 2,
+    //       walkableRadius: 1,
+    //       maxEdgeLen: 2,
+    //       maxSimplificationError: 0.05,
+    //       minRegionArea: 1,
+    //       mergeRegionArea: 10,
+    //       maxVertsPerPoly: 3,
+    //       detailSampleDist: 3,
+    //       detailSampleMaxError: 1,
+    //     })
+    //
+    //     await NavigationSystem.get().createNavmesh()
+    //
+    //     await NPCManager.get().createNPCs();
+    //   })()
+    //
+    // })
 
   }
 
