@@ -7,3 +7,4 @@ export const getWeb3Library = (provider: any) => {
     library.pollingInterval = POLLING_INTERVAL
     return library
 }
+
