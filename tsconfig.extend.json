@@ -16,6 +16,9 @@
 
             "@hooks": ["./hooks"],
             "@hooks/*": ["./hooks/*"],
+
+            "@configs": ["./configs"],
+            "@configs/*": ["./configs/*"],
         }
       }
 }
