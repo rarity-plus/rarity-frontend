@@ -1,3 +1,4 @@
+import { AbstractConnector } from "@web3-react/abstract-connector"
 
 
 export type NetworkType = {
@@ -10,3 +11,17 @@ export type NetworkType = {
     currencySymbol: string,
     currencyDecimals: number
 }
+
+export type ConnectorType = {
+    name: string,
+    connectorObject: AbstractConnector 
+}
+
+export interface ConnectorsType {
+    [key: string]: ConnectorType
+}
+
+export interface NetworksType {
+    [key: string]: NetworkType
+}
+

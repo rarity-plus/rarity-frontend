@@ -19,6 +19,9 @@
 
             "@configs": ["./configs"],
             "@configs/*": ["./configs/*"],
+
+            "@game": ["./game"],
+            "@game/*": ["./game/*"],
         }
       }
 }
