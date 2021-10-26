@@ -1213,58 +1213,58 @@
     "lodash" "^4.17.19"
     "to-fast-properties" "^2.0.0"
 
-"@babylonjs/core@5.0.0-alpha.57":
-  "integrity" "sha512-v2uu7k4uw9JpulVG6q50rdaQ4azlbrwqaePtCygx3et5skHrYrQXZyUNnxJVJSNAxaV9vAWRHTLsgd74ENKLKg=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/core/-/core-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/core@5.0.0-alpha.56":
+  "integrity" "sha512-zKFbezQG7exZIyDeO1BtE4cnbaXtncegJY7XS819qFWG/K77/xGsyQb+S6wYoqj3IVvzyEOhKuq0dnY/rNiCfQ=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/core/-/core-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
     "tslib" "^2.3.1"
 
-"@babylonjs/gui@5.0.0-alpha.57":
-  "integrity" "sha512-GHm2VYfdkwnvcLvA9nafClb5a5+ek5uKaDU1ChprSpKwBHGKVoXQifH6ifNG3kFW2nkhGiv1pWk3B0RdZssfFQ=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/gui/-/gui-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/gui@5.0.0-alpha.56":
+  "integrity" "sha512-tE4VYIljkgJMqGPLxIOvaGAdkMM88pgSPkEKXtskQkH8ROd/fhepajsJWWNcYGZxJ8NfPtjqAwsImid8HFxYCg=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/gui/-/gui-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "@babylonjs/core" "5.0.0-alpha.57"
+    "@babylonjs/core" "5.0.0-alpha.56"
     "tslib" "^2.3.1"
 
-"@babylonjs/inspector@>=5.0.0-alpha.45":
-  "integrity" "sha512-PEPz0tdqsfT5A2vBayNv7y9NnnFsIFw66QiBRApmQzMln5psSch4s++XrJ8gG4U7DbIVAF/IhUEQbeB9rdOULA=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/inspector/-/inspector-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/inspector@5.0.0-alpha.56":
+  "integrity" "sha512-9DkthVmvoR/uCkah2duqVTAoaHdBcSe4lUpLdRqrvfUtCNuwDb6tAvlDJkRgCH3oCUs0h4hFOVxggsWR8DLMjQ=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/inspector/-/inspector-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "@babylonjs/core" "5.0.0-alpha.57"
-    "@babylonjs/gui" "5.0.0-alpha.57"
-    "@babylonjs/loaders" "5.0.0-alpha.57"
-    "@babylonjs/materials" "5.0.0-alpha.57"
-    "@babylonjs/serializers" "5.0.0-alpha.57"
-    "babylonjs-gltf2interface" "5.0.0-alpha.57"
+    "@babylonjs/core" "5.0.0-alpha.56"
+    "@babylonjs/gui" "5.0.0-alpha.56"
+    "@babylonjs/loaders" "5.0.0-alpha.56"
+    "@babylonjs/materials" "5.0.0-alpha.56"
+    "@babylonjs/serializers" "5.0.0-alpha.56"
+    "babylonjs-gltf2interface" "5.0.0-alpha.56"
     "tslib" "^2.3.1"
 
-"@babylonjs/loaders@5.0.0-alpha.57":
-  "integrity" "sha512-vPPhLZH7mFqwK4plxCgc6SmhggKwj70rsiMMJdp2oIr0oW8/jg8KMuceHt0PO0fyvqaZ4guwk4Zj8uvWPCIVeA=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/loaders/-/loaders-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/loaders@5.0.0-alpha.56":
+  "integrity" "sha512-LM6yYb3ECHK2EdYHknDcsJvotm8So/2WYqL/yTG1XQajxIAg87YqVQnYuZhUCddg+agoIOZACbUN/Fo257J2dg=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/loaders/-/loaders-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "@babylonjs/core" "5.0.0-alpha.57"
-    "babylonjs-gltf2interface" "5.0.0-alpha.57"
+    "@babylonjs/core" "5.0.0-alpha.56"
+    "babylonjs-gltf2interface" "5.0.0-alpha.56"
     "tslib" "^2.3.1"
 
-"@babylonjs/materials@>=5.0.0-alpha.45", "@babylonjs/materials@5.0.0-alpha.57":
-  "integrity" "sha512-8SJl1X2sRSSHnB53nUB2IF7IfAPtV3d3lXXUYOGBc2Sm1jmEPyZyiLagiYPQY6NTjNZ2y9FTXWVroH3j0ajHfQ=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/materials/-/materials-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/materials@5.0.0-alpha.56":
+  "integrity" "sha512-j0tTivpXBiSqJGpIkey36n/M+fC4M8Zb739uDmXxr1L3HR7HWQpyYZm2Xww6tnO0hzjQ4CknWWrlmdgPNRqFAg=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/materials/-/materials-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "@babylonjs/core" "5.0.0-alpha.57"
+    "@babylonjs/core" "5.0.0-alpha.56"
     "tslib" "^2.3.1"
 
-"@babylonjs/serializers@5.0.0-alpha.57":
-  "integrity" "sha512-yUX71NQK3KmVA6BxrOWuZ8rBySqpizh0WCzJFpQi0FACYeNRiz8H6hRR4Ur6IPjAfMjrIX7ESucIxNGHOCrO4A=="
-  "resolved" "https://registry.npmjs.org/@babylonjs/serializers/-/serializers-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"@babylonjs/serializers@5.0.0-alpha.56":
+  "integrity" "sha512-dAK7O2uM+CeAW59nBd1CGToCndn5xc0Sog4FuLVAb+x97nLReaUdvrAfAt/LjcXQV4wrJo1fqLfr58x41TD+ig=="
+  "resolved" "https://registry.npmjs.org/@babylonjs/serializers/-/serializers-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "@babylonjs/core" "5.0.0-alpha.57"
-    "babylonjs-gltf2interface" "5.0.0-alpha.57"
+    "@babylonjs/core" "5.0.0-alpha.56"
+    "babylonjs-gltf2interface" "5.0.0-alpha.56"
     "tslib" "^2.3.1"
 
 "@bcoe/v8-coverage@^0.2.3":
@@ -3310,19 +3310,14 @@
   "resolved" "https://registry.npmjs.org/babylonjs-gltf2interface/-/babylonjs-gltf2interface-5.0.0-alpha.56.tgz"
   "version" "5.0.0-alpha.56"
 
-"babylonjs-gltf2interface@5.0.0-alpha.57":
-  "integrity" "sha512-uuiyLf5uMy/RPKVCaJDXlYUBKWqf17qgY5+GYiKQ2PH/eNXFh0pmmlgEoju5xik+3A6yTF1KbXbpxcbcm5vkPQ=="
-  "resolved" "https://registry.npmjs.org/babylonjs-gltf2interface/-/babylonjs-gltf2interface-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
-
-"babylonjs-gui@>=5.0.0-alpha.45":
-  "integrity" "sha512-9Ne+4Q9o79ABR/mvE8Pl2OymmdOut2QnyX/vBISdNn+SnAviAbnEcQBTl+xSlJwDB6u0Q+5RyN0COv/PWtZKcg=="
-  "resolved" "https://registry.npmjs.org/babylonjs-gui/-/babylonjs-gui-5.0.0-alpha.57.tgz"
-  "version" "5.0.0-alpha.57"
+"babylonjs-gui@5.0.0-alpha.56":
+  "integrity" "sha512-UUQKPLoymG8jdEJzO3VY4f6KGG9CBVBogBIB+vS08+9TTY+rC5Cb0yco9fnmQ5l0XeZJ4DwvJGH/sLaF5DjfqA=="
+  "resolved" "https://registry.npmjs.org/babylonjs-gui/-/babylonjs-gui-5.0.0-alpha.56.tgz"
+  "version" "5.0.0-alpha.56"
   dependencies:
-    "babylonjs" "5.0.0-alpha.57"
+    "babylonjs" "5.0.0-alpha.56"
 
-"babylonjs-loaders@>=5.0.0-alpha.45":
+"babylonjs-loaders@5.0.0-alpha.56":
   "integrity" "sha512-ggynzFmhc/3vx5pI8WI9rGUcwylgyL5xbFjBcp+g8RPdqazc8SvFkGPPRGE9OHFnreXrX5jNw9YvGfnt9sezUw=="
   "resolved" "https://registry.npmjs.org/babylonjs-loaders/-/babylonjs-loaders-5.0.0-alpha.56.tgz"
   "version" "5.0.0-alpha.56"
@@ -3330,7 +3325,7 @@
     "babylonjs" "5.0.0-alpha.56"
     "babylonjs-gltf2interface" "5.0.0-alpha.56"
 
-"babylonjs@>=5.0.0-alpha.45", "babylonjs@5.0.0-alpha.56", "babylonjs@5.0.0-alpha.57":
+"babylonjs@5.0.0-alpha.56":
   "integrity" "sha512-D+eAGZNIL7ek62qVGbgjzziJBypc3jMt6UEuN0NI/T+oSAXMSfr1FBgdoM8hwAfLFDGjPOffOjtMezuCr9wAnw=="
   "resolved" "https://registry.npmjs.org/babylonjs/-/babylonjs-5.0.0-alpha.56.tgz"
   "version" "5.0.0-alpha.56"
@@ -3769,9 +3764,9 @@
     "lodash.uniq" "^4.5.0"
 
 "caniuse-lite@^1.0.0", "caniuse-lite@^1.0.30000981", "caniuse-lite@^1.0.30001109", "caniuse-lite@^1.0.30001125", "caniuse-lite@^1.0.30001181":
-  "integrity" "sha512-xJJqzyd+7GCJXkcoBiQ1GuxEiOBCLQ0aVW9HMekifZsAVGdj5eJ4mFB9fEhSHipq9IOk/QXFJUiIr9lZT+EsGw=="
-  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001191.tgz"
-  "version" "1.0.30001191"
+  "integrity" "sha512-BBruZFWmt3HFdVPS8kceTBIguKxu4f99n5JNp06OlPD/luoAMIaIK5ieV5YjnBLH3Nysai9sxj9rpJj4ZisXOA=="
+  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001271.tgz"
+  "version" "1.0.30001271"
 
 "capture-exit@^2.0.0":
   "integrity" "sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g=="
@@ -4281,6 +4276,11 @@
     "parse-json" "^5.0.0"
     "path-type" "^4.0.0"
     "yaml" "^1.10.0"
+
+"craco-alias@^3.0.1":
+  "integrity" "sha512-N+Qaf/Gr/f3o5ZH2TQjMu5NhR9PnT1ZYsfejpNvZPpB0ujdrhsSr4Ct6GVjnV5ostCVquhTKJpIVBKyL9qDQYA=="
+  "resolved" "https://registry.npmjs.org/craco-alias/-/craco-alias-3.0.1.tgz"
+  "version" "3.0.1"
 
 "create-ecdh@^4.0.0":
   "integrity" "sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A=="
@@ -11978,15 +11978,10 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.3.1":
+"tslib@^2", "tslib@^2.0.3", "tslib@^2.3.1":
   "integrity" "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
   "version" "2.3.1"
-
-"tslib@^2", "tslib@^2.0.3":
-  "integrity" "sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A=="
-  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
-  "version" "2.1.0"
 
 "tsutils@^3.17.1":
   "integrity" "sha512-RYbuQuvkhuqVeXweWT3tJLKOEJ/UUw9GjNEZGWdrLLlM+611o1gwLHBpxoFJKKl25fLprp2eVthtKs5JOrNeXg=="

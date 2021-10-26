@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babylonjs/inspector": ">=5.0.0-alpha.45",
-    "@babylonjs/materials": ">=5.0.0-alpha.45",
+    "@babylonjs/inspector": "5.0.0-alpha.56",
+    "@babylonjs/materials": "5.0.0-alpha.56",
     "@craco/craco": "^6.4.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -14,9 +14,9 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@web3-react/core": "^6.1.9",
-    "babylonjs": ">=5.0.0-alpha.45",
-    "babylonjs-gui": ">=5.0.0-alpha.45",
-    "babylonjs-loaders": ">=5.0.0-alpha.45",
+    "babylonjs": "5.0.0-alpha.56",
+    "babylonjs-gui": "5.0.0-alpha.56",
+    "babylonjs-loaders": "5.0.0-alpha.56",
     "ethers": "^5.5.1",
     "mobx": "^6.3.5",
     "mobx-react-lite": "^3.2.1",
@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.8",
+    "craco-alias": "^3.0.1",
     "postcss": "^7.0.39",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
