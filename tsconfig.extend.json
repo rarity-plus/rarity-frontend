@@ -3,7 +3,19 @@
         "baseUrl": "./src",
         "paths": {
             "@components": ["./components"],
-            "@components/*": ["./components/*"]
+            "@components/*": ["./components/*"],
+
+            "@views": ["./views"],
+            "@views/*": ["./views/*"],
+
+            "@helpers": ["./helpers"],
+            "@helpers/*": ["./helpers/*"],
+
+            "@states": ["./states"],
+            "@states/*": ["./states/*"],
+
+            "@hooks": ["./hooks"],
+            "@hooks/*": ["./hooks/*"],
         }
       }
 }
