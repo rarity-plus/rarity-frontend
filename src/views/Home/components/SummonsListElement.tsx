@@ -31,7 +31,7 @@ const SummonsListElement = ({tokenId, onSelected}: SummonsListElementProps) => {
     }, [])
 
     return (
-        <div className='w-full bg-gray-500 bg-opacity-50 border border-gray-400 px-3 py-2'>
+        <div onClick={() => onSelected(tokenId)} className='w-full bg-gray-500 bg-opacity-50 border border-gray-400 px-3 py-2 hover:bg-opacity-80 active:bg-opacity-95 select-none '>
             {loading && (
                 <div className="flex flex-col space-y-2"> 
                     <div className='w-1/2 p-3 bg-gray-700 animate-pulse rounded-md'></div>
@@ -40,9 +40,12 @@ const SummonsListElement = ({tokenId, onSelected}: SummonsListElementProps) => {
             )}
 
             {!loading && (
-                <div className="flex flex-col space-y-2"> 
-                    <div>{RARITY_CLASSES[Number(summonData.summonClass) as RarityClassEnum].title} </div>
-                    <div>{summonData.level}</div>
+                <div className="flex flex-col"> 
+                    <div className='font-bold flex'>
+                        <span>{RARITY_CLASSES[Number(summonData.summonClass) as RarityClassEnum].title}</span>
+                        <span className='ml-1 text-xs'>{tokenId}</span> 
+                    </div>
+                    <div className='font-thin'>Level: {summonData.level}</div>
                 </div>
             )}
         </div>
