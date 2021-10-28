@@ -1,6 +1,12 @@
 export type RarityClassType = {
     [key: number]: {
-        name: string,
+        title: string,
         description: string
+    }
+}
+
+export type RarityAttributesType = {
+    [key: number]: {
+        title: string
     }
 }

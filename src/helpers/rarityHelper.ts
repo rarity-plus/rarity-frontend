@@ -1,55 +1,75 @@
 import { BigNumber} from 'ethers';
-import { RarityClassType } from './types';
-import { RarityClassEnum } from './enums';
+import { RarityAttributesType, RarityClassType } from './types';
+import { RarityAttributesEnum, RarityClassEnum } from './enums';
 
 export const RARITY_CLASSES: RarityClassType = {
    [RarityClassEnum.BARBARIAN]: {
-        name: "Barbarian",
+        title: "Barbarian",
         description: "TODO"
     },
    [RarityClassEnum.BARD]: {
-        name: "Bard",
+        title: "Bard",
         description: "TODO"
     },
     [RarityClassEnum.CLERIC]: {
-        name: "Cleric",
+        title: "Cleric",
         description: "TODO"
     },
     [RarityClassEnum.DRUID]: {
-        name: "Druid",
+        title: "Druid",
         description: "TODO"
     },
     [RarityClassEnum.FIGHTER]: {
-        name: "Fighter",
+        title: "Fighter",
         description: "TODO"
     },
     [RarityClassEnum.MONK]: {
-        name: "Monk",
+        title: "Monk",
         description: "TODO"
     },
     [RarityClassEnum.PALADIN]: {
-        name: "Paladin",
+        title: "Paladin",
         description: "TODO"
     },
     [RarityClassEnum.RANGER]: {
-        name: "Ranger",
+        title: "Ranger",
         description: "TODO"
     },
     [RarityClassEnum.ROGUE]: {
-        name: "Rogue",
+        title: "Rogue",
         description: "TODO"
     },
     [RarityClassEnum.SORCERER]: {
-        name: "Sorcerer",
+        title: "Sorcerer",
         description: "TODO"
     },
     [RarityClassEnum.WIZARD]: {
-        name: "Wizard",
+        title: "Wizard",
         description: "TODO"
     },
 }
 
-
+export const RARITY_ATTRIBUTES: RarityAttributesType = {
+    [RarityAttributesEnum.STRENGTH]: {
+        title: "Strength"
+    },
+    [RarityAttributesEnum.DEXTERITY]: {
+        title: "Dexterity"
+    },
+    [RarityAttributesEnum.CONSTITUTION]: {
+        title: "Constitution"
+    },
+    [RarityAttributesEnum.INTELLIGENCE]: {
+        title: "Intelligence"
+    },
+    [RarityAttributesEnum.WISDOM]: {
+        title: "Wisdom"
+    },
+    [RarityAttributesEnum.CHARISMA]: {
+        title: "Charisma"
+    },
+    
+}
 
 export const getXPRequiredToLevelUP = (currentLevel: number) => {
     if(currentLevel <= 0) return 0;
