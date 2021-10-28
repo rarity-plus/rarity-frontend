@@ -1,10 +1,15 @@
 import { NetworksType } from "./types";
 
+export const RPC_NODES = [
+    process.env.RPC_NODE_1,
+    process.env.RPC_NODE_2,
+    process.env.RPC_NODE_3
+]
 
 const Networks: NetworksType = {
     "FTM": {
-        name: "Fantom Opera Mainnet",
-        chainId: 250,
+        name: "Fantom Opera",
+        chainId: 2,
         rpcNodes: [
             "https://rpcapi.fantom.network"
         ],

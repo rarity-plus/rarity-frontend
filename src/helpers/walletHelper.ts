@@ -1,31 +1,29 @@
-import { NetworkType } from "@configs/types";
+import { RPC_NODES } from "@configs/networks";
 import _ from 'lodash'
 
-export const setupNetwork = async (
-    network: NetworkType
-) => {
+export const setupNetwork = async () => {
     const provider = (window as any)['ethereum']
     
     if (provider) {
-      let rpcNode = _.sample(network.rpcNodes)
+      let rpcNode = _.sample(RPC_NODES)
   
       try {
         await provider.request({
           method: 'wallet_addEthereumChain',
           params: [
             {
-              chainId: network.chainId,
-              chainName: network.name,
+              chainId: process.env.CHAIN_ID,
+              chainName: "Fantom Opera",
               nativeCurrency: {
-                name: network.currencyName,
-                symbol: network.currencySymbol,
-                decimals: network.currencyDecimals,
+                name: "FTM",
+                symbol: "ftm",
+                decimals: 18,
               },
               rpcUrls: [
                 rpcNode
               ],
   
-              blockExplorerUrls: [network.blockExplorer],
+              blockExplorerUrls: [process.env.BLOCK_EXPLORER],
             },
           ],
         })
