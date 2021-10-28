@@ -1,4 +1,3 @@
-import Networks from "@configs/networks"
 import { ethers } from "ethers"
 import { RARITY_ABI, RARITY_ATTRIBUTES_ABI, RARITY_GOLD_ABI, RARITY_SKILLS_ABI } from "./abiHelper"
 import { getRPCProvider } from "./web3Helper"
