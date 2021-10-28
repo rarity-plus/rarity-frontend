@@ -11,7 +11,6 @@ const Home = () => {
 
     const onConnectHandle = () => {
         login()
-        globalState.setNetwork("FTM")
     }
 
     return (

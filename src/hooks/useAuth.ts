@@ -1,9 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core"
-
 import Connectors from "@configs/connectors"
 import { setupNetwork } from "@helpers/walletHelper"
-import Networks from "@configs/networks"
 
 import globalState from "@states/globalState"
 
@@ -22,7 +20,7 @@ const useAuth = () => {
         if(connector.connectorObject){
             activate(connector.connectorObject, async (error: Error) => {
                 if (error instanceof UnsupportedChainIdError) {
-                    const hasSetup = await setupNetwork(Networks['FTM'])
+                    const hasSetup = await setupNetwork()
       
                     if (hasSetup) {
                       await activate(connector.connectorObject)

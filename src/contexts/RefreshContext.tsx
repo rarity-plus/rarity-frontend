@@ -47,4 +47,4 @@ export const RefreshContextProvider: FC = ({ children }) => {
     }, [isBrowserTabActiveRef])
   
     return <RefreshContext.Provider value={{ slow, fast }}>{children}</RefreshContext.Provider>
-  }
+}
