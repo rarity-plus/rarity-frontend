@@ -3,8 +3,6 @@ import React, { useEffect } from "react"
 import useAuth from "@hooks/useAuth"
 import useWeb3 from "@hooks/useWeb3"
 
-import globalState from '@states/globalState'
-
 const Home = () => {
     const { login } = useAuth()
     const { account } = useWeb3()
