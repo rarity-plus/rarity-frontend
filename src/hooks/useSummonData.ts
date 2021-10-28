@@ -19,12 +19,12 @@ const useSummonData = () => {
     useEffect(() => {
         autorun(async () => {
             if(summonId){
-                const rawSummonData = await rarityContract.summoner(summonId)
-
+                const rawSummonData = (await rarityContract.summoner(summonId)) as any[]
+                
                 setSummonData({
-                    xp: rawSummonData[0],
-                    summonClass: rawSummonData[2],
-                    level: rawSummonData[3]
+                    xp: rawSummonData[0].toString(),
+                    summonClass: rawSummonData[2].toString(),
+                    level: rawSummonData[3].toString()
                 })
             }
         })
@@ -33,12 +33,12 @@ const useSummonData = () => {
     useEffect(() => {
         (async () => {
             if(summonId){
-                const rawSummonData = await rarityContract.summoner(summonId)
-
+                const rawSummonData = (await rarityContract.summoner(summonId)) as any[]
+                
                 setSummonData({
-                    xp: rawSummonData[0],
-                    summonClass: rawSummonData[2],
-                    level: rawSummonData[3]
+                    xp: rawSummonData[0].toString(),
+                    summonClass: rawSummonData[2].toString(),
+                    level: rawSummonData[3].toString()
                 })
             }
         })()
