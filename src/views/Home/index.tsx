@@ -3,7 +3,9 @@ import React, { useEffect } from "react"
 import useAuth from "@hooks/useAuth"
 import useWeb3 from "@hooks/useWeb3"
 
-const Home = () => {
+import SummonList from "./components/SummonsList"
+
+const HomeView = () => {
     const { login } = useAuth()
     const { account } = useWeb3()
 
@@ -22,8 +24,7 @@ const Home = () => {
                        
                         <div className='grid grid-cols-3 h-full overflow-auto'>
                             <div className='col-span-2 overflow-auto'>
-                                <p>{account}</p>
-                               
+                                {account ? <SummonList/> : 'Please login'}
                             </div>
 
                             <div className=' flex flex-col bg-gray-700 border border-gray-600 '>
@@ -37,4 +38,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default HomeView

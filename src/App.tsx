@@ -7,7 +7,8 @@ import {
 
 import Layout from '@components/Layout';
 
-import Home from '@views/Home';
+import HomeView from '@views/Home';
+import GameView from '@views/Game';
 
 const App = () => {
   
@@ -17,8 +18,13 @@ const App = () => {
           <Switch>
             
             <Route path="/">
-              <Home />
+              <HomeView />
             </Route>
+
+            <Route path="/game">
+              <GameView />
+            </Route>
+            
           </Switch>
         </Router>
     </Layout>
