@@ -8,7 +8,7 @@ export const Wait = (delay: number) => {
 export const retryAxiosGet = async (
     url: string,
     options: {delay: number, tries: number},
-    axiosConfig: {}
+    axiosConfig?: {}
 ) => {
     const onError = () => {
         let triesLeft = options.tries - 1
