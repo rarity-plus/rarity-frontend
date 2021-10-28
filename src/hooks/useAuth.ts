@@ -1,12 +1,20 @@
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core"
 
 import Connectors from "@configs/connectors"
 import { setupNetwork } from "@helpers/walletHelper"
 import Networks from "@configs/networks"
 
+import globalState from "@states/globalState"
+
 const useAuth = () => {
-    const { activate, deactivate } = useWeb3React()
+    const { activate, deactivate, account } = useWeb3React()
+
+    useEffect(() => {
+        if(account){
+            globalState.setEthAddress(account)
+        }
+    }, [account])
 
     const login = useCallback((connectorKey?: string) => {
         const connector = Connectors[connectorKey ? connectorKey : "injected"]

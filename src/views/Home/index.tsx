@@ -1,35 +1,38 @@
-import useRPCProvider from "@hooks/useRPCProvider"
-import React from "react"
+import React, { useEffect } from "react"
+
+import useAuth from "@hooks/useAuth"
+import useWeb3 from "@hooks/useWeb3"
+
+import globalState from '@states/globalState'
 
 const Home = () => {
+    const { login } = useAuth()
+    const { account } = useWeb3()
+
+    const onConnectHandle = () => {
+        login()
+        globalState.setNetwork("FTM")
+    }
 
     return (
         <div className='flex justify-center w-full h-screen'>
             <div className='flex flex-col justify-center items-center w-full'>
                 
-                <div className='bg-gray-900 rounded-sm border border-gray-700 w-1/2 h-1/2'>
-                   <div className='flex flex-col'>
+                <div className='flex flex-col bg-gray-900 rounded-sm border border-gray-700 w-1/2 h-1/2'>
                         <div className='flex bg-gray-700 border border-gray-600 p-2'>
                             Rarity.plus
                         </div>
-
-                        <div className='grid grid-cols-1 grid-rows-2'>
-                            <div className=' row-span-2 p-2 flex-grow overflow-auto max-h-full'>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
-                                <p>Summoner</p>
+                       
+                        <div className='grid grid-cols-3 h-full overflow-auto'>
+                            <div className='col-span-2 overflow-auto'>
+                                <p>{account}</p>
+                               
                             </div>
 
-                            <div className=' row-span-1 p-2 flex flex-col bg-gray-700 border border-gray-600'>
-                                <button className=''>Connect</button>
+                            <div className=' flex flex-col bg-gray-700 border border-gray-600 '>
+                                <button onClick={onConnectHandle} className='p-2 bg-gray-500'>Connect</button>
                             </div>
                         </div>
-                   </div>
                 </div>
 
             </div>
