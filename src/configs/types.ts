@@ -10,10 +10,6 @@ export type NetworkType = {
     currencyName: string,
     currencySymbol: string,
     currencyDecimals: number,
-
-    addresses: {
-        [key: string]: string
-    }
 }
 
 export type ConnectorType = {
@@ -25,7 +21,4 @@ export interface ConnectorsType {
     [key: string]: ConnectorType
 }
 
-export interface NetworksType {
-    [key: string]: NetworkType
-}
 
