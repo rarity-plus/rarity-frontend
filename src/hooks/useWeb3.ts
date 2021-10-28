@@ -3,11 +3,11 @@ import { useWeb3React } from "@web3-react/core"
 import { Web3ReactContextInterface } from "@web3-react/core/dist/types"
 import { useEffect, useRef, useState } from "react"
 
-import useRPCProvider from "./useRPCProvider"
+import { getRPCProvider } from "@helpers/web3Helper"
 
 const useWeb3 = (): Web3ReactContextInterface<Web3Provider> => {
     const { library, chainId, ...web3React } = useWeb3React()
-    const rpcProvider = useRPCProvider()
+    const rpcProvider = getRPCProvider()
 
     const refEth = useRef(library)
     const [provider, setprovider] = useState(library || rpcProvider)
