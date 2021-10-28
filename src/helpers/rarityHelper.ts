@@ -1,4 +1,55 @@
-import { BigNumber, BigNumberish, utils } from 'ethers';
+import { BigNumber} from 'ethers';
+import { RarityClassType } from './types';
+import { RarityClassEnum } from './enums';
+
+export const RARITY_CLASSES: RarityClassType = {
+   [RarityClassEnum.BARBARIAN]: {
+        name: "Barbarian",
+        description: "TODO"
+    },
+   [RarityClassEnum.BARD]: {
+        name: "Bard",
+        description: "TODO"
+    },
+    [RarityClassEnum.CLERIC]: {
+        name: "Cleric",
+        description: "TODO"
+    },
+    [RarityClassEnum.DRUID]: {
+        name: "Druid",
+        description: "TODO"
+    },
+    [RarityClassEnum.FIGHTER]: {
+        name: "Fighter",
+        description: "TODO"
+    },
+    [RarityClassEnum.MONK]: {
+        name: "Monk",
+        description: "TODO"
+    },
+    [RarityClassEnum.PALADIN]: {
+        name: "Paladin",
+        description: "TODO"
+    },
+    [RarityClassEnum.RANGER]: {
+        name: "Ranger",
+        description: "TODO"
+    },
+    [RarityClassEnum.ROGUE]: {
+        name: "Rogue",
+        description: "TODO"
+    },
+    [RarityClassEnum.SORCERER]: {
+        name: "Sorcerer",
+        description: "TODO"
+    },
+    [RarityClassEnum.WIZARD]: {
+        name: "Wizard",
+        description: "TODO"
+    },
+}
+
+
 
 export const getXPRequiredToLevelUP = (currentLevel: number) => {
     if(currentLevel <= 0) return 0;
