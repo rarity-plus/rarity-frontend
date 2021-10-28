@@ -4,11 +4,17 @@ import {ethers} from 'ethers'
 export class GlobalState {
 
     ethAddress: string = ""
+    summonId: number = 0
 
     constructor() {
         makeAutoObservable(this)
     }
 
+    setSummonId = (id: number) => {
+        this.summonId = id
+
+        return this.summonId
+    }
 
     setEthAddress = (ethAddress: string) => {
         if(!ethers.utils.isAddress(ethAddress)){
