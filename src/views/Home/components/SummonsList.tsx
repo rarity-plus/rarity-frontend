@@ -4,14 +4,15 @@ import { useRarityContract } from "@hooks/useContract"
 import useWeb3 from "@hooks/useWeb3"
 import _ from "lodash"
 import { useEffect, useState } from "react"
+import SummonsListElement from "./SummonsListElement"
 
 
 export interface SummonListProps {
-    onSelectedCallback?: () => void
+    onSelectedCallback?: (tokenId: number) => void
 }
 
 const SummonList = ({ onSelectedCallback }: SummonListProps) => {
-    const {library, account} = useWeb3()
+    const {account} = useWeb3()
     const rarityContract = useRarityContract()
 
     const [summons, setSummons] = useState<number[]>([])
@@ -21,6 +22,8 @@ const SummonList = ({ onSelectedCallback }: SummonListProps) => {
             if(!account){
                 return;
             }
+
+            summons.length > 0 &&  setSummons([])
 
             const response = await retryAxiosGet(getRarityTokenURL(account), {
                 delay: 600,
@@ -33,7 +36,7 @@ const SummonList = ({ onSelectedCallback }: SummonListProps) => {
                         const tokenOwner = await rarityContract.ownerOf(tx.tokenID)
 
                         if(tokenOwner.toString() === account){
-                            return setSummons([...summons, tx.tokenID])
+                            return setSummons((prevSummons) => [...prevSummons, tx.tokenID])
                         }
                     }
                 })
@@ -41,12 +44,17 @@ const SummonList = ({ onSelectedCallback }: SummonListProps) => {
         })()
     }, [])
 
+    const renderElementList = summons.map((value, index) => {
+        const onSelectedHandle = (tokenId: number) => {
+           onSelectedCallback && onSelectedCallback(tokenId)
+        }
+
+        return (<SummonsListElement key={value+index} tokenId={value} onSelected={onSelectedHandle} />)
+   })
+
     return (
         <>
-           {summons.length <= 0 ? 'Zero Summon' : summons.map((value) => {
-                console.log(value)
-                //    return (<>{value}</>)
-           })}
+           {summons.length > 0 && renderElementList}
         </>
     )
 }

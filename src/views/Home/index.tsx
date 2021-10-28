@@ -28,7 +28,7 @@ const HomeView = () => {
                             </div>
 
                             <div className=' flex flex-col bg-gray-700 border border-gray-600 '>
-                                <button onClick={onConnectHandle} className='p-2 bg-gray-500'>Connect</button>
+                                {!account && <button onClick={onConnectHandle} className='p-2 bg-gray-500'>Connect</button>}
                             </div>
                         </div>
                 </div>
