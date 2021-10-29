@@ -1,13 +1,16 @@
+import GameUI from "@components/GameUI"
 
 
 
 
 
 const GameView = () => {
-
+    
     return (
         <>
-            h1
+            <GameUI />
+            ss
+
         </>
     )
 }

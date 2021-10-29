@@ -1,33 +1,35 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from "react-router";
+import { createBrowserHistory } from 'history'
 
 import Layout from '@components/Layout';
 
 import HomeView from '@views/Home';
 import GameView from '@views/Game';
 
+const history = createBrowserHistory()
+
 const App = () => {
   
   return (
-    <Layout>
-        <Router>
-          <Switch>
+    <Router history={history}>
+      <Layout>
+        <Switch>
             
-            <Route path="/">
-              <HomeView />
-            </Route>
+          <Route exact path="/">
+            <HomeView />
+          </Route>
 
-            <Route path="/game">
-              <GameView />
-            </Route>
-            
-          </Switch>
-        </Router>
-    </Layout>
+          <Route exact path="/game">
+            <GameView />
+          </Route>    
+        </Switch>
+      </Layout>
+    </Router>
   );
 }
 

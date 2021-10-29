@@ -4,13 +4,19 @@ import useAuth from "@hooks/useAuth"
 import useWeb3 from "@hooks/useWeb3"
 
 import SummonList from "./components/SummonsList"
+import { useHistory } from "react-router"
 
 const HomeView = () => {
     const { login } = useAuth()
     const { account } = useWeb3()
+    const history = useHistory()
 
     const onConnectHandle = () => {
         login()
+    }
+
+    const onSelectedHandle = () => {
+        history.push("/game")
     }
 
     return (
@@ -24,7 +30,7 @@ const HomeView = () => {
                        
                         <div className='grid grid-cols-3 h-full overflow-auto'>
                             <div className='col-span-2 overflow-auto'>
-                                {account ? <SummonList/> : 'Please login'}
+                                {account ? <SummonList onSelectedCallback={onSelectedHandle} /> : 'Please login'}
                             </div>
 
                             <div className=' flex flex-col bg-gray-700 border border-gray-600 '>
