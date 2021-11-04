@@ -1,39 +1,43 @@
-import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
-import { useCallback, useContext } from 'react';
+import { useCallback, useEffect } from "react"
+import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core"
+import Connectors from "@configs/connectors"
+import { setupNetwork } from "@helpers/walletHelper"
 
-import { connectors } from '../config/connectors';
-import { Simulate } from 'react-dom/test-utils';
-import { setupNetwork } from '../utils/wallet';
-
-//TODO: Needs to use connectors based on user choice
+import globalState from "@states/globalState"
 
 const useAuth = () => {
-  const { activate, deactivate } = useWeb3React()
+    const { activate, deactivate, account } = useWeb3React()
 
-  const login = useCallback(() => {
-      let connector = connectors["injected"]
+    useEffect(() => {
+        if(account){
+            globalState.setEthAddress(account)
+        }
+    }, [account])
 
-      if(connector){
-          activate(connector, async (error: Error) => {
-            if (error instanceof UnsupportedChainIdError) {
-              const hasSetup = await setupNetwork()
+    const login = useCallback((connectorKey?: string) => {
+        const connector = Connectors[connectorKey ? connectorKey : "injected"]
 
-              if (hasSetup) {
-                await activate(connector)
-              }
-            }
-          })
-      }
-  }, [activate])
+        if(connector.connectorObject){
+            activate(connector.connectorObject, async (error: Error) => {
+                if (error instanceof UnsupportedChainIdError) {
+                    const hasSetup = await setupNetwork()
+      
+                    if (hasSetup) {
+                      await activate(connector.connectorObject)
+                    }
+                }
+            })
+        }
+    }, [activate])
 
-  const logout = useCallback(() => {
-      deactivate()
-  }, [deactivate])
+    const logout = useCallback(() => {
+        deactivate()
+    }, [deactivate])
 
-  return {
-    login,
-    logout
-  }
+    return {
+        login,
+        logout
+    }
 }
 
 export default useAuth

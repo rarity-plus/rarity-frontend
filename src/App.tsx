@@ -1,29 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Router, Switch } from 'react-router';
+import React from 'react';
+import {
+  Router,
+  Switch,
+  Route,
+} from "react-router";
 import { createBrowserHistory } from 'history'
 
-import LoginView from './views/LoginView';
-import CharacterSelectionView from './views/CharacterSelectionView';
-import GameView from './views/GameView';
+import Layout from '@components/Layout';
 
-import Layout from './components/Layout';
+import HomeView from '@views/Home';
+import GameView from '@views/Game';
 
 const history = createBrowserHistory()
 
-const App: React.FC = () => {
-
+const App = () => {
+  
   return (
     <Router history={history}>
       <Layout>
         <Switch>
-          <Route exact path={'/'} component={LoginView} />
-          <Route exact path={'/character'} component={CharacterSelectionView} />
-          <Route exact path={'/play'} component={GameView} />
+            
+          <Route exact path="/">
+            <HomeView />
+          </Route>
+
+          <Route exact path="/game">
+            <GameView />
+          </Route>    
         </Switch>
       </Layout>
     </Router>
   );
 }
-
 
 export default App;

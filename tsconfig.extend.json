@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@components": ["./components"],
+            "@components/*": ["./components/*"],
+
+            "@views": ["./views"],
+            "@views/*": ["./views/*"],
+
+            "@helpers": ["./helpers"],
+            "@helpers/*": ["./helpers/*"],
+
+            "@states": ["./states"],
+            "@states/*": ["./states/*"],
+
+            "@hooks": ["./hooks"],
+            "@hooks/*": ["./hooks/*"],
+
+            "@configs": ["./configs"],
+            "@configs/*": ["./configs/*"],
+
+            "@game": ["./game"],
+            "@game/*": ["./game/*"],
+
+            "@contexts": ["./contexts"],
+            "@contexts/*": ["./contexts/*"]
+        }
+      }
+}

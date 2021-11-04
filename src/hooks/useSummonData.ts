@@ -1,36 +1,50 @@
-import { useRarityContract } from './useContract';
-import { useEffect, useState } from 'react';
-import { autorun } from 'mobx';
+import { useEffect, useState } from "react"
+import { autorun } from "mobx"
+import globalState from "@states/globalState"
+import { useRarityContract } from "./useContract"
+import useRefresh from "./useRefresh"
 
-import { gameState } from '../contexts/Game';
-import { useWeb3React } from '@web3-react/core';
 
-//TODO: Use useEffect and useState
-const useSummonData = (): {xp: string, summonClass: string, level: string} => {
-  const {account} = useWeb3React()
-  const rarityContract = useRarityContract()
+const useSummonData = () => {
+    const {summonId} = globalState
+    const rarityContract = useRarityContract()
+    const {slowRefresh} = useRefresh()
 
-  const [summonData, setSummonData] = useState({
-    xp: "",
-    summonClass: "",
-    level: "",
-  })
-
-  useEffect( () => {
-    autorun( async () => {
-      if(account){
-        const summon = await rarityContract.summoner(gameState.currentTokenId)
-
-        setSummonData({
-          xp: summon[0].toString(),
-          summonClass: summon[2].toString(),
-          level: summon[3].toString(),
-        })
-      }
+    const [summonData, setSummonData] = useState({
+        xp: "",
+        summonClass: "",
+        level: ""
     })
-  }, [])
 
-  return summonData
+    useEffect(() => {
+        autorun(async () => {
+            if(summonId){
+                const rawSummonData = (await rarityContract.summoner(summonId)) as any[]
+                
+                setSummonData({
+                    xp: rawSummonData[0].toString(),
+                    summonClass: rawSummonData[2].toString(),
+                    level: rawSummonData[3].toString()
+                })
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        (async () => {
+            if(summonId){
+                const rawSummonData = (await rarityContract.summoner(summonId)) as any[]
+                
+                setSummonData({
+                    xp: rawSummonData[0].toString(),
+                    summonClass: rawSummonData[2].toString(),
+                    level: rawSummonData[3].toString()
+                })
+            }
+        })()
+    }, [slowRefresh])
+
+    return summonData
 }
 
 export default useSummonData
